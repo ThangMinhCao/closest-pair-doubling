@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="ClosestPairDoubling"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/home/hswin/Learning/Research/Summer/Project/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j12 -f &quot;/home/hswin/Learning/Research/Summer/Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/home/hswin/Learning/Research/Summer/Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/home/hswin/Learning/Research/Summer/Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/home/hswin/Learning/Research/Summer/Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/home/hswin/Learning/Research/Summer/Project/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j12 -f &quot;/home/hswin/Learning/Research/Summer/Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/home/hswin/Learning/Research/Summer/Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/home/hswin/Learning/Research/Summer/Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/home/hswin/Learning/Research/Summer/Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/home/hswin/Learning/Research/Summer/Project/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j12 -f &quot;/home/hswin/Learning/Research/Summer/Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/home/hswin/Learning/Research/Summer/Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/home/hswin/Learning/Research/Summer/Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/home/hswin/Learning/Research/Summer/Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="closest_pair_doubling">
+				<Option output="/home/hswin/Learning/Research/Summer/Project/cmake-build-debug/closest_pair_doubling" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/hswin/Learning/Research/Summer/Project/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/hswin/Learning/Research/Summer/Project/include"/>
+					<Add directory="/home/hswin/Learning/Research/Summer/Project/utils"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/10.1.0/../../../../include/c++/10.1.0"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/10.1.0/../../../../include/c++/10.1.0/x86_64-pc-linux-gnu"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/10.1.0/../../../../include/c++/10.1.0/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/10.1.0/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/10.1.0/include-fixed"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j12 -f &quot;/home/hswin/Learning/Research/Summer/Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 closest_pair_doubling"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/home/hswin/Learning/Research/Summer/Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/home/hswin/Learning/Research/Summer/Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/home/hswin/Learning/Research/Summer/Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="closest_pair_doubling/fast">
+				<Option output="/home/hswin/Learning/Research/Summer/Project/cmake-build-debug/closest_pair_doubling" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/hswin/Learning/Research/Summer/Project/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/hswin/Learning/Research/Summer/Project/include"/>
+					<Add directory="/home/hswin/Learning/Research/Summer/Project/utils"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/10.1.0/../../../../include/c++/10.1.0"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/10.1.0/../../../../include/c++/10.1.0/x86_64-pc-linux-gnu"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/10.1.0/../../../../include/c++/10.1.0/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/10.1.0/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/10.1.0/include-fixed"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j12 -f &quot;/home/hswin/Learning/Research/Summer/Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 closest_pair_doubling/fast"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/home/hswin/Learning/Research/Summer/Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/home/hswin/Learning/Research/Summer/Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/home/hswin/Learning/Research/Summer/Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/home/hswin/Learning/Research/Summer/Project/include/ClosestPairDoubling.h">
+			<Option target="closest_pair_doubling"/>
+		</Unit>
+		<Unit filename="/home/hswin/Learning/Research/Summer/Project/include/Point.h">
+			<Option target="closest_pair_doubling"/>
+		</Unit>
+		<Unit filename="/home/hswin/Learning/Research/Summer/Project/include/PointList.h">
+			<Option target="closest_pair_doubling"/>
+		</Unit>
+		<Unit filename="/home/hswin/Learning/Research/Summer/Project/include/RandomGenerator.h">
+			<Option target="closest_pair_doubling"/>
+		</Unit>
+		<Unit filename="/home/hswin/Learning/Research/Summer/Project/include/kth_smallest.h">
+			<Option target="closest_pair_doubling"/>
+		</Unit>
+		<Unit filename="/home/hswin/Learning/Research/Summer/Project/src/ClosestPairDoubling.cpp">
+			<Option target="closest_pair_doubling"/>
+		</Unit>
+		<Unit filename="/home/hswin/Learning/Research/Summer/Project/src/kth_smallest.cpp">
+			<Option target="closest_pair_doubling"/>
+		</Unit>
+		<Unit filename="/home/hswin/Learning/Research/Summer/Project/src/main.cpp">
+			<Option target="closest_pair_doubling"/>
+		</Unit>
+		<Unit filename="/home/hswin/Learning/Research/Summer/Project/test/Test.cpp">
+			<Option target="closest_pair_doubling"/>
+		</Unit>
+		<Unit filename="/home/hswin/Learning/Research/Summer/Project/test/Test.h">
+			<Option target="closest_pair_doubling"/>
+		</Unit>
+		<Unit filename="/home/hswin/Learning/Research/Summer/Project/utils/2d_problem.cpp">
+			<Option target="closest_pair_doubling"/>
+		</Unit>
+		<Unit filename="/home/hswin/Learning/Research/Summer/Project/utils/2d_problem.h">
+			<Option target="closest_pair_doubling"/>
+		</Unit>
+		<Unit filename="/home/hswin/Learning/Research/Summer/Project/utils/merge_sort.cpp">
+			<Option target="closest_pair_doubling"/>
+		</Unit>
+		<Unit filename="/home/hswin/Learning/Research/Summer/Project/utils/merge_sort.h">
+			<Option target="closest_pair_doubling"/>
+		</Unit>
+		<Unit filename="/home/hswin/Learning/Research/Summer/Project/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>
