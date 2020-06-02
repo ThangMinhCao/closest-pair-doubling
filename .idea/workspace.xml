@@ -11,7 +11,9 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1a14c463-d11b-48d5-bfd5-6e08c34b211d" name="Default Changelist" comment="Init" />
+    <list default="true" id="1a14c463-d11b-48d5-bfd5-6e08c34b211d" name="Default Changelist" comment="Init">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -20,7 +22,6 @@
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="ExportToHTMLSettings">
     <option name="OUTPUT_DIRECTORY" value="$PROJECT_DIR$/exportToHTML" />
   </component>
@@ -47,10 +48,10 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="com.maddyhome.idea.vim.ui.VimEmulationConfigurable" />
+    <property name="settings.editor.selected.configurable" value="preferences.general" />
   </component>
   <component name="RunManager">
-    <configuration name="Project" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="ClosestPairDoubling" TARGET_NAME="Project" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="ClosestPairDoubling" RUN_TARGET_NAME="Project">
+    <configuration name="closest_pair_doubling" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="ClosestPairDoubling" TARGET_NAME="closest_pair_doubling" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="ClosestPairDoubling" RUN_TARGET_NAME="closest_pair_doubling">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
@@ -68,7 +69,8 @@
       <updated>1590626870928</updated>
       <workItem from="1590626872065" duration="1757000" />
       <workItem from="1591023008310" duration="9484000" />
-      <workItem from="1591102805790" duration="13569000" />
+      <workItem from="1591102805790" duration="13839000" />
+      <workItem from="1591126774226" duration="47000" />
     </task>
     <servers />
   </component>
@@ -88,30 +90,30 @@
       <screen x="1280" y="0" width="1920" height="1080" />
     </state>
     <state x="1978" y="300" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/1280.0.1920.1080/0.360.1280.720@1280.0.1920.1080" timestamp="1591041569035" />
-    <state x="2028" y="295" key="FileChooserDialogImpl" timestamp="1591125740292">
+    <state x="2028" y="295" key="FileChooserDialogImpl" timestamp="1591126764692">
       <screen x="1280" y="0" width="1920" height="1080" />
     </state>
-    <state x="2028" y="295" key="FileChooserDialogImpl/1280.0.1920.1080/0.360.1280.720@1280.0.1920.1080" timestamp="1591125740292" />
+    <state x="2028" y="295" key="FileChooserDialogImpl/1280.0.1920.1080/0.360.1280.720@1280.0.1920.1080" timestamp="1591126764692" />
     <state x="2050" y="471" key="Github.CreateGistDialog" timestamp="1591125550436">
       <screen x="1280" y="0" width="1920" height="1080" />
     </state>
     <state x="2050" y="471" key="Github.CreateGistDialog/1280.0.1920.1080/0.360.1280.720@1280.0.1920.1080" timestamp="1591125550436" />
-    <state width="1280" height="692" key="GridCell.Tab.0.bottom" timestamp="1591125568483">
+    <state width="1280" height="692" key="GridCell.Tab.0.bottom" timestamp="1591126772078">
       <screen x="1280" y="0" width="1920" height="1080" />
     </state>
-    <state width="1280" height="692" key="GridCell.Tab.0.bottom/1280.0.1920.1080/0.360.1280.720@1280.0.1920.1080" timestamp="1591125568483" />
-    <state width="1280" height="692" key="GridCell.Tab.0.center" timestamp="1591125568483">
+    <state width="1280" height="692" key="GridCell.Tab.0.bottom/1280.0.1920.1080/0.360.1280.720@1280.0.1920.1080" timestamp="1591126772078" />
+    <state width="1280" height="692" key="GridCell.Tab.0.center" timestamp="1591126772078">
       <screen x="1280" y="0" width="1920" height="1080" />
     </state>
-    <state width="1280" height="692" key="GridCell.Tab.0.center/1280.0.1920.1080/0.360.1280.720@1280.0.1920.1080" timestamp="1591125568483" />
-    <state width="1280" height="692" key="GridCell.Tab.0.left" timestamp="1591125568483">
+    <state width="1280" height="692" key="GridCell.Tab.0.center/1280.0.1920.1080/0.360.1280.720@1280.0.1920.1080" timestamp="1591126772078" />
+    <state width="1280" height="692" key="GridCell.Tab.0.left" timestamp="1591126772078">
       <screen x="1280" y="0" width="1920" height="1080" />
     </state>
-    <state width="1280" height="692" key="GridCell.Tab.0.left/1280.0.1920.1080/0.360.1280.720@1280.0.1920.1080" timestamp="1591125568483" />
-    <state width="1280" height="692" key="GridCell.Tab.0.right" timestamp="1591125568483">
+    <state width="1280" height="692" key="GridCell.Tab.0.left/1280.0.1920.1080/0.360.1280.720@1280.0.1920.1080" timestamp="1591126772078" />
+    <state width="1280" height="692" key="GridCell.Tab.0.right" timestamp="1591126772078">
       <screen x="1280" y="0" width="1920" height="1080" />
     </state>
-    <state width="1280" height="692" key="GridCell.Tab.0.right/1280.0.1920.1080/0.360.1280.720@1280.0.1920.1080" timestamp="1591125568483" />
+    <state width="1280" height="692" key="GridCell.Tab.0.right/1280.0.1920.1080/0.360.1280.720@1280.0.1920.1080" timestamp="1591126772078" />
     <state width="1874" height="359" key="GridCell.Tab.1.bottom" timestamp="1591045693375">
       <screen x="1280" y="0" width="1920" height="1080" />
     </state>
@@ -128,10 +130,10 @@
       <screen x="1280" y="0" width="1920" height="1080" />
     </state>
     <state width="1874" height="359" key="GridCell.Tab.1.right/1280.0.1920.1080/0.360.1280.720@1280.0.1920.1080" timestamp="1591045693375" />
-    <state x="1687" y="317" key="SettingsEditor" timestamp="1591108882984">
+    <state x="1687" y="317" key="SettingsEditor" timestamp="1591126820428">
       <screen x="1280" y="0" width="1920" height="1080" />
     </state>
-    <state x="1687" y="317" key="SettingsEditor/1280.0.1920.1080/0.360.1280.720@1280.0.1920.1080" timestamp="1591108882984" />
+    <state x="1687" y="317" key="SettingsEditor/1280.0.1920.1080/0.360.1280.720@1280.0.1920.1080" timestamp="1591126820428" />
     <state x="1860" y="243" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1591103232270">
       <screen x="1280" y="0" width="1920" height="1080" />
     </state>
@@ -140,9 +142,9 @@
       <screen x="1280" y="0" width="1920" height="1080" />
     </state>
     <state x="1904" y="260" width="672" height="677" key="run.anything.popup/1280.0.1920.1080/0.360.1280.720@1280.0.1920.1080" timestamp="1591041304896" />
-    <state x="1903" y="255" width="672" height="678" key="search.everywhere.popup" timestamp="1591125583618">
+    <state x="1903" y="255" width="672" height="678" key="search.everywhere.popup" timestamp="1591126809505">
       <screen x="1280" y="0" width="1920" height="1080" />
     </state>
-    <state x="1903" y="255" width="672" height="678" key="search.everywhere.popup/1280.0.1920.1080/0.360.1280.720@1280.0.1920.1080" timestamp="1591125583618" />
+    <state x="1903" y="255" width="672" height="678" key="search.everywhere.popup/1280.0.1920.1080/0.360.1280.720@1280.0.1920.1080" timestamp="1591126809505" />
   </component>
 </project>

@@ -12,7 +12,7 @@ set(MAIN_SOURCE src/ClosestPairDoubling.cpp src/kth_smallest.cpp src/main.cpp)
 set(UTILITIES utils/2d_problem.h utils/merge_sort.cpp utils/merge_sort.h utils/2d_problem.cpp)
 set(TESTING test/Test.cpp test/Test.h)
 
-add_executable(Project
+add_executable(closest_pair_doubling
         ${MAIN_HEADERS}
         ${MAIN_SOURCE}
         ${UTILITIES}
