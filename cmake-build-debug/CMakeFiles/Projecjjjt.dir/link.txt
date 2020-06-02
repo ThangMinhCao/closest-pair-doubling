@@ -1,0 +1,1 @@
+/usr/bin/c++  -g   CMakeFiles/Projecjjjt.dir/src/closest_pair.cpp.o CMakeFiles/Projecjjjt.dir/src/kth_smallest.cpp.o CMakeFiles/Projecjjjt.dir/src/main.cpp.o CMakeFiles/Projecjjjt.dir/utils/merge_sort.cpp.o  -o Projecjjjt 
