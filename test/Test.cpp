@@ -1,5 +1,4 @@
 #include "Test.h"
-#include "catch.hpp"
 #include <iostream>
 #include "RandomGenerator.h"
 #include "../utils/2d_problem.h"
