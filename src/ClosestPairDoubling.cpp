@@ -20,7 +20,6 @@ std::tuple<Point, double, DVect> ClosestPairDoubling::sep_ann(PointList &S, int 
   int outer_ball_count = (n / 2) + 1;
   
   // Random integer generator
-  srand((unsigned)time(nullptr));
   RandomInt int_gen(0, n - 1);
   /**
    * 1/ The while loop repeats the procedure
@@ -60,7 +59,6 @@ std::pair<Point, double> ClosestPairDoubling::sparse_sep_ann(PointList &S, int n
 
   int Ai_size = n / t + 1;
   // random generator from 1 to t
-  srand((unsigned)time(nullptr));
   RandomInt range_t_random(1, t);
 
   double R;
