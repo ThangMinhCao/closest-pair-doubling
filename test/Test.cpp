@@ -48,6 +48,11 @@ void Test::closest_pair_test(Algorithm a, PointList S, int dimension) {
   switch (a) {
     case CLOSEST_2D:
       printf("\033[1m\033[31m2D Algorithm:\033[0m\n");
+      if (dimension != 2) {
+        std::cout << "Invalid Dimension!" << std::endl;
+        result = 0.0;
+        break;
+      }
       result = ClosestPair2D::algorithm2D(S.points).second;
       break;
     case CLOSEST_DOUBLING:

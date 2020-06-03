@@ -29,7 +29,8 @@ std::tuple<Point, double, DVect> ClosestPairDoubling::sep_ann(PointList &S, int 
   while (Rp == 0.0 or outer_ball_count > std::floor(n / 2)) {
     count++;
     distances_from_p.clear();
-    p = S.points[int_gen.next()];
+    int random_index = int_gen.next();
+    p = S.points[random_index];
     for (const Point& point: S.points) {
       if (point != p) {
         distances_from_p.push_back(p.distance_to(point));
@@ -43,7 +44,7 @@ std::tuple<Point, double, DVect> ClosestPairDoubling::sep_ann(PointList &S, int 
       }
     }
   }
-  std::cout << "Repeating Time of SepAnn: " << count << ", with n = " << n << " and c = " << c << std::endl;
+  std::cout << "Repeating Time of SepAnn: " << count << ", with n = " << n << " and c = " << c  << std::endl;
   return std::make_tuple(p, Rp, distances_from_p);
 }
 
