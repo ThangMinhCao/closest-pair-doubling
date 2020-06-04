@@ -9,9 +9,9 @@ typedef std::pair<int, int> Range;
 
 void print_vec(const DVect& vec) {
   for (double i : vec) {
-    std::cout << i << " ";
+    printf("%f", i);
   }
-  std::cout << std::endl;
+  printf("\n");
 }
 
 int main() {
@@ -22,8 +22,8 @@ int main() {
   int rangeE = 300000;
 
   PointList list = PointList(dimension, point_num, rangeS, rangeE);
-  std::cout << "Number of Points: " << point_num << std::endl;
-  Test::closest_pair_test(CLOSEST_2D, list, dimension);
+  printf("Number of Points: %d\n", point_num);
+//  Test::closest_pair_test(CLOSEST_2D, list, dimension);
   Test::closest_pair_test(CLOSEST_DOUBLING, list, dimension);
   Test::closest_pair_test(BRUTE_FORCE, list, dimension);
   return 0;

@@ -9,19 +9,6 @@ void swap (double *a, double *b) {
   *a = *b;
   *b = temp;
 }
-//void swap(DVect &D, int e1, int e2) {
-//  double temp = D[e1];
-//  D[e1] = D[e2];
-//  D[e2] = temp;
-//}
-void print_dvect(DVect dist, double pivot) {
-  std::cout << "Pivot: " << pivot << std::endl;
-  for (double d: dist) {
-    std::cout << d << " ";
-  }
-  std::cout << std::endl;
-}
-
 double find(DVect& distances, int start, int end, int k) {
   if (start == end) {return distances[start];}
   srand((unsigned)time(nullptr));
@@ -72,7 +59,6 @@ double find(DVect& distances, int start, int end, int k) {
 
 double kth_smallest(DVect& distances, int k) {
   if (k < 1 or k > distances.size()) {
-    std::cout << 1 << std::endl;
     return std::numeric_limits<double>::max();
   }
   return find(distances, 0, (int)distances.size() - 1, k);

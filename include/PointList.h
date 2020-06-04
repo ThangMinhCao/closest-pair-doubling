@@ -24,9 +24,9 @@ class PointList {
     PointList() {}
     void print_points() {
       for (Point p: points) {
-        std::cout << p.toString() << " "; 
+        printf("%s", p.toString().c_str());
       }
-      std::cout << std::endl;
+      printf("\n");
     }
 };
 

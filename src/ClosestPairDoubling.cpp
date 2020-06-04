@@ -1,6 +1,8 @@
 #include "../include/ClosestPairDoubling.h"
 #include "../include/kth_smallest.h"
 #include <tuple>
+#include <fstream>
+#include <iomanip>
 
 double ClosestPairDoubling::brute_force(PointList &S) {
   double result = std::numeric_limits<double>::max();
@@ -44,7 +46,10 @@ std::tuple<Point, double, DVect> ClosestPairDoubling::sep_ann(PointList &S, int 
       }
     }
   }
-  std::cout << "Repeating Time of SepAnn: " << count << ", with n = " << n << " and c = " << c  << std::endl;
+  std::ofstream data_file;
+  data_file.open("sep_ann_loop_times.txt", std::ios_base::app);
+  data_file << std::setw(7) << count << std::setw(13) << n << std::setw(10) << c << "\n";
+  data_file.close();
   return std::make_tuple(p, Rp, distances_from_p);
 }
 
@@ -78,13 +83,14 @@ std::pair<Point, double> ClosestPairDoubling::sparse_sep_ann(PointList &S, int n
 }
 
 double ClosestPairDoubling::closest_pair(PointList &S, double d, int recursion) {
+
   int n = (int)S.points.size();
   const double e = std::exp(1.0);
   double delta0;
   if (n < 2 * pow(16 * e, d)) {
     return brute_force(S);
   } else {
-    double t = floor((1 / (16 * std::exp(1.0))) * pow(n / 2, 1 / d));
+    int t = floor((1 / (16 * std::exp(1.0))) * pow((double)n / 2, 1 / d));
     std::pair<Point, double> ssann_result = sparse_sep_ann(S, n, d, t);
     Point p = ssann_result.first;
     double R = ssann_result.second;
@@ -104,9 +110,7 @@ double ClosestPairDoubling::closest_pair(PointList &S, double d, int recursion) 
         }
       }
     }
-    if (recursion != 0) {
-      std::vector<Point>().swap(S.points);
-    }
+    std::vector<Point>().swap(S.points);
 
     double delta1 = closest_pair(S1orS2, d, ++recursion);
     double delta2 = closest_pair(S2orS3, d, ++recursion);
