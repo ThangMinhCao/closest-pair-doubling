@@ -11,7 +11,6 @@ void swap (double *a, double *b) {
 }
 double find(DVect& distances, int start, int end, int k) {
   if (start == end) {return distances[start];}
-  srand((unsigned)time(nullptr));
   // partitioning and moving all elements smaller than pivot to the left of it and vice versa
   // 1/ swapping the random pivot to the end
   RandomInt random_int_gen = RandomInt(start, end);

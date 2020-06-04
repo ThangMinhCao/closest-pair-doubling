@@ -15,24 +15,20 @@ double ClosestPairDoubling::brute_force(PointList &S) {
   }
   return result;
 }
-
-std::tuple<Point, double, DVect> ClosestPairDoubling::sep_ann(PointList &S, int n, double d, double mu, double c) {
-  double Rp = 0.0;
+// DVect = std::vector<double>
+std::tuple<Point, double, DVect> ClosestPairDoubling::sep_ann(PointList &S, int n, double mu, double c) {
+  double Rp = -1.0;
   Point p;
-  int outer_ball_count = (n / 2) + 1;
-  
-  // Random integer generator
-  RandomInt int_gen(0, n - 1);
-  /**
-   * 1/ The while loop repeats the procedure
-   **/
-  DVect distances_from_p;
+  int outer_ball_count = (n / 2) + 1; // this variable store the number of points in the outer ball with R = mu * Rp
+  RandomInt int_gen(0, n - 1); // the random integer generator
+  DVect distances_from_p; // the vector store the distances between p and other points
   int count = 0;
-  while (Rp == 0.0 or outer_ball_count > std::floor(n / 2)) {
+  while (Rp == -1.0 or outer_ball_count > std::floor(n / 2)) { // The loop check if outer_ball_count is <= n/2 or not
     count++;
     distances_from_p.clear();
     int random_index = int_gen.next();
     p = S.points[random_index];
+    // store the all the distances from p to all other points to the vector
     for (const Point& point: S.points) {
       if (point != p) {
         distances_from_p.push_back(p.distance_to(point));
@@ -45,7 +41,9 @@ std::tuple<Point, double, DVect> ClosestPairDoubling::sep_ann(PointList &S, int 
         outer_ball_count++;
       }
     }
+//    std::cout << "Count: " << outer_ball_count << " n: " << n << std::endl;
   }
+  // This part is only to write the data into a text file
   std::ofstream data_file;
   data_file.open("sep_ann_loop_times.txt", std::ios_base::app);
   data_file << std::setw(7) << count << std::setw(13) << n << std::setw(10) << c << "\n";
@@ -102,7 +100,7 @@ double ClosestPairDoubling::closest_pair(PointList &S, double d, int recursion) 
         double d_to_p = p.distance_to(point);
         if (d_to_p <= R) {
           S1orS2.points.push_back(point);
-        } else if (d_to_p > R and d_to_p <= (1 + 1/t) * R) {
+        } else if (d_to_p > R and d_to_p <= (1 + 1.0/t) * R) {
           S1orS2.points.push_back(point);
           S2orS3.points.push_back(point);
         } else {

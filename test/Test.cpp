@@ -7,7 +7,6 @@
 
 bool Test::kth_smallest_test(int element_num, int k, int range_start, int range_end){
   DVect distances;
-  srand(time(nullptr));
   RandomDouble random_gen(range_start, range_end);
 
   for (int i = 0; i < element_num; i++) {

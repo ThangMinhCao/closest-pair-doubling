@@ -12,7 +12,7 @@ enum Algorithm {
 
 class ClosestPairDoubling {
   private:
-    static std::tuple<Point, double, DVect> sep_ann(PointList &S, int n, double d, double mu, double c);
+    static std::tuple<Point, double, DVect> sep_ann(PointList &S, int n, double mu, double c);
     static std::pair<Point, double> sparse_sep_ann(PointList &S, int n, double d, int t);
 
   public:

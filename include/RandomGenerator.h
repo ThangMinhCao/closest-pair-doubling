@@ -2,8 +2,6 @@
 #define RANDOM_GEN_H 
 #include <random>
 
-// add next line before creating this object:
-// srand((unsigned)time(NULL));
 class RandomInt{
 public:
     RandomInt(int start, int end) 
