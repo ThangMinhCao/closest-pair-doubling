@@ -40,13 +40,8 @@ double find(DVect& distances, int start, int end, int k) {
     slow++;
   }
   // 3/ swapping the pivot from end back to its original place
-//  std::cout << "Fast: " << fast << " Slow: " << slow << std::endl;
-//  std::cout << "Before: " << std::endl;
-//  print_dvect(distances, pivot);
   swap(&distances[slow], &distances[end]);
-//  std::cout << "After: " << std::endl;
-//  print_dvect(distances, pivot);
-//  swap(distances, slow, end);
+
   if (k == slow - start + 1) {
     return distances[slow];
   } else if (k < slow - start + 1) {
@@ -56,7 +51,7 @@ double find(DVect& distances, int start, int end, int k) {
   }
 }
 
-double kth_smallest(DVect& distances, int k) {
+double KthSmallest::get(DVect& distances, int k) {
   if (k < 1 or k > distances.size()) {
     return std::numeric_limits<double>::max();
   }
@@ -67,7 +62,7 @@ bool compare(double x, double y) {
   return x < y;
 }
 
-double kth_smallest_with_sorting(DVect distances, int k) {
+double KthSmallest::get_with_sorting(DVect distances, int k) {
   std::sort(distances.begin(), distances.end(), compare);
   return distances[k - 1]; 
 }
