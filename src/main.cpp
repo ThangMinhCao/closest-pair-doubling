@@ -21,7 +21,9 @@ int main() {
   int rangeS = 0;
   int rangeE = 300000;
 
-  PointList list = PointList(dimension, point_num, rangeS, rangeE);
+  PointList list = PointList();
+//  list.random_initializer(dimension, point_num, rangeS, rangeE);
+  list.squares_initializer(dimension, point_num, log2(7));
   printf("Number of Points: %d\n", point_num);
 //  Test::closest_pair_test(CLOSEST_2D, list, dimension);
   Test::closest_pair_test(CLOSEST_DOUBLING, list, dimension);

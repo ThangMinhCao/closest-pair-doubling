@@ -1,5 +1,5 @@
 #include "../include/ClosestPairDoubling.h"
-#include "../include/kth_smallest.h"
+#include "../include/KthSmallest.h"
 #include <tuple>
 #include <fstream>
 #include <iomanip>
@@ -30,11 +30,9 @@ std::tuple<Point, double, DVect> ClosestPairDoubling::sep_ann(PointList &S, int 
     p = S.points[random_index];
     // store the all the distances from p to all other points to the vector
     for (const Point& point: S.points) {
-      if (point != p) {
-        distances_from_p.push_back(p.distance_to(point));
-      }
+      distances_from_p.push_back(p.distance_to(point));
     }
-    Rp = kth_smallest(distances_from_p, ceil(n / c));
+    Rp = KthSmallest::get(distances_from_p, ceil(n / c));
     outer_ball_count = 0;
     for (double dist: distances_from_p) {
       if (dist <= mu * Rp) {
@@ -44,6 +42,7 @@ std::tuple<Point, double, DVect> ClosestPairDoubling::sep_ann(PointList &S, int 
 //    std::cout << "Count: " << outer_ball_count << " n: " << n << std::endl;
   }
   // This part is only to write the data into a text file
+  std::cout << std::setw(7) << outer_ball_count << std::setw(5) << count << std::setw(13) << n << std::setw(10) << c << "\n";
   std::ofstream data_file;
   data_file.open("sep_ann_loop_times.txt", std::ios_base::app);
   data_file << std::setw(7) << count << std::setw(13) << n << std::setw(10) << c << "\n";
@@ -54,7 +53,7 @@ std::tuple<Point, double, DVect> ClosestPairDoubling::sep_ann(PointList &S, int 
 std::pair<Point, double> ClosestPairDoubling::sparse_sep_ann(PointList &S, int n, double d, int t) {
   const double e = std::exp(1.0);
   double c = 2 * pow(4 * e, d);
-  std::tuple<Point, double, DVect> sep_ann_res = sep_ann(S, n, d, e, c);
+  std::tuple<Point, double, DVect> sep_ann_res = sep_ann(S, n, e, c);
 
   // followings are result of sep_ann() function
   Point p = std::get<0>(sep_ann_res);
@@ -96,19 +95,17 @@ double ClosestPairDoubling::closest_pair(PointList &S, double d, int recursion) 
     PointList S1orS2 = PointList();
     PointList S2orS3 = PointList();
     for (const Point& point: S.points) {
-      if (point != p){
-        double d_to_p = p.distance_to(point);
-        if (d_to_p <= R) {
-          S1orS2.points.push_back(point);
-        } else if (d_to_p > R and d_to_p <= (1 + 1.0/t) * R) {
-          S1orS2.points.push_back(point);
-          S2orS3.points.push_back(point);
-        } else {
-          S2orS3.points.push_back(point);
-        }
+      double d_to_p = p.distance_to(point);
+      if (d_to_p <= R) {
+        S1orS2.points.push_back(point);
+      } else if (d_to_p > R and d_to_p <= (1 + 1.0/t) * R) {
+        S1orS2.points.push_back(point);
+        S2orS3.points.push_back(point);
+      } else {
+        S2orS3.points.push_back(point);
       }
     }
-    std::vector<Point>().swap(S.points);
+    std::vector<Point>().swap(S.points); // free the memory that store the vector S
 
     double delta1 = closest_pair(S1orS2, d, ++recursion);
     double delta2 = closest_pair(S2orS3, d, ++recursion);

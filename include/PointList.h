@@ -8,7 +8,7 @@ class PointList {
   public:
     std::vector<Point> points;
 
-    PointList(int dimension, int point_num, int coor_start_range, int coor_end_range) {
+    void random_initializer(int dimension, int point_num, int coor_start_range, int coor_end_range) {
       RandomDouble random_double(coor_start_range, coor_end_range);
 //      RandomInt random_int(coor_start_range, coor_end_range);
 
@@ -21,6 +21,28 @@ class PointList {
         points.push_back(Point(coor));
       }
     }
+
+    void squares_initializer(int dimension, int point_num, double d) {
+      double c = 2 * pow(4 * std::exp(1.0), d);
+      int m = ceil(point_num / c);
+      int b_left_corner = 0;
+      while (point_num > 0) {
+        RandomDouble random_double(b_left_corner, b_left_corner + 1);
+        for (int i = 0; i < m; i++) {
+          if (!point_num) {
+            break;
+          }
+          std::vector<double> coor;
+          for (int j = 0; j < dimension; j++) {
+            coor.push_back(random_double.next());
+          }
+          points.push_back(Point(coor));
+          point_num--;
+        }
+        b_left_corner += 10;
+      }
+    }
+
     PointList() {}
     void print_points() {
       for (Point p: points) {

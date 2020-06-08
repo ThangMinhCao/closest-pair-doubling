@@ -17,11 +17,11 @@ bool Test::kth_smallest_test(int element_num, int k, int range_start, int range_
     return false;
   }
   clock_t tStart = clock();
-  double result_sort = kth_smallest_with_sorting(distances, k);
+  double result_sort = KthSmallest::get_with_sorting(distances, k);
   double time1 = (double)(clock() - tStart)/CLOCKS_PER_SEC;
 
    tStart = clock();
-  double result = kth_smallest(distances, k);
+  double result = KthSmallest::get(distances, k);
   double time2 = (double)(clock() - tStart)/CLOCKS_PER_SEC;
 //  double result = kth_smallest(distances, 0, (int)distances.size(), k);
   if (result != result_sort) {

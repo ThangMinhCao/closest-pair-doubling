@@ -1,6 +1,6 @@
 #ifndef CLOSESTPAIRDOUBLING_TEST_H
 #define CLOSESTPAIRDOUBLING_TEST_H
-#include "kth_smallest.h"
+#include "KthSmallest.h"
 #include "ClosestPairDoubling.h"
 
 class Test {

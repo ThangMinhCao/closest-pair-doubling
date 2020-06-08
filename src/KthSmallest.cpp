@@ -1,7 +1,7 @@
 #include <iostream>
 #include <algorithm>
 #include <limits>
-#include "../include/kth_smallest.h"
+#include "../include/KthSmallest.h"
 #include "../include/RandomGenerator.h"
 
 void swap (double *a, double *b) {
