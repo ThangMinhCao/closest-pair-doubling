@@ -1,0 +1,225 @@
+\PassOptionsToPackage{unicode=true}{hyperref} % options for packages loaded elsewhere
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[12pt,english,]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provides euro and other symbols
+\else % if luatex or xelatex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage[]{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\usepackage{hyperref}
+\hypersetup{
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{0}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+% set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+
+\usepackage{float}
+\usepackage{indentfirst}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{url}
+\usepackage[ruled,vlined,linesnumbered]{algorithm2e}
+\newcommand{\pnt}[1]{{\scriptstyle#1}}
+\let\origfigure\figure
+\let\endorigfigure\endfigure
+\renewenvironment{figure}[1][2] {
+    \expandafter\origfigure\expandafter[H]
+} {
+    \endorigfigure
+}
+\usepackage{etoolbox}
+\makeatletter
+\providecommand{\subtitle}[1]{% add subtitle to \maketitle
+  \apptocmd{\@title}{\par {\large #1 \par}}{}{}
+}
+\makeatother
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[shorthands=off,main=english]{babel}
+\else
+  % load polyglossia as late as possible as it *could* call bidi if RTL lang (e.g. Hebrew or Arabic)
+  \usepackage{polyglossia}
+  \setmainlanguage[]{english}
+\fi
+
+\title{\Huge\textbf{Project Report}}
+\providecommand{\subtitle}[1]{}
+\subtitle{Name: Minh Thang Cao}
+\author{}
+\date{\vspace{-2.5em}22 June 2020}
+
+\begin{document}
+\maketitle
+
+\newgeometry{top=1in,bottom=1in,right=1in,left=1in}
+
+\hypertarget{introduction}{%
+\section{\texorpdfstring{1
+\enspace Introduction}{1 Introduction}}\label{introduction}}
+
+Implementation is an important step of every algorithm which helps us
+observe the algorithm's efficiency and behavior in practice. This report
+will briefly explain each part of the algorithm, show the program's
+implementation along with practical running time analysis and some
+implementation techniques used. The theoretical information in this
+report fully refers to the work of A. Maheshwari, W. Mulzer and M. Smid,
+see {[}1{]}.
+
+The whole closest pair algorithm consists of three important smaller
+parts:
+
+\vspace{-3.5truemm}
+
+\begin{quote}
+\begin{enumerate}
+\item Computing a separating annulus, denoted \textsc{SepAnn}$(S,n,d,\mu,c)$
+\item The refinement of \textsc{SepAnn}$(S,n,d,\mu,c)$, denoted \textsc{SparseSepAnn}$(S,n,d,t)$
+\item The main recursive closest pair algorithm, denoted \textsc{ClosestPair}$(S,n,d)$
+\end{enumerate}
+\end{quote}
+
+\vspace{-3.5truemm}
+
+Throughout the paper, let:
+
+\vspace{-2truemm}
+
+\begin{quote}
+\begin{itemize}
+\tightlist
+\item
+  \((P, dist)\) be a finite metric space in which \(P\) is the set of
+  all points, and \(dist\) is the function that calculate the distance
+  between any two points
+\item
+  \(d\) be the space's doubling dimension
+\item
+  \(S\) be a non-empty subset of \(P\)
+\end{itemize}
+\end{quote}
+
+\hypertarget{the-first-algorithm-computing-a-separating-annulus}{%
+\subsection{\texorpdfstring{2 \enspace The First Algorithm: Computing a
+separating
+annulus}{2 The First Algorithm: Computing a separating annulus}}\label{the-first-algorithm-computing-a-separating-annulus}}
+
+An important part of the main closest pair algorithm is finding a
+separating annulus in the subset \(S\). I will briefly describe this
+algorithm in the next subsection, due to A. Maheshwari, W. Mulzer and M.
+Smid {[}1, Section 3.1{]}.
+
+\hypertarget{the-mathrmspntepapntnnsndmuc-algorithm}{%
+\subsection{\texorpdfstring{2.1 The
+\(\mathrm{S\pnt{EP}A\pnt{NN}}(S,n,d,\mu,c)\)
+algorithm}{2.1 The \textbackslash{}mathrm\{S\textbackslash{}pnt\{EP\}A\textbackslash{}pnt\{NN\}\}(S,n,d,\textbackslash{}mu,c) algorithm}}\label{the-mathrmspntepapntnnsndmuc-algorithm}}
+
+In this section, \(\mu \ge1\) is a real constant number, \(c\) is
+calculated based on \(\mu\) (I would say that \(c = 2(4\mu)^d\) {[}1,
+Remark 1{]} since \(\mu\) is not an integer in this case {[}1, Section
+3.2{]}).
+
+This algorithm picks a uniformly random point \(p\) from the subset
+\(S\) then finds the smallest ball centered at \(p\), denoted
+\(ball_S(p, R_p)\), that contains at least \(n/c\) point. If the outer
+ball \(ball_S(p,\mu R_p)\) contains at most \(n/2\) points, it returns
+\(p\) and \(R_p\). If not, this procedure is repeated until the
+condition is satisfied. I will rewrite this algorithm's pseudocode
+below, from {[}1, Section 3.1{]}:
+
+\medskip
+
+\begin{figure}[ht]
+  \centering
+  \begin{minipage}{.8\linewidth}
+    {\LinesNotNumbered
+    \begin{algorithm}[H]
+    \DontPrintSemicolon
+    \SetAlgoLined
+    \BlankLine
+    \Repeat{$|ball_S(p, \mu R_p)| \geq n/c$}
+      {p = a uniformly random point in $S$
+
+      $R_p$ = min\{$r > 0: |ball_S(p, r)| \geq n/c$\}}
+      return $p$ and $R_p$
+    \caption{\textsc{SepAnn}$(S,n,d,\mu,c)$}
+    \end{algorithm}}
+  \end{minipage}
+\end{figure}
+
+\hypertarget{finding-the-kth-smallest-element}{%
+\subsection{\texorpdfstring{2.2 \enspace Finding the \(K^{th}\) smallest
+element}{2.2 Finding the K\^{}\{th\} smallest element}}\label{finding-the-kth-smallest-element}}
+
+One step needed to be executed in \textsc{SepAnn($S,n,d,\mu,c$)} is to
+find the smallest ball which contains at least \(n/c\) points. This ball
+is easy to find using the \(k^{th}\) smallest element algorithm.
+Particularly, in the list of distances between \(p\) and all other
+points in \(S\), we pick the \(\lceil n/c\rceil\)-th smallest element,
+and let it be the radius of the ball we need to find. Thus, all points
+closer to \(p\) are inside this ball.
+
+A very easy approach to find the \(k^{th}\) smallest element in a list
+is to sort it in ascending order, and then simply return the element at
+the \(k^{th}\) place. This sorting algorithm take \(O(n\,log\,n)\) time
+complexity in the worst case. Fortunately, we can improve the time
+complexity to \(O(n)\) using a technique which is similar to Quicksort.
+
+\hypertarget{implementation}{%
+\section{\texorpdfstring{5
+\enspace Implementation}{5 Implementation}}\label{implementation}}
+
+This implementation of the closest pair doubling algorithm of A.
+Maheshwari, W. Mulzer and M. Smid {[}1{]} is written in C++ since it is
+a very common and fast programming language with high level supports of
+object-oriented programming that can help us organize the program
+efficiently
+
+\medskip
+
+\begin{thebibliography}{9}
+\bibitem{latexcompanion} 
+A. Maheshwari, W. Mulzer and M. Smid. \emph{A Simple Randomized $O(n\,log\,n)$–Time Closest-Pair Algorithm in Doubling Metrics}, 2020. \url{https://arxiv.org/abs/2004.05883}
+\end{thebibliography}
+
+\end{document}

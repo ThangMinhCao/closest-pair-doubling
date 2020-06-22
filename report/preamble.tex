@@ -1,0 +1,15 @@
+\usepackage{float}
+\usepackage{indentfirst}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{url}
+\usepackage[ruled,vlined,linesnumbered]{algorithm2e}
+\newcommand{\pnt}[1]{{\scriptstyle#1}}
+\let\origfigure\figure
+\let\endorigfigure\endfigure
+\renewenvironment{figure}[1][2] {
+    \expandafter\origfigure\expandafter[H]
+} {
+    \endorigfigure
+}
+
