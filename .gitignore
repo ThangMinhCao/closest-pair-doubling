@@ -1,6 +1,5 @@
 # Prerequisites
 *.d
-
 # Compiled Object files
 *.slo
 *.lo
@@ -35,3 +34,5 @@
 cmake-build-debug/
 .idea/
 *.png
+*.tex
+.Rhistory
