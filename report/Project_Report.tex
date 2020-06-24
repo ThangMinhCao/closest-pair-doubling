@@ -23,6 +23,8 @@
 }{}
 \usepackage{hyperref}
 \hypersetup{
+            pdftitle={Project Report},
+            pdfauthor={Minh Thang Cao},
             pdfborder={0 0 0},
             breaklinks=true}
 \urlstyle{same}  % don't use monospace font for urls
@@ -60,7 +62,9 @@
 \usepackage[T1]{fontenc}
 \usepackage{amsmath}
 \usepackage{url}
-\usepackage[ruled,vlined,linesnumbered]{algorithm2e}
+\usepackage[ruled,vlined]{algorithm2e}
+\SetKwBlock{Else}{else}{endif;}
+% \renewcommand{\thealgocf}{}
 \newcommand{\pnt}[1]{{\scriptstyle#1}}
 \let\origfigure\figure
 \let\endorigfigure\endfigure
@@ -83,16 +87,15 @@
   \setmainlanguage[]{english}
 \fi
 
-\title{\Huge\textbf{Project Report}}
+\title{Project Report}
 \providecommand{\subtitle}[1]{}
-\subtitle{Name: Minh Thang Cao}
-\author{}
-\date{\vspace{-2.5em}22 June 2020}
+\subtitle{The Implementation of: A Simple Randomized \(O(n\,log\, n)\)--Time
+Closest-Pair Algorithm in Doubling Metrics}
+\author{Minh Thang Cao}
+\date{24 June 2020}
 
 \begin{document}
 \maketitle
-
-\newgeometry{top=1in,bottom=1in,right=1in,left=1in}
 
 \hypertarget{introduction}{%
 \section{\texorpdfstring{1
@@ -109,7 +112,7 @@ see {[}1{]}.
 The whole closest pair algorithm consists of three important smaller
 parts:
 
-\vspace{-3.5truemm}
+\vspace{-2truemm}
 
 \begin{quote}
 \begin{enumerate}
@@ -119,7 +122,7 @@ parts:
 \end{enumerate}
 \end{quote}
 
-\vspace{-3.5truemm}
+\vspace{-2truemm}
 
 Throughout the paper, let:
 
@@ -127,15 +130,9 @@ Throughout the paper, let:
 
 \begin{quote}
 \begin{itemize}
-\tightlist
-\item
-  \((P, dist)\) be a finite metric space in which \(P\) is the set of
-  all points, and \(dist\) is the function that calculate the distance
-  between any two points
-\item
-  \(d\) be the space's doubling dimension
-\item
-  \(S\) be a non-empty subset of \(P\)
+\item $(P, dist)$ be a finite metric space in which $P$ is the set of all points, and $dist$ is the function that calculate the distance between any two points
+\item $d$ be the space's doubling dimension
+\item $S$ be a non-empty subset of $P$
 \end{itemize}
 \end{quote}
 
@@ -167,8 +164,6 @@ ball \(ball_S(p,\mu R_p)\) contains at most \(n/2\) points, it returns
 condition is satisfied. I will rewrite this algorithm's pseudocode
 below, from {[}1, Section 3.1{]}:
 
-\medskip
-
 \begin{figure}[ht]
   \centering
   \begin{minipage}{.8\linewidth}
@@ -180,8 +175,8 @@ below, from {[}1, Section 3.1{]}:
     \Repeat{$|ball_S(p, \mu R_p)| \geq n/c$}
       {p = a uniformly random point in $S$
 
-      $R_p$ = min\{$r > 0: |ball_S(p, r)| \geq n/c$\}}
-      return $p$ and $R_p$
+      $R_p$ = min\{$r > 0: |ball_S(p, r)| \geq n/c$\};}
+      return $p$ and $R_p$;
     \caption{\textsc{SepAnn}$(S,n,d,\mu,c)$}
     \end{algorithm}}
   \end{minipage}
@@ -194,16 +189,82 @@ element}{2.2 Finding the K\^{}\{th\} smallest element}}\label{finding-the-kth-sm
 One step needed to be executed in \textsc{SepAnn($S,n,d,\mu,c$)} is to
 find the smallest ball which contains at least \(n/c\) points. This ball
 is easy to find using the \(k^{th}\) smallest element algorithm.
-Particularly, in the list of distances between \(p\) and all other
-points in \(S\), we pick the \(\lceil n/c\rceil\)-th smallest element,
-and let it be the radius of the ball we need to find. Thus, all points
-closer to \(p\) are inside this ball.
+Particularly, in a list of distances between \(p\) and all other points
+in \(S\), we pick the \(\lceil n/c\rceil\)-th smallest element, and let
+it be the radius of the ball we need to find. Thus, all points closer to
+\(p\) are inside this ball.
 
 A very easy approach to find the \(k^{th}\) smallest element in a list
 is to sort it in ascending order, and then simply return the element at
 the \(k^{th}\) place. This sorting algorithm take \(O(n\,log\,n)\) time
 complexity in the worst case. Fortunately, we can improve the time
-complexity to \(O(n)\) using a technique which is similar to Quicksort.
+complexity to \(O(n)\) using a recursive technique which is similar to
+Quicksort.
+
+Given an unordered list \(D\) which contains \(n\) numbers, and a
+positive integer \(k\) satisfies \(1 \leq k \leq n\). Each element in
+\(D\) has an index from \(0\) to \(n-1\). Consider a sublist of \(D\),
+denoted \(D[a,...,b]\), which starts from index \(a\) and ends at \(b\).
+The base case is when \(a = b\) the algorithm returns the only element
+in that sublist. If it is not the case, the algorithm will choose a
+random \emph{pivot} in the list. The algorithm then rearranges the list
+so that all elements smaller and larger than the pivot are respectively
+to the left and right of it. Now, the pivot has a new index, says \(c\).
+If \(k = c-a+1\), the chosen pivot is the \(k^{th}\) smallest element of
+\(D\), the algorithm returns \(D[c]\). If \(k < c-a+1\), the algorithm
+recurses on the subset to the left of the pivot, \(D[a,...,c-1]\). If
+\(k > c-a+1\), the algorithm recurses on the subset to the right of the
+pivot, \(D[c+1,...,b]\). This algorithm's pseudocode is given below:
+
+\begin{figure}[ht]
+  \centering
+  \begin{minipage}{.8\linewidth}
+    {\LinesNotNumbered
+    \SetAlgoRefName{}
+    \begin{algorithm}[H]
+    \SetKwInOut{Input}{Input}
+    \Input{Let $D$ be a list of double numbers, the integers $a$ and $b$ respectively be the starting and ending indices of a sublist and $k$ be an integer refers to the $k^{th}$ smallest element.}
+    \SetAlgoLined
+    \BlankLine
+        \uIf{$a == b$} {
+            return $D[i]$;
+        }\Else {
+      $p$ = a random element in $D$;
+      
+      \SetKwBlock{partitioning}{\textnormal{\textbf{partitioning:}}}{end;}
+
+      \partitioning{
+      move all elements smaller than $p$ to the left of $p$;
+
+      move all elements larger than $p$ to the right of $p$;
+      }
+
+      
+      $c$ = the current index of $p$ in $D$;
+
+      \uIf{$k == c-a+1$} {
+        return $p$;
+      }\uElseIf{$k < c-a+1$} {
+        return \textsc{KthSmallest}$(D,a,c-1,k)$;
+      }\Else{
+        return \textsc{KthSmallest}$(D,c+1,b,k)$;
+      }
+    }
+    \caption{\textsc{KthSmallest}$(D, a, b, k)$}
+    \end{algorithm}}
+  \end{minipage}
+\end{figure}
+
+Unlike the original Quicksort algorithm, this \(k^{th}\) smallest
+element algorithm recurses only once on one side after partitioning.
+This helps the algorithm remain \(O(n)\) time complexity. Using the
+random technique, the pivot chosen on average is close to the middle of
+the list. Therefore, with the input is an \(n\)-sized list \(D\), the
+recursive call is on a sublist whose size is a half. Because the
+partitioning takes \(O(n)\) time, this algorithm takes at most \(2n\)
+time which is \(O(n)\). The running time is shown below:
+
+\[O(n) + O(n/2) + O(n/4) +... \leq O(2n) = O(n)\]
 
 \hypertarget{implementation}{%
 \section{\texorpdfstring{5
