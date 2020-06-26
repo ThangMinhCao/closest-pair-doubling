@@ -19,18 +19,20 @@ bool Test::kth_smallest_test(int element_num, int k, int range_start, int range_
   clock_t tStart = clock();
   double result_sort = KthSmallest::get_with_sorting(distances, k);
   double time1 = (double)(clock() - tStart)/CLOCKS_PER_SEC;
-
-   tStart = clock();
+  tStart = clock();
   double result = KthSmallest::get(distances, k);
   double time2 = (double)(clock() - tStart)/CLOCKS_PER_SEC;
 //  double result = kth_smallest(distances, 0, (int)distances.size(), k);
-  if (result != result_sort) {
-    printf("\nExpected Result: %f\n",result_sort);
-    printf("Algorithm with sorting time taken: \033[0;32m%fs\033[0m\n\n", time1);
+//  if (result != result_sort) {
+    printf("\n[1m[31mNumber of elements:[0m %s\n", "100,000,000");
+    printf("[1m[31mk:[0m %s\n", "76,543,210");
+    printf("[1m[31mValue range:[0m  -100,000 to 100,000\n");
+    printf("- O(nlogn) Result Using Sort: [0;32m%f[0m\n",result_sort);
+    printf("  Time taken: \033[0;32m%fs\033[0m\n\n", time1);
 
-    printf("Result Using QuickSort Technique: %f\n", result);
-    printf("Algorithm without sorting time taken: \033[0;32m%fs\033[0m\n\n", time2);
-  }
+    printf("- O(n) Result Using QuickSort Technique: [0;32m%f[0m\n", result);
+    printf("  Time taken: \033[0;32m%fs\033[0m\n\n", time2);
+//  }
   return result_sort == result;
 }
 
