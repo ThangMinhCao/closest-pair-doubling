@@ -43,6 +43,31 @@ class PointList {
       }
     }
 
+    void rect_initializer(int dimension, int point_num, int coor_start_range, int coor_end_range) {
+      int y = 0;
+      RandomDouble random_double(coor_start_range, coor_end_range);
+      while (y < 500) {
+        double h_dist = (coor_end_range - coor_start_range) / 500;
+        int x = 0;
+        while (x < 600) {
+          std::vector<double> coor;
+          coor.push_back(coor_start_range + x * h_dist);
+          coor.push_back(coor_start_range + y * h_dist);
+          x++;
+          points.push_back(Point(coor));
+          point_num--;
+        }
+        y++;
+      }
+      while (point_num > 0) {
+        std::vector<double> coor;
+        coor.push_back(random_double.next());
+        coor.push_back(random_double.next());
+        points.push_back(Point(coor));
+        point_num--;
+      }
+    }
+
     PointList() {}
     void print_points() {
       for (Point p: points) {
