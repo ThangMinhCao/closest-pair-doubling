@@ -37,4 +37,3 @@ cmake-build-debug/
 *.tex
 .Rhistory
 *.Rmd
-report/Images/
