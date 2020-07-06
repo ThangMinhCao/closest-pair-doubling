@@ -17,14 +17,14 @@ void print_vec(const DVect& vec) {
 int main() {
   srand((unsigned)time(nullptr));
   int dimension = 2;
-  int point_num = 300001;
+  int point_num = 300000;
   int rangeS = -300000;
   int rangeE = 300000;
 
   PointList list = PointList();
-//  list.random_initializer(dimension, point_num, rangeS, rangeE);
+  list.random_initializer(dimension, point_num, rangeS, rangeE);
 //  list.squares_initializer(dimension, point_num, log2(7));
-  list.isolated_initializer(point_num, rangeS, rangeE);
+//  list.isolated_initializer(point_num, rangeS, rangeE);
 //  printf("Number of Points: %d\n", point_num);
 //  printf("\n[1m[31mNumber of Points:[0m %s\n", "300,000");
   printf("\n[1m[31mNumber of Points:[0m %d\n", (int)list.points.size());
