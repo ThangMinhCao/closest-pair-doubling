@@ -33,7 +33,6 @@
 #Directories
 cmake-build-debug/
 .idea/
-*.png
 *.tex
 .Rhistory
 *.Rmd
