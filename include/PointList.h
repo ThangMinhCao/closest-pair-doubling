@@ -59,13 +59,13 @@ class PointList {
         }
         y++;
       }
-//      while (point_num > 0) {
-//        std::vector<double> coor;
-//        coor.push_back(random_double.next());
-//        coor.push_back(random_double.next());
-//        points.push_back(Point(coor));
-//        point_num--;
-//      }
+      while (point_num > 0) {
+        std::vector<double> coor;
+        coor.push_back(random_double.next());
+        coor.push_back(random_double.next());
+        points.push_back(Point(coor));
+        point_num--;
+      }
     }
 
     void isolated_initializer(int point_num, int coor_start_range, int coor_end_range) {
