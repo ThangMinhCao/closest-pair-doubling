@@ -59,12 +59,36 @@ class PointList {
         }
         y++;
       }
-      while (point_num > 0) {
+//      while (point_num > 0) {
+//        std::vector<double> coor;
+//        coor.push_back(random_double.next());
+//        coor.push_back(random_double.next());
+//        points.push_back(Point(coor));
+//        point_num--;
+//      }
+    }
+
+    void isolated_initializer(int point_num, int coor_start_range, int coor_end_range) {
+      int y = 0;
+      while (y < 500) {
+        double h_dist = (coor_end_range - coor_start_range) / 500;
+        int x = 0;
+        while (x < 600) {
+          std::vector<double> coor;
+          coor.push_back(coor_start_range + x * h_dist);
+          coor.push_back(coor_start_range + y * h_dist);
+          x++;
+          points.push_back(Point(coor));
+          point_num--;
+        }
+        y++;
+      }
+      RandomDouble random_double(coor_end_range * 3, coor_end_range * 3 + 10);
+      for (int i = 0; i < 2; i++) {
         std::vector<double> coor;
         coor.push_back(random_double.next());
         coor.push_back(random_double.next());
         points.push_back(Point(coor));
-        point_num--;
       }
     }
 
