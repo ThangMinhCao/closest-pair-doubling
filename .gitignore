@@ -33,6 +33,4 @@
 #Directories
 cmake-build-debug/
 .idea/
-*.tex
 .Rhistory
-*.Rmd
