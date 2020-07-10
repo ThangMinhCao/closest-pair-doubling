@@ -30,7 +30,7 @@ bool Test::kth_smallest_test(int element_num, int k, int range_start, int range_
     printf("- O(nlogn) Result Using Sort: [0;32m%f[0m\n",result_sort);
     printf("  Time taken: \033[0;32m%fs\033[0m\n\n", time1);
 
-    printf("- O(n) Result Using QuickSort Technique: [0;32m%f[0m\n", result);
+    printf("- O(n) Result Using QuickSelect: [0;32m%f[0m\n", result);
     printf("  Time taken: \033[0;32m%fs\033[0m\n\n", time2);
 //  }
   return result_sort == result;

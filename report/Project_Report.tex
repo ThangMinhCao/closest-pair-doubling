@@ -93,7 +93,7 @@
 \subtitle{A Simple Randomized \(O(n\,log\, n)\)--Time Closest-Pair\\
 Algorithm in Doubling Metrics}
 \author{Minh Thang Cao}
-\date{08 July 2020}
+\date{09 July 2020}
 
 \begin{document}
 \maketitle
@@ -109,6 +109,18 @@ implementation along with practical running time analysis, and some
 implementation techniques I used. The theoretical information in this
 report fully refers to the work of A. Maheshwari, W. Mulzer and M. Smid,
 see {[}1{]}.
+
+Given a metric space \((P,dist)\), with doubling dimension \(d\), whose
+\(P\) is a set of \(n\) points. The closest pair of points is the two
+points with the distance \(\delta_0\) that satisfies
+\(dist(p_1, p_2) \geq \delta_0\) for any point \(p_1, p_2 \in P\). Also,
+the doubling dimension \(d\) of a metric space indicates that for every
+point \(p\) in \(P\) and every real number \(R > 0\), the
+\(ball_P(p, R)\) can be covered by at most \(2^d\) balls in \(P\) of
+radius \(R/2\), see {[}1, Section 2{]}. By using the definition and
+properties of the doubling metric space and its doubling dimension, the
+algorithm will find the closest-pair distance without the direct use of
+the points' coordinates in \(O(n\,log\,n)\) time.
 
 The closest-pair algorithm consists of three smaller parts:
 
@@ -221,8 +233,8 @@ A very easy approach to find the \(k^{th}\) smallest element in a list
 is to sort it in ascending order, and then simply return the element at
 the \(k^{th}\) place. This sorting algorithm takes \(O(n\,log\,n)\) time
 complexity in the worst case. Fortunately, we can improve the running
-time to \(O(n)\) using a common recursive technique called Quickselect,
-which is similar to Quicksort.
+time to \(O(n)\) using a common recursive technique called QuickSelect,
+which is similar to QuickSort.
 
 Given an unordered list \(D\) which contains \(n\) numbers, and a
 positive integer \(k\) satisfies \(1 \leq k \leq n\). Each element in
@@ -284,7 +296,7 @@ pseudocode is given below.
   \end{minipage}
 \end{figure}
 
-Unlike the original Quicksort algorithm, the Quickselect recurses only
+Unlike the original QuickSort algorithm, the QuickSelect recurses only
 once and on one side after rearranging. This helps the algorithm remain
 \(O(n)\) time complexity. By using the random selection, the pivot on
 average is close to the middle of the list. Therefore, with the input is
@@ -305,7 +317,7 @@ random in the range {[}-100000, 100000{]} with \(k\) = 76,543,210.
 
 }
 
-\caption{\label{fig1:figs}The outputs of the $O(NlogN)$ algorithm using regular sorting and the $O(n)$ Quickselect algorithm that recurses only once.}\label{fig:unnamed-chunk-1}
+\caption{\label{fig1:figs}The outputs of the $O(NlogN)$ algorithm using regular sorting and the $O(n)$ QuickSelect algorithm that recurses only once.}\label{fig:unnamed-chunk-1}
 \end{figure}
 
 \hrule
@@ -315,17 +327,18 @@ random in the range {[}-100000, 100000{]} with \(k\) = 76,543,210.
 ~
 
 With the given number of elements, \(k\) and value range, both of the
-algorithms produced the same result, which is 53086.024078, but the
-running times of them have a significant difference (For the output
-capture, see Figure \ref{fig1:figs}).
+algorithms produced the same result, which is 53081.606002, but the
+running times of them have a significant difference (For the program's
+output, see Figure \ref{fig1:figs}).
 
-Since the Quickselect takes at most \(2n\) running time, the regular
+Since the QuickSelect takes at most \(2n\) running time, the regular
 sorting takes at least \(log(n)/2\) times more than it, and the \(log\)
 is in base 2. In this case, there are 100,000,000 numbers, so:
-\[\frac{log(n)}{2} = \frac{log(100,000,000)}{2} \approx 13.2877 \text{ times} \leq \frac{59.389754}{3.889757} \approx 15.268 \text{ times}\]
+\[\frac{log(n)}{2} = \frac{log(100,000,000)}{2} \approx 13.2877 \text{ times} \leq \frac{53.615235}{3.588446} \approx 14.9411 \text{ times}\]
 
-Since \(15.268\) is quite close to \(13.2877\), the running time of this
-Quickselect algorithm in practice is reasonable compared to the theory.
+Since \(14.9411\) is quite close to \(13.2877\), the running time of
+this QuickSelect algorithm in practice is reasonable compared to the
+theory.
 
 \hypertarget{probability-to-select-a-good-point}{%
 \subsection{2.3 Probability to select a ``good''
@@ -367,17 +380,18 @@ repeats.
   that satisfies \(a\times b = n\), \(d\) be the distances between any
   two points which are close together. The points are set into the
   \(a \times b\) grid which means each point is on a corner of a
-  \(d\)-sided square, see Figure \ref{fig:grid}. When using this way to
-  generate points, the algorithm \textsc{SepAnn($S,n,d,\mu,c$)} now
-  repeats multiple times which is its expected behavior, see. Again, the
-  lowest probability in most of trials in this case is about \(1/20\)
-  which satisfies probability at least \(1/c\). See the algorithm grid
-  data on
-  \href{https://github.com/ThangMinhCao/closestpairdoubling/blob/master/report/images_\%26_data/closest_pair/grid_generation/grid_sepann_data.txt}{\emph{GitHub
-  repository}}\footnote{Grid points SepAnn data.
-    \href{https://github.com/ThangMinhCao/closestpairdoubling/blob/master/report/images_\%26_data/closest_pair/grid_generation/grid_sepann_data.txt}{\emph{https://github.com/ThangMinhCao/closestpairdoubling/blob/master/report/-}
-    \emph{images}\%\emph{26\_data/closest\_pair/grid\_generation/grid\_sepann\_data.txt}}}.
+  \(d\)-sided square, see Figure \ref{fig:grid}.
 \end{itemize}
+
+When using this way to generate points, the algorithm
+\textsc{SepAnn($S,n,d,\mu,c$)} now repeats multiple times which is its
+expected behavior, see. Again, the lowest probability in most of trials
+in this case is about \(1/20\) which satisfies probability at least
+\(1/c\). See the algorithm grid data on
+\href{https://github.com/ThangMinhCao/closestpairdoubling/blob/master/report/images_\%26_data/closest_pair/grid_generation/grid_sepann_data.txt}{\emph{GitHub
+repository}}\footnote{Grid points SepAnn data.
+  \href{https://github.com/ThangMinhCao/closestpairdoubling/blob/master/report/images_\%26_data/closest_pair/grid_generation/grid_sepann_data.txt}{\emph{https://github.com/ThangMinhCao/closestpairdoubling/blob/master/report/-}
+  \emph{images}\%\emph{26\_data/closest\_pair/grid\_generation/grid\_sepann\_data.txt}}}.
 
 \begin{figure}[!h]
 \centering

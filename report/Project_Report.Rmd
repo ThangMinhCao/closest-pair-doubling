@@ -22,7 +22,10 @@ indent: true
 
 # 1 \enspace Introduction
 
-Implementation of an algorithm helps us observe its efficiency and behavior in practice. In this report, I will briefly explain each part of the closest-pair doubling algorithm [1], show the program's implementation along with practical running time analysis, and some implementation techniques I used. The theoretical information in this report fully refers to the work of A. Maheshwari, W. Mulzer and M. Smid, see [1].
+Implementation of an algorithm helps us observe its efficiency and behavior in practice. In this report, I will briefly explain each part of the closest-pair doubling algorithm [1], show the program's implementation along with practical running time analysis, and some implementation techniques I used.
+The theoretical information in this report fully refers to the work of A. Maheshwari, W. Mulzer and M. Smid, see [1].
+
+Given a metric space $(P,dist)$, with doubling dimension $d$, whose $P$ is a set of $n$ points. The closest pair of points is the two points with the distance $\delta_0$ that satisfies $dist(p_1, p_2) \geq \delta_0$ for any point $p_1, p_2 \in P$. Also, the doubling dimension $d$ of a metric space indicates that for every point $p$ in $P$ and every real number $R > 0$, the $ball_P(p, R)$ can be covered by at most $2^d$ balls in $P$ of radius $R/2$, see [1, Section 2]. By using the definition and properties of the doubling metric space and its doubling dimension, the algorithm will find the closest-pair distance without the direct use of the points' coordinates in $O(n\,log\,n)$ time.
 
 The closest-pair algorithm consists of three smaller parts:
 
@@ -95,7 +98,7 @@ This algorithm picks a uniformly random point $p$ from the subset $S$ then finds
 
 One step in \textsc{SepAnn($S,n,d,\mu,c$)} algorithm is to find the smallest ball which contains at least $n/c$ points. This ball is easy to find using the $k^{th}$ smallest element algorithm. Particularly, in a list of distances between $p$ and all other points in $S$, we pick the $\lceil n/c\rceil$-th smallest element and let it be the radius of the ball we need to find. Thus, all points closer to $p$ are inside this ball.
 
-A very easy approach to find the $k^{th}$ smallest element in a list is to sort it in ascending order, and then simply return the element at the $k^{th}$ place. This sorting algorithm takes $O(n\,log\,n)$ time complexity in the worst case. Fortunately, we can improve the running time to $O(n)$ using a common recursive technique called Quickselect, which is similar to Quicksort.
+A very easy approach to find the $k^{th}$ smallest element in a list is to sort it in ascending order, and then simply return the element at the $k^{th}$ place. This sorting algorithm takes $O(n\,log\,n)$ time complexity in the worst case. Fortunately, we can improve the running time to $O(n)$ using a common recursive technique called QuickSelect, which is similar to QuickSort.
 
 Given an unordered list $D$ which contains $n$ numbers, and a positive integer $k$ satisfies $1 \leq k \leq n$. Each element in $D$ has an index from $0$ to $n-1$. Consider a sublist of $D$, denoted $D[a:b]$, which starts from index $a$ and ends at $b$, inclusively. The base case is when $a = b$, the algorithm returns the only element in that sublist. If it is not the case, the algorithm will choose a random *pivot* in the list. The algorithm then rearranges the list so that all elements smaller and larger than the pivot are to the left and right of it, respectively. Now, the pivot has a new index, says $c$. If $k = c-a+1$, the chosen pivot is the $k^{th}$ smallest element of $D$, the algorithm returns $D[c]$. If $k < c-a+1$, the algorithm recurses on the sublist to the left of the pivot, $D[a:c-1]$. If $k > c-a+1$, the algorithm recurses on the sublist to the right of the pivot, $D[c+1:b]$. This algorithm's pseudocode is given below.
 
@@ -143,13 +146,13 @@ Given an unordered list $D$ which contains $n$ numbers, and a positive integer $
   \end{minipage}
 \end{figure}
 
-Unlike the original Quicksort algorithm, the Quickselect recurses only once and on one side after rearranging. This helps the algorithm remain $O(n)$ time complexity. By using the random selection, the pivot on average is close to the middle of the list. Therefore, with the input is an $n$-sized list $D$, the recursive call is on a sublist whose size is a half. Because the rearrangement takes $O(n)$ time, this algorithm takes at most $2n$ time which is $O(n)$. The running time is shown below:
+Unlike the original QuickSort algorithm, the QuickSelect recurses only once and on one side after rearranging. This helps the algorithm remain $O(n)$ time complexity. By using the random selection, the pivot on average is close to the middle of the list. Therefore, with the input is an $n$-sized list $D$, the recursive call is on a sublist whose size is a half. Because the rearrangement takes $O(n)$ time, this algorithm takes at most $2n$ time which is $O(n)$. The running time is shown below:
 
 $$O(n) + O(n/2) + O(n/4) +... \leq O(2n) = O(n)$$
 
 The following image is one of many outputs using different number of elements and $k$ value. I generated 100,000,000 numbers uniformly random in the range [-100000, 100000] with $k$ = 76,543,210.
 
-```{r, echo=FALSE, fig.align="center", out.width="70%", fig.cap="\\label{fig1:figs}The outputs of the $O(NlogN)$ algorithm using regular sorting and the $O(n)$ Quickselect algorithm that recurses only once."}
+```{r, echo=FALSE, fig.align="center", out.width="70%", fig.cap="\\label{fig1:figs}The outputs of the $O(NlogN)$ algorithm using regular sorting and the $O(n)$ QuickSelect algorithm that recurses only once."}
 knitr::include_graphics("./images_&_data/kth_smallest/100m.png")
 ```
 
@@ -158,12 +161,12 @@ knitr::include_graphics("./images_&_data/kth_smallest/100m.png")
 
 \  
 
-With the given number of elements, $k$ and value range, both of the algorithms produced the same result, which is 53086.024078, but the running times of them have a significant difference (For the output capture, see Figure \ref{fig1:figs}).
+With the given number of elements, $k$ and value range, both of the algorithms produced the same result, which is 53081.606002, but the running times of them have a significant difference (For the program's output, see Figure \ref{fig1:figs}).
 
-Since the Quickselect takes at most $2n$ running time, the regular sorting takes at least $log(n)/2$ times more than it, and the $log$ is in base 2. In this case, there are 100,000,000 numbers, so:
-$$\frac{log(n)}{2} = \frac{log(100,000,000)}{2} \approx 13.2877 \text{ times} \leq \frac{59.389754}{3.889757} \approx 15.268 \text{ times}$$
+Since the QuickSelect takes at most $2n$ running time, the regular sorting takes at least $log(n)/2$ times more than it, and the $log$ is in base 2. In this case, there are 100,000,000 numbers, so:
+$$\frac{log(n)}{2} = \frac{log(100,000,000)}{2} \approx 13.2877 \text{ times} \leq \frac{53.615235}{3.588446} \approx 14.9411 \text{ times}$$
 
-Since $15.268$ is quite close to $13.2877$, the running time of this Quickselect algorithm in practice is reasonable compared to the theory.
+Since $14.9411$ is quite close to $13.2877$, the running time of this QuickSelect algorithm in practice is reasonable compared to the theory.
 
 ## 2.3 Probability to select a "good" point
 
@@ -177,7 +180,9 @@ The number of times the algorithm \textsc{SepAnn($S,n,d,\mu,c$)} repeats until i
     [_https://github.com/ThangMinhCao/closestpairdoubling/blob/master/rep- ort/images_%_26_data/closest_pair/random_generation/random_sep_ann_data.txt_](https://github.com/ThangMinhCao/closestpairdoubling/blob/master/report/images_%26_data/closest_pair/random_generation/random_sep_ann_data.txt)].
     Since the points are generated randomly, so they change every time, there are no explanations about specific properties of the points in this case. However, since $100\%$ satisfied the probability at least $1/c$, this result is reasonable.
 
-  - Another way is **generating points evenly in a grid**. Let $n$ be the number of points, $a$ and $b$ be any two factors of $n$ that satisfies $a\times b = n$, $d$ be the distances between any two points which are close together. The points are set into the $a \times b$ grid which means each point is on a corner of a $d$-sided square, see Figure \ref{fig:grid}. When using this way to generate points, the algorithm \textsc{SepAnn($S,n,d,\mu,c$)} now repeats multiple times which is its expected behavior, see. Again, the lowest probability in most of trials in this case is about $1/20$ which satisfies probability at least $1/c$. See the algorithm grid data on [_GitHub repository_](https://github.com/ThangMinhCao/closestpairdoubling/blob/master/report/images_%26_data/closest_pair/grid_generation/grid_sepann_data.txt)^[Grid points SepAnn data. [_https://github.com/ThangMinhCao/closestpairdoubling/blob/master/report/-_ _images_%_26_data/closest_pair/grid_generation/grid_sepann_data.txt_](https://github.com/ThangMinhCao/closestpairdoubling/blob/master/report/images_%26_data/closest_pair/grid_generation/grid_sepann_data.txt)].
+  - Another way is **generating points evenly in a grid**. Let $n$ be the number of points, $a$ and $b$ be any two factors of $n$ that satisfies $a\times b = n$, $d$ be the distances between any two points which are close together. The points are set into the $a \times b$ grid which means each point is on a corner of a $d$-sided square, see Figure \ref{fig:grid}.
+
+When using this way to generate points, the algorithm \textsc{SepAnn($S,n,d,\mu,c$)} now repeats multiple times which is its expected behavior, see. Again, the lowest probability in most of trials in this case is about $1/20$ which satisfies probability at least $1/c$. See the algorithm grid data on [_GitHub repository_](https://github.com/ThangMinhCao/closestpairdoubling/blob/master/report/images_%26_data/closest_pair/grid_generation/grid_sepann_data.txt)^[Grid points SepAnn data. [_https://github.com/ThangMinhCao/closestpairdoubling/blob/master/report/-_ _images_%_26_data/closest_pair/grid_generation/grid_sepann_data.txt_](https://github.com/ThangMinhCao/closestpairdoubling/blob/master/report/images_%26_data/closest_pair/grid_generation/grid_sepann_data.txt)].
 
 \begin{figure}[!h]
 \centering
@@ -196,6 +201,8 @@ The number of times the algorithm \textsc{SepAnn($S,n,d,\mu,c$)} repeats until i
 \caption{An example of generating points in grid. A set of 35 points that gives us a $5\times7$ grid. Points are placed at corners of the squares with side is $d$ which could be any number.}
 \label{fig:grid}
 \end{figure}
+
+
 
 # 3 \enspace Algorithm 2: The refinement of $\mathrm{S\pnt{EP}A\pnt{NN}}(S,n,d,\mu,c)$
 
