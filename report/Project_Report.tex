@@ -62,6 +62,7 @@
 \usepackage{amsmath}
 \usepackage{url}
 \usepackage{tikz}
+\usepackage[T1]{fontenc}
 \usepackage[boxruled,vlined]{algorithm2e}
 \SetKwBlock{Else}{else}{endif;}
 % \renewcommand{\thealgocf}{}
@@ -93,7 +94,7 @@
 \subtitle{A Simple Randomized \(O(n\,log\, n)\)--Time Closest-Pair\\
 Algorithm in Doubling Metrics}
 \author{Minh Thang Cao}
-\date{09 July 2020}
+\date{10 July 2020}
 
 \begin{document}
 \maketitle
@@ -358,57 +359,96 @@ generated. I will show you some ways I use to generate the points based
 on some patterns which produced different number of times the algorithm
 repeats.
 
-\begin{itemize}
-\item
-  The first way is \textbf{generating uniformly random} points spread
-  throughout the space. This way of generating point produces a
-  surprising behavior of this algorithm. Every time
-  \textsc{SepAnn($S,n,d,\mu,c$)} is called, it only repeats \emph{once}
-  until it gets to the base case, that means the probability to get a
-  good point is 100\%, see algorithm's data on
-  \href{https://github.com/ThangMinhCao/closestpairdoubling/blob/master/report/Images/closest_pair/random_generation/random_sep_ann_data.txt}{\emph{GitHub
-  repository}}\footnote{Random points SepAnn data.
-    \href{https://github.com/ThangMinhCao/closestpairdoubling/blob/master/report/images_\%26_data/closest_pair/random_generation/random_sep_ann_data.txt}{\emph{https://github.com/ThangMinhCao/closestpairdoubling/blob/master/rep-
-    ort/images}\%\emph{26\_data/closest\_pair/random\_generation/random\_sep\_ann\_data.txt}}}.
-  Since the points are generated randomly, so they change every time,
-  there are no explanations about specific properties of the points in
-  this case. However, since \(100\%\) satisfied the probability at least
-  \(1/c\), this result is reasonable.
-\item
-  Another way is \textbf{generating points evenly in a grid}. Let \(n\)
-  be the number of points, \(a\) and \(b\) be any two factors of \(n\)
-  that satisfies \(a\times b = n\), \(d\) be the distances between any
-  two points which are close together. The points are set into the
-  \(a \times b\) grid which means each point is on a corner of a
-  \(d\)-sided square, see Figure \ref{fig:grid}.
-\end{itemize}
+The first way is \textbf{generating uniformly random} points spread
+throughout the space. This way of generating point produces a surprising
+behavior of this algorithm. Every time \textsc{SepAnn($S,n,d,\mu,c$)} is
+called, it only repeats \emph{once} until it gets to the base case, that
+means the probability to get a good point is 100\%, see algorithm's data
+on
+\href{https://github.com/ThangMinhCao/closestpairdoubling/blob/master/report/Images/closest_pair/random_generation/random_sep_ann_data.txt}{\emph{GitHub
+repository}}\footnote{Random points SepAnn data.
+  \href{https://github.com/ThangMinhCao/closestpairdoubling/blob/master/report/images_\%26_data/closest_pair/random_generation/random_sep_ann_data.txt}{\emph{https://github.com/ThangMinhCao/closestpairdoubling/blob/master/rep-
+  ort/images}\%\emph{26\_data/closest\_pair/random\_generation/random\_sep\_ann\_data.txt}}}.
+Since the points are generated randomly, so they change every time,
+there are no explanations about specific properties of the points in
+this case. However, since \(100\%\) satisfied the probability at least
+\(1/c\), this result is reasonable.
 
-When using this way to generate points, the algorithm
-\textsc{SepAnn($S,n,d,\mu,c$)} now repeats multiple times which is its
-expected behavior, see. Again, the lowest probability in most of trials
-in this case is about \(1/20\) which satisfies probability at least
-\(1/c\). See the algorithm grid data on
-\href{https://github.com/ThangMinhCao/closestpairdoubling/blob/master/report/images_\%26_data/closest_pair/grid_generation/grid_sepann_data.txt}{\emph{GitHub
-repository}}\footnote{Grid points SepAnn data.
-  \href{https://github.com/ThangMinhCao/closestpairdoubling/blob/master/report/images_\%26_data/closest_pair/grid_generation/grid_sepann_data.txt}{\emph{https://github.com/ThangMinhCao/closestpairdoubling/blob/master/report/-}
-  \emph{images}\%\emph{26\_data/closest\_pair/grid\_generation/grid\_sepann\_data.txt}}}.
+Another way is \textbf{generating points evenly in a grid}. Let \(n\) be
+the number of points, \(a\) and \(b\) be any two factors of \(n\) that
+satisfies \(a\times b = n\), \(d\) be the distances between any two
+points which are close together. The points are set into the
+\(a \times b\) grid which means each point is on a corner of a
+\(d\)-sided square, see Figure \ref{fig:grid}.
 
 \begin{figure}[!h]
 \centering
 \begin{tikzpicture}
   \foreach \x in {0, 1, 2, 3, 4, 5, 6} {
     \foreach \y in {0, 1, 2, 3, 4} {
-      \node (thisNode) at (1.5*\x, 1.5*\y) {};
-      \ifthenelse{\x=6}{}{\draw[dashed,gray,thick] (1.5*\x, 1.5*\y) -- (1.5*\x+1.5, 1.5*\y);}
-      \ifthenelse{\y=4}{}{\draw[dashed,gray,thick] (1.5*\x, 1.5*\y) -- (1.5*\x, 1.5*\y+1.5);}
+      \node (thisNode) at (1.2*\x, 1.2*\y) {};
+      \ifthenelse{\x=6}{}{\draw[dashed,gray,thick] (1.2*\x, 1.2*\y) -- (1.2*\x+1.2, 1.2*\y);}
+      \ifthenelse{\y=4}{}{\draw[dashed,gray,thick] (1.2*\x, 1.2*\y) -- (1.2*\x, 1.2*\y+1.2);}
       \node at (thisNode) [circle,fill=black,inner sep=2pt] {};
     }
   }
-  \draw[black,very thick,latex-latex] (0, 1.5*4) -- node[above] {$d$} (1.5, 1.5*4);
-  \draw[black,very thick,latex-latex] (0, 1.5*4) -- node[left] {$d$} (0, 1.5*3);
+  \draw[black,very thick,latex-latex] (0, 1.2*4) -- node[above] {$d$} (1.2, 1.2*4);
+  \draw[black,very thick,latex-latex] (0, 1.2*4) -- node[left] {$d$} (0, 1.2*3);
 \end{tikzpicture}
+
 \caption{An example of generating points in grid. A set of 35 points that gives us a $5\times7$ grid. Points are placed at corners of the squares with side is $d$ which could be any number.}
 \label{fig:grid}
+\end{figure}
+
+\hrule
+
+~
+
+~
+
+When using this grid way to generate points, the algorithm
+\textsc{SepAnn($S,n,d,\mu,c$)} now repeats multiple times which is its
+expected behavior, see. Again, the lowest probability in most of trials
+in this case is about \(1/20\) which satisfies probability at least
+\(1/c\), see Figure \ref{fig:data}. For the full grid input data, see
+the
+\href{https://github.com/ThangMinhCao/closestpairdoubling/blob/master/report/images_\%26_data/closest_pair/grid_generation/grid_sepann_data.txt}{\emph{GitHub
+repository}}\footnote{Grid points SepAnn data.
+  \href{https://github.com/ThangMinhCao/closestpairdoubling/blob/master/report/images_\%26_data/closest_pair/grid_generation/grid_sepann_data.txt}{\emph{https://github.com/ThangMinhCao/closestpairdoubling/blob/master/report/-}
+  \emph{images}\%\emph{26\_data/closest\_pair/grid\_generation/grid\_sepann\_data.txt}}}.
+
+\begin{figure}
+\begin{minipage}{0.48\textwidth}
+  \centering
+  \begin{tabular}{|c|c|}
+  \hline
+  $\pmb n$   & \textbf{Repeat times} \\ \hline
+   200000  & 6            \\ \hline
+   193836  & 7            \\ \hline
+   179534  & 2            \\ \hline
+   172501  & 1            \\ \hline
+   158381  & 13            \\ \hline
+   156531  & 3            \\ \hline
+  \ldots   & \ldots       \\ \hline
+  \end{tabular}
+\end{minipage}
+\begin{minipage}{0.48\textwidth}
+  \centering
+  \begin{tabular}{|c|c|}
+  \hline
+  $\pmb n$   & \textbf{Repeat times} \\ \hline
+  \ldots   & \ldots       \\ \hline
+  101943   & 4            \\ \hline
+   96367   & 2            \\ \hline
+   96154   & 2            \\ \hline
+   83621   & 6            \\ \hline
+   83288   & 13           \\ \hline
+   82515   & 2            \\ \hline
+  \end{tabular}
+\end{minipage}
+\caption[Caption]{Given an input of 700,000 points generated in a grid. This is a portion of the data about the number of times the algorithm \textsc{SepAnn$(S,n,d,\mu,c)$} repeats.}
+\label{fig:data}
+
 \end{figure}
 
 \hypertarget{algorithm-2-the-refinement-of-mathrmspntepapntnnsndmuc}{%
