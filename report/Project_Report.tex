@@ -63,6 +63,34 @@
 \usepackage{url}
 \usepackage{tikz}
 \usepackage[T1]{fontenc}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{courier}
+
+
+\definecolor{Darkgreen}{rgb}{0,0.34,0}
+\definecolor{listinggray}{gray}{0.9}
+\definecolor{lbcolor}{rgb}{0.95,0.95,0.95}
+\lstset{
+    backgroundcolor=\color{lbcolor},
+    tabsize=2,
+    language=C++,
+    captionpos=b,
+    tabsize=2,
+    frame=lines,
+    numbers=left,
+    numberstyle=\tiny,
+    numbersep=5pt,
+    breaklines=true,
+    showstringspaces=false,
+    basicstyle=\footnotesize\ttfamily,
+    %  identifierstyle=\color{magenta},
+    keywordstyle=\bfseries\color[rgb]{0,0,0.7},
+    commentstyle=\color{Darkgreen},
+    stringstyle=\color{red}
+}
+  
+\newcommand{\code}[1]{\colorbox{lbcolor}{\texttt{#1}}}
 \usepackage[boxruled,vlined]{algorithm2e}
 \SetKwBlock{Else}{else}{endif;}
 % \renewcommand{\thealgocf}{}
@@ -94,7 +122,7 @@
 \subtitle{A Simple Randomized \(O(n\,log\, n)\)--Time Closest-Pair\\
 Algorithm in Doubling Metrics}
 \author{Minh Thang Cao}
-\date{10 July 2020}
+\date{13 July 2020}
 
 \begin{document}
 \maketitle
@@ -408,10 +436,9 @@ points which are close together. The points are set into the
 
 When using this grid way to generate points, the algorithm
 \textsc{SepAnn($S,n,d,\mu,c$)} now repeats multiple times which is its
-expected behavior, see. Again, the lowest probability in most of trials
-in this case is about \(1/20\) which satisfies probability at least
-\(1/c\), see Figure \ref{fig:data}. For the full grid input data, see
-the
+expected behavisee Figure \ref{fig:data}. Again, the lowest probability
+in most of trials in this case is about \(1/20\) which satisfies
+probability at least \(1/c\). For the full grid input data, see the
 \href{https://github.com/ThangMinhCao/closestpairdoubling/blob/master/report/images_\%26_data/closest_pair/grid_generation/grid_sepann_data.txt}{\emph{GitHub
 repository}}\footnote{Grid points SepAnn data.
   \href{https://github.com/ThangMinhCao/closestpairdoubling/blob/master/report/images_\%26_data/closest_pair/grid_generation/grid_sepann_data.txt}{\emph{https://github.com/ThangMinhCao/closestpairdoubling/blob/master/report/-}
@@ -427,7 +454,7 @@ repository}}\footnote{Grid points SepAnn data.
    193836  & 7            \\ \hline
    179534  & 2            \\ \hline
    172501  & 1            \\ \hline
-   158381  & 13            \\ \hline
+   158381  & 13           \\ \hline
    156531  & 3            \\ \hline
   \ldots   & \ldots       \\ \hline
   \end{tabular}
@@ -446,7 +473,7 @@ repository}}\footnote{Grid points SepAnn data.
    82515   & 2            \\ \hline
   \end{tabular}
 \end{minipage}
-\caption[Caption]{Given an input of 700,000 points generated in a grid. This is a portion of the data about the number of times the algorithm \textsc{SepAnn$(S,n,d,\mu,c)$} repeats.}
+\caption[Caption]{Given an input of 200,000 points generated in a grid. This is a portion of the data about the number of times the algorithm \textsc{SepAnn$(S,n,d,\mu,c)$} repeats.}
 \label{fig:data}
 
 \end{figure}
@@ -584,9 +611,9 @@ returned. Below is the algorithm's pseudocode, see {[}1, Section 4.1{]}.
     \end{minipage}
   \end{figure}
 
-\hypertarget{implementation}{%
-\section{\texorpdfstring{5
-\enspace Implementation}{5 Implementation}}\label{implementation}}
+\hypertarget{the-implementation}{%
+\section{\texorpdfstring{5 \enspace The
+Implementation}{5 The Implementation}}\label{the-implementation}}
 
 This implementation of the closest-pair doubling algorithm of A.
 Maheshwari, W. Mulzer and M. Smid {[}1{]} is written in C++ since it is
@@ -596,7 +623,58 @@ efficiently (see the implementation's
 \href{https://github.com/ThangMinhCao/closestpairdoubling}{\emph{GitHub
 repository}}\footnote{GitHub repository of the implementation.
   \href{https://github.com/ThangMinhCao/closestpairdoubling}{\emph{https://github.com/ThangMinhCao/closestpairdoubling}}}
-for the source code).
+for the original source code). The implementation and its components
+will be describe and explain throughout this section.
+
+To begin with, a set of points, which does not necessarily refers to
+\code{set} in Computer Science, is always one of the input parameters of
+each partial algorithm. In this implementation, I would choose
+\code{vector}, a very popular built-in data structure of C++. Since its
+size can automatically change when we add or remove an element, it is
+easy to work with and manage its behavior when implementing. Not only
+for storing points, \code{vector} will be used throughout the
+implementation to store some other information.
+
+\hypertarget{the-and-classes}{%
+\subsection{\texorpdfstring{5.1 The \emph{Point} and \emph{PointList}
+classes}{5.1 The  and  classes}}\label{the-and-classes}}
+
+Because the algorithm works around the points, and they are not just
+numbers (they have their own coordinates), so creating a \code{Point}
+class is quite essential. Moreover, with the addition of the class
+function \code{distance\_to}, the algorithm can calculate the distance
+between any two points easily without directly using the points'
+coordinates. This function works as the input function \(dist\) that is
+provided with the metric space (\(P, dist\)). Implementation code of the
+class is given below.
+
+\begin{lstlisting}
+#include <vector>
+#include <cmath>
+
+class Point {
+  private:
+    std::vector<double> coordinate;
+
+  public:
+    explicit Point(std::vector<double> coordinate) {
+      this->coordinate = std::move(coordinate);
+    }
+    Point()= default;
+
+    double distance_to(const Point& another_point) {
+      double total_square = 0;
+      for (int i = 0; i < coordinate.size(); i++) {
+        double iDiff = coordinate[i] - another_point.getCoordinate()[i];
+        total_square += (iDiff) * (iDiff);
+      }
+      return sqrt(total_square);
+    }
+    std::vector<double> getCoordinate() const {
+      return coordinate;
+    }
+}
+\end{lstlisting}
 
 \medskip
 

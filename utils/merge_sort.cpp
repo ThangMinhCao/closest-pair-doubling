@@ -33,7 +33,8 @@ vector<Point> merge(vector<Point> const &L1, vector<Point> const &L2, bool x) {
   int L1_ptr = 0;
   int L2_ptr = 0;
   while (L1_ptr < L1.size() and L2_ptr < L2.size()) {
-    if (L1[L1_ptr].coordinate[coor] <= L2[L2_ptr].coordinate[coor]) {
+    L1[0].getCoordinate();
+    if (L1[L1_ptr].getCoordinate()[coor] <= L2[L2_ptr].getCoordinate()[coor]) {
       res.push_back(L1[L1_ptr++]);
     } else {
       res.push_back(L2[L2_ptr++]);

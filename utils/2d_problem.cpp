@@ -1,8 +1,8 @@
 #include "2d_problem.h"
 
 DResult ClosestPair2D::dist(Point p, Point q) {
-  double xDiff = p.coordinate[0] - q.coordinate[0];
-  double yDiff = p.coordinate[1] - q.coordinate[1];
+  double xDiff = p.getCoordinate()[0] - q.getCoordinate()[0];
+  double yDiff = p.getCoordinate()[1] - q.getCoordinate()[1];
   return std::pair<std::pair<Point, Point>, double>
           {std::pair<Point, Point> {p, q}, sqrt(xDiff * xDiff + yDiff * yDiff)};
 }
@@ -13,7 +13,7 @@ DResult ClosestPair2D::algorithm2D(vector<Point>& L) {
   DResult d, d1, d2;
   int n = L.size();
   int mid_point = n / 2;
-  double mid = L[mid_point].coordinate[0];
+  double mid = L[mid_point].getCoordinate()[0];
   if (n <= 1) {
     return DResult
             {std::pair<Point, Point>{Point(), Point()}, std::numeric_limits<double>::infinity()};
@@ -34,12 +34,12 @@ DResult ClosestPair2D::algorithm2D(vector<Point>& L) {
   d = d1.second < d2.second ? d1 : d2;
 
   for (int i = (int)L1.size() - 1; i >= 0; i--) {
-    if (L1[i].coordinate[0] > mid - d.second) {
+    if (L1[i].getCoordinate()[0] > mid - d.second) {
       L_strip.push_back(L1[i]);
     }
   }
   for (auto & i : L2) {
-    if (i.coordinate[0] < mid + d.second) {
+    if (i.getCoordinate()[0] < mid + d.second) {
       L_strip.push_back(i);
     }
   }

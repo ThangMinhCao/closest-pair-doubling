@@ -10,10 +10,10 @@ class ClosestPair2D {
   private:
     static DResult dist(Point p, Point q);
     static double compareX(Point p, Point q) {
-      return p.coordinate[0] < q.coordinate[0];
+      return p.getCoordinate()[0] < q.getCoordinate()[0];
     }
     static double compareY(Point p, Point q) {
-      return p.coordinate[1] < q.coordinate[1];
+      return p.getCoordinate()[1] < q.getCoordinate()[1];
     }
 
   public:

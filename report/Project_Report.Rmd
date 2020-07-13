@@ -206,7 +206,7 @@ Another way is **generating points evenly in a grid**. Let $n$ be the number of 
 
 \  
 
-When using this grid way to generate points, the algorithm \textsc{SepAnn($S,n,d,\mu,c$)} now repeats multiple times which is its expected behavior, see. Again, the lowest probability in most of trials in this case is about $1/20$ which satisfies probability at least $1/c$, see Figure \ref{fig:data}. For the full grid input data, see the [_GitHub repository_](https://github.com/ThangMinhCao/closestpairdoubling/blob/master/report/images_%26_data/closest_pair/grid_generation/grid_sepann_data.txt)^[Grid points SepAnn data. [_https://github.com/ThangMinhCao/closestpairdoubling/blob/master/report/-_ _images_%_26_data/closest_pair/grid_generation/grid_sepann_data.txt_](https://github.com/ThangMinhCao/closestpairdoubling/blob/master/report/images_%26_data/closest_pair/grid_generation/grid_sepann_data.txt)].
+When using this grid way to generate points, the algorithm \textsc{SepAnn($S,n,d,\mu,c$)} now repeats multiple times which is its expected behavisee Figure \ref{fig:data}. Again, the lowest probability in most of trials in this case is about $1/20$ which satisfies probability at least $1/c$. For the full grid input data, see the [_GitHub repository_](https://github.com/ThangMinhCao/closestpairdoubling/blob/master/report/images_%26_data/closest_pair/grid_generation/grid_sepann_data.txt)^[Grid points SepAnn data. [_https://github.com/ThangMinhCao/closestpairdoubling/blob/master/report/-_ _images_%_26_data/closest_pair/grid_generation/grid_sepann_data.txt_](https://github.com/ThangMinhCao/closestpairdoubling/blob/master/report/images_%26_data/closest_pair/grid_generation/grid_sepann_data.txt)].
 
 
 
@@ -220,7 +220,7 @@ When using this grid way to generate points, the algorithm \textsc{SepAnn($S,n,d
    193836  & 7            \\ \hline
    179534  & 2            \\ \hline
    172501  & 1            \\ \hline
-   158381  & 13            \\ \hline
+   158381  & 13           \\ \hline
    156531  & 3            \\ \hline
   \ldots   & \ldots       \\ \hline
   \end{tabular}
@@ -239,7 +239,7 @@ When using this grid way to generate points, the algorithm \textsc{SepAnn($S,n,d
    82515   & 2            \\ \hline
   \end{tabular}
 \end{minipage}
-\caption[Caption]{Given an input of 700,000 points generated in a grid. This is a portion of the data about the number of times the algorithm \textsc{SepAnn$(S,n,d,\mu,c)$} repeats.}
+\caption[Caption]{Given an input of 200,000 points generated in a grid. This is a portion of the data about the number of times the algorithm \textsc{SepAnn$(S,n,d,\mu,c)$} repeats.}
 \label{fig:data}
 
 \end{figure}
@@ -351,9 +351,43 @@ Let $\mu = e$ and $c = 2(4e)^d$, see [1, Remark 1]. The algorithm \textsc{SepAnn
     \end{minipage}
   \end{figure}
 
-# 5 \enspace Implementation
+# 5 \enspace The Implementation
 
-This implementation of the closest-pair doubling algorithm of A. Maheshwari, W. Mulzer and M. Smid [1] is written in C++ since it is a very common and fast programming language with high-level supports of object-oriented programming that can help us organize the program efficiently (see the implementation's [_GitHub repository_](https://github.com/ThangMinhCao/closestpairdoubling)^[GitHub repository of the implementation. [_https://github.com/ThangMinhCao/closestpairdoubling_](https://github.com/ThangMinhCao/closestpairdoubling)] for the source code).
+This implementation of the closest-pair doubling algorithm of A. Maheshwari, W. Mulzer and M. Smid [1] is written in C++ since it is a very common and fast programming language with high-level supports of object-oriented programming that can help us organize the program efficiently (see the implementation's [_GitHub repository_](https://github.com/ThangMinhCao/closestpairdoubling)^[GitHub repository of the implementation. [_https://github.com/ThangMinhCao/closestpairdoubling_](https://github.com/ThangMinhCao/closestpairdoubling)] for the original source code). The implementation and its components will be describe and explain throughout this section.
+
+To begin with, a set of points, which does not necessarily refers to \code{set} in Computer Science, is always one of the input parameters of each partial algorithm. In this implementation, I would choose \code{vector}, a very popular built-in data structure of C++. Since its size can automatically change when we add or remove an element, it is easy to work with and manage its behavior when implementing. Not only for storing points, \code{vector} will be used throughout the implementation to store some other information.
+
+## 5.1 The \emph{Point} and \emph{PointList} classes
+
+Because the algorithm works around the points, and they are not just numbers (they have their own coordinates), so creating a \code{Point} class is quite essential. Moreover, with the addition of the class function \code{distance\_to}, the algorithm can calculate the distance between any two points easily without directly using the points' coordinates. This function works as the input function $dist$ that is provided with the metric space ($P, dist$). Implementation code of the class is given below.
+
+\begin{lstlisting}
+#include <vector>
+#include <cmath>
+
+class Point {
+  private:
+    std::vector<double> coordinate;
+
+  public:
+    explicit Point(std::vector<double> coordinate) {
+      this->coordinate = std::move(coordinate);
+    }
+    Point()= default;
+
+    double distance_to(const Point& another_point) {
+      double total_square = 0;
+      for (int i = 0; i < coordinate.size(); i++) {
+        double iDiff = coordinate[i] - another_point.getCoordinate()[i];
+        total_square += (iDiff) * (iDiff);
+      }
+      return sqrt(total_square);
+    }
+    std::vector<double> getCoordinate() const {
+      return coordinate;
+    }
+}
+\end{lstlisting}
 
 \medskip
 

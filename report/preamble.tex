@@ -5,6 +5,34 @@
 \usepackage{url}
 \usepackage{tikz}
 \usepackage[T1]{fontenc}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{courier}
+
+
+\definecolor{Darkgreen}{rgb}{0,0.34,0}
+\definecolor{listinggray}{gray}{0.9}
+\definecolor{lbcolor}{rgb}{0.95,0.95,0.95}
+\lstset{
+    backgroundcolor=\color{lbcolor},
+    tabsize=2,
+    language=C++,
+    captionpos=b,
+    tabsize=2,
+    frame=lines,
+    numbers=left,
+    numberstyle=\tiny,
+    numbersep=5pt,
+    breaklines=true,
+    showstringspaces=false,
+    basicstyle=\footnotesize\ttfamily,
+    %  identifierstyle=\color{magenta},
+    keywordstyle=\bfseries\color[rgb]{0,0,0.7},
+    commentstyle=\color{Darkgreen},
+    stringstyle=\color{red}
+}
+  
+\newcommand{\code}[1]{\colorbox{lbcolor}{\texttt{#1}}}
 \usepackage[boxruled,vlined]{algorithm2e}
 \SetKwBlock{Else}{else}{endif;}
 % \renewcommand{\thealgocf}{}
