@@ -1,6 +1,6 @@
 #ifndef CLOSEST_PAIR_H
 #define CLOSEST_PAIR_H
-#include "../include/PointList.h"
+#include "PointList.h"
 
 typedef std::vector<double> DVect;
 

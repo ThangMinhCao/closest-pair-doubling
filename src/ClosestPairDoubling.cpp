@@ -16,9 +16,12 @@ double ClosestPairDoubling::brute_force(PointList &S) {
   return result;
 }
 // DVect = std::vector<double>
-std::tuple<Point, double, DVect> ClosestPairDoubling::sep_ann(PointList &S, int n, double mu, double c) {
-  double Rp = -1.0;
+std::tuple<Point, double, DVect>
+        ClosestPairDoubling::sep_ann(PointList &S, int n, double mu, double c)
+        {
   Point p;
+  double Rp = -1.0;
+
   int outer_ball_count = (n / 2) + 1; // this variable store the number of points in the outer ball with R = mu * Rp
   RandomInt int_gen(0, n - 1); // the random integer generator
   DVect distances_from_p; // the vector store the distances between p and other points
@@ -32,7 +35,7 @@ std::tuple<Point, double, DVect> ClosestPairDoubling::sep_ann(PointList &S, int 
     for (const Point& point: S.points) {
       distances_from_p.push_back(p.distance_to(point));
     }
-    Rp = KthSmallest::get(distances_from_p, ceil(n / c));
+    Rp = KthSmallest::get(distances_from_p, 0, (int)distances_from_p.size(), ceil(n / c));
     outer_ball_count = 0;
     for (double dist: distances_from_p) {
       if (dist <= mu * Rp) {
@@ -80,7 +83,6 @@ std::pair<Point, double> ClosestPairDoubling::sparse_sep_ann(PointList &S, int n
 }
 
 double ClosestPairDoubling::closest_pair(PointList &S, double d, int recursion) {
-
   int n = (int)S.points.size();
   const double e = std::exp(1.0);
   double delta0;

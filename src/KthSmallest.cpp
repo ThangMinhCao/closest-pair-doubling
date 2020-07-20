@@ -1,21 +1,15 @@
 #include <iostream>
 #include <algorithm>
-#include <limits>
-#include "../include/KthSmallest.h"
-#include "../include/RandomGenerator.h"
+#include "KthSmallest.h"
+#include "RandomGenerator.h"
 
-void swap (double *a, double *b) {
+void KthSmallest::swap (double *a, double *b) {
   double temp = *a;
   *a = *b;
   *b = temp;
 }
-double find(DVect& distances, int start, int end, int k) {
-  if (start == end) {return distances[start];}
-  // partitioning and moving all elements smaller than pivot to the left of it and vice versa
-  // 1/ swapping the random pivot to the end
-  RandomInt random_int_gen = RandomInt(start, end);
-  swap(&distances[random_int_gen.next()], &distances[end]);
-//  swap(distances, random_int_gen.next(), end);
+
+int KthSmallest::partition(DVect& distances, int start, int end) {
   double pivot = distances[end];
   int slow = start;
   int fast = start;
@@ -25,13 +19,8 @@ double find(DVect& distances, int start, int end, int k) {
       while (fast < end and distances[fast] > pivot) {
         fast++;
       }
-//      if (distances[fast] >= pivot) {
-//        break;
-//      }
-//      swap(&distances[slow], &distances[fast]);
       if (distances[fast] < pivot) {
         swap(&distances[slow], &distances[fast]);
-//        swap(distances, slow, fast);
       } else {
         break;
       }
@@ -39,23 +28,28 @@ double find(DVect& distances, int start, int end, int k) {
     fast++;
     slow++;
   }
-  // 3/ swapping the pivot from end back to its original place
+ // 3/ swapping the pivot from end back to its original place
   swap(&distances[slow], &distances[end]);
-
-  if (k == slow - start + 1) {
-    return distances[slow];
-  } else if (k < slow - start + 1) {
-    return find(distances, start, slow - 1, k);
-  } else {
-    return find(distances, slow + 1, end, k - slow + start - 1);
-  }
+  return slow;
 }
-
-double KthSmallest::get(DVect& distances, int k) {
+double KthSmallest::get(DVect& distances, int start, int end, int k) {
   if (k < 1 or k > distances.size()) {
     return std::numeric_limits<double>::max();
   }
-  return find(distances, 0, (int)distances.size() - 1, k);
+
+  if (start == end) {return distances[start];}
+  //  swapping the random pivot to the end
+  RandomInt random_int_gen = RandomInt(start, end);
+  swap(&distances[random_int_gen.next()], &distances[end]);
+  int cur_pivot = partition(distances, start, end);
+  // recursively call one of two side
+  if (k == cur_pivot - start + 1) {
+    return distances[cur_pivot];
+  } else if (k < cur_pivot - start + 1) {
+    return get(distances, start, cur_pivot - 1, k);
+  } else {
+    return get(distances, cur_pivot + 1, end, k - cur_pivot + start - 1);
+  }
 }
 
 bool compare(double x, double y) {

@@ -8,15 +8,25 @@
 \usepackage{listings}
 \usepackage{xcolor}
 \usepackage{courier}
+\usepackage[group-separator={,}]{siunitx}
 
 
-\definecolor{Darkgreen}{rgb}{0,0.34,0}
+\definecolor{Darkgreen}{rgb}{0,0.45,0}
 \definecolor{listinggray}{gray}{0.9}
-\definecolor{lbcolor}{rgb}{0.95,0.95,0.95}
+\definecolor{lbcolor}{rgb}{0.9,0.9,0.9}
+\definecolor{darkblue}{rgb}{0,0,0.85}
+
+\lstdefinelanguage{AddedC++}{%
+  language     = C++,
+  keywordstyle = [2]{\color{darkblue}},
+otherkeywords = {;,<<,>>,++},
+morekeywords = [2]{;, <<, >>, ++, --, ==},
+}
+
 \lstset{
     backgroundcolor=\color{lbcolor},
     tabsize=2,
-    language=C++,
+    language=AddedC++,
     captionpos=b,
     tabsize=2,
     frame=lines,
@@ -27,7 +37,7 @@
     showstringspaces=false,
     basicstyle=\footnotesize\ttfamily,
     %  identifierstyle=\color{magenta},
-    keywordstyle=\bfseries\color[rgb]{0,0,0.7},
+    keywordstyle=\bfseries\color{darkblue},
     commentstyle=\color{Darkgreen},
     stringstyle=\color{red}
 }

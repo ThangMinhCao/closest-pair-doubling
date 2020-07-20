@@ -1,8 +1,7 @@
 #ifndef POINTLIST_H
 #define POINTLIST_H
-#include "Point.h"
-#include <random>
-#include "RandomGenerator.h"
+#include <Point.h>
+#include <RandomGenerator.h>
 
 class PointList {
   public:
@@ -43,54 +42,25 @@ class PointList {
       }
     }
 
-    void rect_initializer(int yUp, int xUp, int point_num, int coor_start_range, int coor_end_range) {
+    void grid_initializer(double dist, int yFactor, int xFactor, int position) {
       int y = 0;
-      RandomDouble random_double(coor_start_range, coor_end_range);
-      while (y < yUp) {
-//        double h_dist = (coor_end_range - coor_start_range) / 500;
-        double h_dist = 1000;
+      while (y < yFactor) {
         int x = 0;
-        while (x < xUp) {
+        while (x < xFactor) {
           std::vector<double> coor;
-          coor.push_back(coor_start_range + x * h_dist);
-          coor.push_back(coor_start_range + y * h_dist);
-          x++;
+          coor.push_back(position + (x++) * dist);
+          coor.push_back(position + (y) * dist);
           points.push_back(Point(coor));
-          point_num--;
         }
         y++;
       }
-      while (point_num > 0) {
-        std::vector<double> coor;
-        coor.push_back(random_double.next());
-        coor.push_back(random_double.next());
-        points.push_back(Point(coor));
-        point_num--;
-      }
-    }
-
-    void isolated_initializer(int point_num, int coor_start_range, int coor_end_range) {
-      int y = 0;
-      while (y < 500) {
-        double h_dist = (coor_end_range - coor_start_range) / 500;
-        int x = 0;
-        while (x < 600) {
-          std::vector<double> coor;
-          coor.push_back(coor_start_range + x * h_dist);
-          coor.push_back(coor_start_range + y * h_dist);
-          x++;
-          points.push_back(Point(coor));
-          point_num--;
-        }
-        y++;
-      }
-      RandomDouble random_double(coor_end_range * 3, coor_end_range * 3 + 10);
-      for (int i = 0; i < 2; i++) {
-        std::vector<double> coor;
-        coor.push_back(random_double.next());
-        coor.push_back(random_double.next());
-        points.push_back(Point(coor));
-      }
+//      while (point_num > 0) {
+//        std::vector<double> coor;
+//        coor.push_back(random_double.next());
+//        coor.push_back(random_double.next());
+//        points.push_back(Point(coor));
+//        point_num--;
+//      }
     }
 
     PointList() {}
