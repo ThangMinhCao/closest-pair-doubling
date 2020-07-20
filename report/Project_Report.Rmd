@@ -806,6 +806,8 @@ On the other hand, when using the grid way to generate points, the algorithm \te
 
 # 7 \enspace Conclusion {#section6}
 
+
+
 \medskip
 
 \begin{thebibliography}{9}
