@@ -707,6 +707,10 @@ Note that, I will make sure to pass the full set of points **by value** or pass 
 
 After that, the outputs of two recursive calls, one on \code{S1orS2} and one on \code{S2orS3}, will be stored in \code{delta1} and \code{delta2} variables. Finally, the smaller one of them will be assigned into \code{delta0} and returned.
 
+## 5.3 The closest-pair distance of non-Euclidean spaces
+
+
+
 # 6 \enspace The algorithm's running time in practice {#section6}
 
 After doing many tests, I found out that the algorithm's behavior will be different based on the way the points are arranged on the metric space. There are two approaches to generate the points that give me the most obvious differences.
@@ -804,9 +808,13 @@ On the other hand, when using the grid way to generate points, the algorithm \te
 
 \hrule
 
-# 7 \enspace Conclusion {#section6}
+# 7 \enspace Concluding remarks {#section6}
 
+I have briefly described the theory of the closest-pair doubling algorithm, and the implementation of it. Even we do not have the ability to run the algorithm with a huge number of points for more accurate running time outputs, the algorithm works exactly as we expected in practice:
 
+  1. For each example with different number of points in $P$, the closest-pair distance is correctly returned (the same as the brute-force's) without the use of the points' coordinates. Its running time is obviously much less than the result from brute-force.
+  2. For any way that the points are arranged on the metric space, the number of times the algorithm \textsc{SepAnn($S,n,d,\mu,c$)} repeats satisfies the probability $1/c$ in theory. Therefore, in practice, this procedure runs in linear time.
+  3. The algorithm can correctly find the closest-pair distances on non-Euclidean spaces of doubling dimension 1 without changing any core details. Also, its behavior is mostly the same as when the input is a normal space.
 
 \medskip
 
@@ -817,5 +825,8 @@ A. Maheshwari, W. Mulzer and M. Smid. \emph{A Simple Randomized $O(n\,log\,n)$â€
 \bibitem{latexcompanion} 
 J. L. Bentley and M. I. Shamos. Divide-and-conquer in multidimensional space. In \emph{Proceedings of the 8th ACM Symposium on the Theory of Computing}, pages 220â€“230,
 1976.
+
+\bibitem{latexcompanion} 
+M. Smid. \emph{The Weak Gap Property in Metric Spaces of Bounded Doubling Dimension}. 
 
 \end{thebibliography}
