@@ -67,4 +67,9 @@ void Test::closest_pair_test(Algorithm a, PointList S, int dimension) {
   }
   printf("- The closest distance is: \033[32m%f\033[0m\n", result);
   printf("- Time taken: \033[0;32m%fs\033[0m\n\n", (double)(clock() - tStart)/CLOCKS_PER_SEC);
+  std::ofstream data_file2;
+  data_file2.open("running_time_data.txt", std::ios_base::app);
+  data_file2 << "- The closest distance is: " << result << "\n";
+  data_file2 << "- Time taken: " << (double)(clock() - tStart)/CLOCKS_PER_SEC << "\n";
+  data_file2.close();
 }

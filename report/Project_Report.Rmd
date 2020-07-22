@@ -3,7 +3,7 @@ title: |
   | \textbf{Project Report}
   | \Large{An Implementation Of:}
 subtitle: | 
-  | A Simple Randomized $O(n\,log\, n)$–Time Closest-Pair
+  | A Simple Randomized $O(n\,\log\, n)$–Time Closest-Pair
   | Algorithm in Doubling Metrics
 author:
   - Minh Thang Cao
@@ -47,7 +47,7 @@ Throughout the paper, let:
 \end{itemize}
 
 \vspace{-2truemm}
- \underline{\emph{\textbf{Note}}}: I will only mention 2D points because of the extremely high running time of the algorithm in the space more than 3D (in which the doubling dimension is approximately at least \boldmath$log_221$ that gives us the base case with more than $3\,000\,000$ points).
+ \underline{\emph{\textbf{Note}}}: I will only mention 2D points because of the extremely high running time of the algorithm in the space more than 3D (in which the doubling dimension is approximately at least $\log_2 21$ that gives us the base case with more than $3\,000\,000$ points).
 \unboldmath
 
 \newpage
@@ -98,9 +98,9 @@ This algorithm picks a uniformly random point $p$ from the subset $S$ then finds
 
 One step in \textsc{SepAnn($S,n,d,\mu,c$)} algorithm is to find the smallest ball which contains at least $n/c$ points. This ball is easy to find using the $k^{th}$ smallest element algorithm. Particularly, in a list of distances between $p$ and all other points in $S$, we pick the $\lceil n/c\rceil$-th smallest element and let it be the radius of the ball we need to find. Thus, all points closer to $p$ are inside this ball.
 
-A very easy approach to find the $k^{th}$ smallest element in a list is to sort it in ascending order, and then simply return the element at the $k^{th}$ place. This sorting algorithm takes $O(n\,log\,n)$ time complexity in the worst case. Fortunately, we can improve the running time to $O(n)$ using a common recursive technique called QuickSelect, which is similar to QuickSort.
+A very easy approach to find the $k^{th}$ smallest element in a list is to sort it in ascending order, and then simply return the element at the $k^{th}$ place. This sorting algorithm takes $O(n\,\log\,n)$ time complexity in the worst case. Fortunately, we can improve the running time to $O(n)$ using a common recursive technique called QuickSelect, which is similar to QuickSort.
 
-Given an unordered list $D$ which contains $n$ numbers, and a positive integer $k$ satisfies $1 \leq k \leq n$. Each element in $D$ has an index from $0$ to $n-1$. Consider a sublist of $D$, denoted $D[a:b]$, which starts from index $a$ and ends at $b$, inclusively. The base case is when $a = b$, the algorithm returns the only element in that sublist. If it is not the case, the algorithm will choose a random *pivot* in the list. The algorithm then rearranges the list so that all elements smaller and larger than the pivot are to the left and right of it, respectively. Now, the pivot has a new index, says $c$. If $k = c-a+1$, the chosen pivot is the $k^{th}$ smallest element of $D$, the algorithm returns $D[c]$. If $k < c-a+1$, the algorithm recurses on the sublist to the left of the pivot, $D[a:c-1]$. If $k > c-a+1$, the algorithm recurses on the sublist to the right of the pivot, $D[c+1:b]$. This algorithm's pseudocode is given below.
+Given an unordered list $D$ which contains $n$ numbers, and a positive integer $k$ satisfies $1 \leq k \leq n$. Each element in $D$ has an index from $0$ to $n-1$. Consider a sublist of $D$, denoted $D[a:b]$, which starts from index $a$ and ends at $b$, inclusively. The base case is when $a = b$, the algorithm returns the only element in that sublist. If it is not the case, the algorithm will choose a random *pivot* in the list. The algorithm then rearranges the list so that all elements smaller and larger than the pivot are to the left and right of it, respectively. Now, the pivot has a new index, says $c$. If $k = c-a+1$, the chosen pivot is the $k^{th}$ smallest element of $D$, the algorithm returns $D[c]$. If $k < c-a+1$, the algorithm recurses on the sublist to the left of the pivot, $D[a:c-1]$. If $k > c-a+1$, the algorithm recurses on the sublist to the right of the pivot, $D[c+1:b]$, with a different input $k$ (which is $k - c + a -1$) since this is the $k$ of the subset to the right, not the whole set of points, and the elements' indices starts from 0 again when we recurse. This algorithm's pseudocode is given below.
 
 \begin{figure}[ht]
   \centering
@@ -137,7 +137,7 @@ Given an unordered list $D$ which contains $n$ numbers, and a positive integer $
       }\uElseIf{$k < c-a+1$} {
         return \textsc{KthSmallest}$(D,a,c-1,k)$
       }\Else{
-        return \textsc{KthSmallest}$(D,c+1,b,k)$
+        return \textsc{KthSmallest}$(D,c+1,b,k-c+a-1)$
       }
     }
     \end{minipage}
@@ -152,7 +152,7 @@ $$O(n) + O(n/2) + O(n/4) +... \leq O(2n) = O(n)$$
 
 The following image is one of many outputs using different numbers of elements and $k$ values. I generated $100\,000\,000$ numbers uniformly random in the range [-100000, 100000] with $k$ = 76,543,210.
 
-```{r, echo=FALSE, fig.align="center", out.width="70%", fig.cap="\\label{fig1:figs}The outputs of the $O(NlogN)$ algorithm using regular sorting and the $O(n)$ QuickSelect algorithm that recurses only once."}
+```{r, echo=FALSE, fig.align="center", out.width="70%", fig.cap="\\label{fig1:figs}The outputs of the $O(n \\log n)$ algorithm using regular sorting and the $O(n)$ QuickSelect algorithm that recurses only once."}
 knitr::include_graphics("./images_&_data/kth_smallest/100m.png")
 ```
 
@@ -163,8 +163,8 @@ knitr::include_graphics("./images_&_data/kth_smallest/100m.png")
 
 With the given number of elements, $k$ and value range, both of the algorithms produced the same result, which is 53081.606002, but the running times of them have a significant difference (For the program's output, see Figure \ref{fig1:figs}).
 
-Since the QuickSelect takes at most $2n$ running time, the regular sorting takes at least $log(n)/2$ times more than it, and the $log$ is in base 2. In this case, there are $100\,000\,000$ numbers, so:
-$$\frac{log(n)}{2} = \frac{log(100\,000\,000)}{2} \approx 13.2877 \text{ times} \leq \frac{53.615235}{3.588446} \approx 14.9411 \text{ times}$$
+Since the QuickSelect takes at most $2n$ running time, the regular sorting takes at least $\log(n)/2$ times more than it, and the $\log$ is in base 2. In this case, there are $100\,000\,000$ numbers, so:
+$$\frac{\log(n)}{2} = \frac{\log(100\,000\,000)}{2} \approx 13.2877 \text{ times} \leq \frac{53.615235}{3.588446} \approx 14.9411 \text{ times}$$
 
 Since $14.9411$ is quite close to $13.2877$, the running time of this QuickSelect algorithm in practice is reasonable compared to the theory.
 
@@ -820,7 +820,7 @@ I have briefly described the theory of the closest-pair doubling algorithm, and 
 
 \begin{thebibliography}{9}
 \bibitem{latexcompanion} 
-A. Maheshwari, W. Mulzer and M. Smid. \emph{A Simple Randomized $O(n\,log\,n)$–Time Closest-Pair Algorithm in Doubling Metrics}, 2020. \url{https://arxiv.org/abs/2004.05883}
+A. Maheshwari, W. Mulzer and M. Smid. \emph{A Simple Randomized $O(n\,\log\,n)$–Time Closest-Pair Algorithm in Doubling Metrics}, 2020. \url{https://arxiv.org/abs/2004.05883}
 
 \bibitem{latexcompanion} 
 J. L. Bentley and M. I. Shamos. Divide-and-conquer in multidimensional space. In \emph{Proceedings of the 8th ACM Symposium on the Theory of Computing}, pages 220–230,
