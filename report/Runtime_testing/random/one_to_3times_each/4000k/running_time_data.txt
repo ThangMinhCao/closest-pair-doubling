@@ -1,0 +1,11 @@
+
+Number of Points: 4000000
+Coordinates' Range: -4000000 to 4000000
+- The closest distance is: 0.839581
+- Time taken: 12888.7
+
+Number of Points: 4000000
+Coordinates' Range: -4000000 to 4000000
+
+Number of Points: 4000000
+Coordinates' Range: -4000000 to 4000000

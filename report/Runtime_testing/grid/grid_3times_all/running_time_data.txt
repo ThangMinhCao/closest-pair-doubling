@@ -1,0 +1,26 @@
+
+Number of Points: 200000
+- The closest distance is: 1000
+- Time taken: 2747.18
+
+Number of Points: 200000
+- The closest distance is: 1000
+- Time taken: 3242.48
+
+Number of Points: 200000
+- The closest distance is: 1000
+- Time taken: 2941.12
+
+Number of Points: 400000
+- The closest distance is: 1000
+- Time taken: 8107.99
+
+Number of Points: 400000
+- The closest distance is: 1000
+- Time taken: 8298.77
+
+Number of Points: 400000
+- The closest distance is: 1000
+- Time taken: 8787.8
+
+Number of Points: 800000
