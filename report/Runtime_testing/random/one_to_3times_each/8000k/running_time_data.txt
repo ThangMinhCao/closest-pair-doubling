@@ -1,3 +1,0 @@
-
-Number of Points: 8000000
-Coordinates' Range: -8000000 to 8000000

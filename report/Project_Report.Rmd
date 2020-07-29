@@ -761,7 +761,7 @@ Since the points in non-Euclidean spaces are simply integers, they do not have p
   \draw[black,very thick,latex-latex] (0, 1.5*3) -- node[left] {$d$} (0, 1.5*2);
 \end{tikzpicture}
 
-\caption{An example of points in a grid. A set of 40 points that gives us a $4\times10$ grid. Points are placed at corners of the squares whose sides are equal to $d$ that could be any number.}
+\caption{An example of points in a grid on a Euclidean space. A set of 40 points that gives us a $4\times10$ grid. Points are placed at corners of the squares whose sides are equal to $d$ that could be any number.}
 \label{fig:grid}
 \end{figure}
 
@@ -774,7 +774,136 @@ To generate random points in a non-Euclidean space, I use a \code{RandomInt} obj
 
 ## 6.1 The practical running time
 
-To have the running time that is close to the theory, the number of points in $P$ must be extremely large since the base case of the algorithm is when $n < 2(16e)^d$, which is already a quite large number (approximately $79\,550$ points in 2D and more than $3\,000\,000$ points in 3D, for example). To correctly compare the algorithm's running time, we can use brute-force which takes $O(n)$ time or the 2D algorithm for only 2D points. 
+To correctly compare the algorithm's running time, we can use brute-force which takes $O(n)$ time or the 2D algorithm for only 2D points. However, to have the running time that is close to the theory, the number of points in $P$ must be extremely large since the base case of the algorithm is when $n < 2(16e)^d$, which is already a quite large number (approximately $79\,550$ points in 2D and more than $3\,000\,000$ points in 3D, for example). The algorithm could take days to finish calculating the whole metric space, and in this case, brute-force would take a lot more than that amount of time, which is not very reasonable for me to keep the program running until it finish. Fortunately, since the running time of the algorithm is $O(n\log n)$ which is in theory and also expected in practice, the ratio of the actual running time (in seconds) to the theoretical should be approximately the same for different large enough numbers of points. Thus, we can use this information to prove that the running time in practice is actually $O(n\log n)$.
+
+Particularly, let $n$ be the number of points in a metric space, denoted $|P|$, $m$ be a number which is much larger than the base case of the algorithm ($2(16e)^{\log_27} \approx 79550$ points in 2D metric spaces), $r_n$ be the ratio of the actual running time to the theoretical one that is calculated using $n$ with the $\log$ of base 2. I would initialize and run the algorithm on different metric spaces $P$ with $n \in sizes = \{m, 2m, 4m, 8m, 16m\}$. For each size, I would run the algorithm several times to find the average running time, denoted $T(n)$. Having $n$ and $T(n$), the ratio is calculated as below:
+$$r_n = \frac{T(n)}{n\log n}$$
+
+As expected, the ratios should be approximately the same. Denoted:
+$$r_m \approx r_{2m} \approx r_{4m} \approx r_{8m} \approx r_{16m}$$
+
+If this holds, the practical running time actually represents $O(n\log n)$ time. This is obvious because they have the same time complexity, so when the actual amount of time changes by an amount, the theoretical one should change by the same amount that is also based on the number of points.
+
+After running the algorithm with different kinds of inputs, the tables and graphs below are the results that I come up with.
+
+  1. \textbf{Random generated Euclidean metric spaces:} I choose $m = 500\,000$ points since it is much bigger than the base case, and as I estimated, the algorithm would take a reasonable time to finish all cases.
+	
+\begin{figure}
+\centering
+\begin{minipage}{1\textwidth}
+  \centering
+	\begin{tabularx}{\textwidth}{|>{\centering\arraybackslash}X|>{\centering\arraybackslash}X|>{\centering\arraybackslash}X|>{\centering\arraybackslash}X|>{\centering\arraybackslash}X|>{\centering\arraybackslash}X|}
+  \hline
+  \multirow{2}{*}{$\boldsymbol n$} & \multicolumn{4}{c|}{\textbf{The running time (in seconds)}} & \multirow{2}{*}{$\boldsymbol{r_n = \frac{T(n)}{n\log n}}$}\\
+	\cline{2-5}
+           & $T_1$   & $T_2$    & $T_3$    & $\boldsymbol{T(n)}$ &    \\ \hline
+   $500\,000$  & 2176.5  & 2237.33  & 2211.71  & 2208.51   & $2.333\times 10^{-4}$ \\ \hline
+  $1\,000\,000$  & 3047.94 & 3063     & 3091.8   & 3067.58   & $1.539\times 10^{-4}$ \\ \hline
+  $2\,000\,000$  & 6280.73 & 6040.06  & 5844.34  & 6055.04   & $1.446\times 10^{-4}$ \\ \hline
+  $4\,000\,000$  & 12888.7 & 12761.5  & 12632.7  & 12760.97  & $1.454\times 10^{-4}$ \\ \hline
+  $8\,000\,000$  & 33400.4 & 32850.6  & 31038.6  & 32429.8   & $1.767\times 10^{-4}$ \\ \hline
+  \end{tabularx}
+\end{minipage}
+\caption[Caption]{The table of random points metric spaces' data of running time and the ratio $r_n$.}
+\label{fig:randomdata}
+\end{figure}
+
+\hrule
+
+\  
+
+\begin{figure}
+\begin{minipage}{0.95\textwidth}
+\begin{center}
+\begin{tikzpicture}
+  \begin{axis}[ 
+    height=7cm,
+		width=9cm,
+    minor tick num=5,
+    grid=both,
+    grid style={line width=.1pt, draw=gray!20},
+    major grid style={line width=.2pt,draw=gray!40},
+    ymin=0.0001,
+		ymax=0.0003,
+    xlabel=$n$,
+    ylabel={$r_n$},
+		ylabel style={rotate=-90}
+  ] 
+		\addplot file[skip first] {random_data.txt};
+  \end{axis}
+\end{tikzpicture}
+\end{center}
+\end{minipage}
+\caption[Caption]{The graph of ratios $r_n$ versus different values of $n$ of random points with $n \in \{500\,000, 1\,000\,000, 2\,000\,000, 4\,000\,000, 8\,000\,000\}$ (with y-interval = $0.5\times10^{-4}$).}
+\label{fig:randomgraph}
+\end{figure}
+
+\hrule
+
+\  
+
+\  
+
+As you can see in the table (see Figure \ref{fig:randomdata}), for random points, the ratios $r_n$ do not have any significant differences. By assigning them the same base and exponent of their scientific notation ($10^{-4}$), their coefficients are mostly the same except for the $500\,000$ points, which is still less than doubled of the lowest ratio. This is reasonable since there are many factors that can affect the running time of the program. Also, this is the lowest value of $n$ in the set, so its running time probably has the highest error. The graph also shows that the points are roughly on a horizontal line, so the ratios have acceptable differences, see Figure \ref{fig:randomgraph}.
+
+2. \textbf{Grid generated Euclidean metric spaces:} I choose $m = 200\,000$ points in this case because the algorithm \textsc{SepAnn} will repeat several times most of the times it is called, that leads to much longer running time. Also, that is still a good number which is about 2.5 times larger than the base case, so it probably return a good result of running time.
+
+\begin{figure}
+\centering
+\begin{minipage}{1\textwidth}
+  \centering
+	\begin{tabularx}{\textwidth}{|>{\centering\arraybackslash}X|>{\centering\arraybackslash}X|>{\centering\arraybackslash}X|>{\centering\arraybackslash}X|>{\centering\arraybackslash}X|>{\centering\arraybackslash}X|}
+  \hline
+  \multirow{2}{*}{$\boldsymbol n$} & \multicolumn{4}{c|}{\textbf{The running time (in seconds)}} & \multirow{2}{*}{$\boldsymbol{r_n = \frac{T(n)}{n\log n}}$}\\
+	\cline{2-5}
+           & $T_1$   & $T_2$    & $T_3$    & $\boldsymbol{T(n)}$ &    \\ \hline
+   $200\,000$  & 3467.18  & 3191.12  & 3242.48  & 3304.22   & $0.938\times 10^{-3}$ \\ \hline
+  $400\,000$  & 8107.99 & 8298.77  & 8787.8   & 8398.18   & $1.128\times 10^{-3}$ \\ \hline
+  $800\,000$  & 19771.3 & 18744.3  & 19015.7  & 19177.1  & $1.222\times 10^{-3}$ \\ \hline
+  $1\,600\,000$  & 38205.9 & 36618.35  & 39131.24  & 37993.08  & $1.152\times 10^{-3}$ \\ \hline
+  $3\,200\,000$  & 33400.4 & 32850.6  & 31038.6  & 32429.8   & $1.767\times 10^{-4}$ \\ \hline
+  \end{tabularx}
+\end{minipage}
+\caption[Caption]{The table of random points metric spaces' data of running time and the ratio $r_n$.}
+\label{fig:randomdata}
+\end{figure}
+
+\hrule
+
+\  
+
+\begin{figure}
+\begin{minipage}{0.95\textwidth}
+\begin{center}
+\begin{tikzpicture}
+  \begin{axis}[ 
+    height=5cm,
+		width=9cm,
+    minor tick num=5,
+    grid=both,
+    grid style={line width=.1pt, draw=gray!20},
+    major grid style={line width=.2pt,draw=gray!40},
+    ymin=0,
+		ymax=0.0025,
+    xlabel=$n$,
+    ylabel={$r_n$},
+		ylabel style={rotate=-90}
+  ] 
+		\addplot file[skip first] {grid_data.txt};
+  \end{axis}
+\end{tikzpicture}
+\end{center}
+\end{minipage}
+\caption[Caption]{The graph of ratios $r_n$ versus different values of $n$ of random points with $n \in \{500\,000, 1\,000\,000, 2\,000\,000, 4\,000\,000, 8\,000\,000\}$ (with y-interval = $0.5\times10^{-4}$).}
+\label{fig:randomgraph}
+\end{figure}
+
+\hrule
+
+\  
+
+\  
+3. Random generated non-Euclidean metric spaces:
 
 ## 6.2 Probability to select a "good" point of $\mathrm{S\pnt{EP}A\pnt{NN}}(S,n,d,\mu,c)$ {#section6.2}
 
@@ -797,7 +926,7 @@ On the other hand, when using the grid way to generate points, the algorithm \te
   \centering
   \begin{tabular}{|c|c|}
   \hline
-  $\pmb n$   & \textbf{Repeat times} \\ \hline
+  $\boldsymbol n$   & \textbf{Repeat times} \\ \hline
    200000  & 6            \\ \hline
    193836  & 7            \\ \hline
    179534  & 2            \\ \hline
@@ -811,7 +940,7 @@ On the other hand, when using the grid way to generate points, the algorithm \te
   \centering
   \begin{tabular}{|c|c|}
   \hline
-  $\pmb n$   & \textbf{Repeat times} \\ \hline
+  $\boldsymbol n$   & \textbf{Repeat times} \\ \hline
   \ldots   & \ldots       \\ \hline
   101943   & 4            \\ \hline
    96367   & 2            \\ \hline
@@ -825,7 +954,47 @@ On the other hand, when using the grid way to generate points, the algorithm \te
 \label{fig:data}
 \end{figure}
 
-For non-Euclidean spaces, the algorithm behaves exactly as expected even with random points.
+\hrule
+\  
+
+\  
+
+For non-Euclidean spaces, the algorithm behaves exactly as expected even with random points. Since the doubling dimension 1 which gives us the base case approximately $87$, several thousands of points are large enough for an input that shows the correct running time and behavior. With different input, the algorithm produces expected answers which are calculated using brute-force but much faster, see folder \code{report} in my GitHub repository for more details about the outputs. With random inputs as well as any other type, the \code{sep\_ann} function repeats several times, see Figure \ref{fig:data_non_E}. The table below represents the number of times \code{sep\_ann} repeats with different number of points in $S$.
+
+\begin{figure}
+\begin{minipage}{0.48\textwidth}
+  \centering
+  \begin{tabular}{|c|c|}
+  \hline
+  $\boldsymbol n$   & \textbf{Repeat times} \\ \hline
+   200000  & 6            \\ \hline
+   193836  & 7            \\ \hline
+   179534  & 2            \\ \hline
+   172501  & 1            \\ \hline
+   158381  & 13           \\ \hline
+   156531  & 3            \\ \hline
+  \ldots   & \ldots       \\ \hline
+  \end{tabular}
+\end{minipage}
+\begin{minipage}{0.48\textwidth}
+  \centering
+  \begin{tabular}{|c|c|}
+  \hline
+  $\boldsymbol n$   & \textbf{Repeat times} \\ \hline
+  \ldots   & \ldots       \\ \hline
+  101943   & 4            \\ \hline
+   96367   & 2            \\ \hline
+   96154   & 2            \\ \hline
+   83621   & 6            \\ \hline
+   83288   & 13           \\ \hline
+   82515   & 2            \\ \hline
+  \end{tabular}
+\end{minipage}
+\caption[Caption]{Given an input of $200\,000$ points generated in a grid. This is a portion of the data about the number of times the algorithm \textsc{SepAnn$(S,n,d,\mu,c)$} repeats.}
+\label{fig:data_non_E}
+\end{figure}
+
+\hrule
 
 # 7 \enspace Concluding remarks {#section7}
 

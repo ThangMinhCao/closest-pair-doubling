@@ -1,6 +1,0 @@
-
-Number of Points: 800000
-- The closest distance is: 1000
-- Time taken: 17916.4
-
-Number of Points: 800000
