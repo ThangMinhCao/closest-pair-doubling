@@ -35,4 +35,3 @@ cmake-build-debug/
 .idea/
 .Rhistory
 *.log
-*.tex

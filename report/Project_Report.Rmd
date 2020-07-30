@@ -229,7 +229,7 @@ Otherwise, the previous procedure is repeated until the condition is satisfied. 
 
 Let $S_1$ be the set of points contained in $ball_S(p, R)$, $S_2$ be the set of points contained in $annulus_S(p, R, (1+1/t)R$ and $S_3$ be the set that contains all the points outside of the outer radius $(1+1/t)R$. This algorithm now recursively calls itself on two subsets of $S$ which are points contained in $ball_S(p,(1+1/t)R)$ (which is $S1 \cup S2$) and outside of $ball_S(p, R)$ (which is $S2 \cup S3$). Finally, the smaller distance output from two recursive calls, $\delta_0 = min(\delta_1, \delta_2)$, is returned. Below is the algorithm's pseudocode, see [1, Section 4.1].
 
-  \begin{figure}[ht]
+\begin{figure}[ht]
     \centering
     \begin{minipage}{1\linewidth}
       {\LinesNotNumbered
@@ -276,7 +276,6 @@ Let $S_1$ be the set of points contained in $ball_S(p, R)$, $S_2$ be the set of 
       {\footnotesize \emph{This pseudocode is from [1, Section 4.1]}\par}
       \end{flushright}
     \end{minipage}
-
 \end{figure}
 
 # 5 \enspace The Implementation {#section5}
@@ -317,7 +316,7 @@ class RandomDouble{
       std::uniform_real_distribution<> double_dist;
 };
 \end{lstlisting}
-\vspace{-2truemm}
+\vspace{-9truemm}
 \begin{minipage}{1\textwidth}
   \begin{flushright}
   {\footnotesize \emph{Source \footnotemark: master branch $\rightarrow$ closestpairdoubling/include/RandomGenerator.h }\par}
@@ -341,7 +340,6 @@ Since points are fundamental elements of the algorithm, and they are not just nu
 class Point {
   private:
     std::vector<double> coordinate;
-
   public:
     explicit Point(std::vector<double> coordinate) {
       this->coordinate = std::move(coordinate);
@@ -361,7 +359,7 @@ class Point {
     }
 }
 \end{lstlisting}
-\vspace{-2truemm}
+\vspace{-9truemm}
 \begin{minipage}{1\textwidth}
   \begin{flushright}
   {\footnotesize \emph{Source: master branch $\rightarrow$ closestpairdoubling/include/Point.h}\par}
@@ -381,7 +379,7 @@ class PointList {
   public:
     std::vector<Point> points;
 
-    // initializes all points uniformly random, see Section 6 for more details 
+    // initializes all points uniformly random, see Section 6 for details 
     void random_initializer(int dimension, int point_num,
                             int coor_start_range, int coor_end_range)
     {
@@ -396,7 +394,7 @@ class PointList {
       }
     }
 
-    // initializes points in grid, see Section 6 for more details 
+    // initializes points in grid, see Section 6 for details 
     void grid_initializer(double dist, int xFactor, int yFactor, int position)
     {
       // the grid starts at coordinates (position, position)
@@ -414,7 +412,7 @@ class PointList {
     }
 }
 \end{lstlisting}
-\vspace{-2truemm}
+\vspace{-9truemm}
 \begin{minipage}{1\textwidth}
   \begin{flushright}
   {\footnotesize \emph{Source: master branch $\rightarrow$ closestpairdoubling/include/PointList.h}\par}
@@ -427,6 +425,9 @@ The $K^{th}$ smallest algorithm has its own class. In this class, I define a sho
 
 
 \  
+
+\newpage
+
 \begin{lstlisting}
 #include <vector>
 
@@ -444,7 +445,7 @@ class KthSmallest {
     static double get_with_sorting(DVect distances, int k);
 };
 \end{lstlisting}
-\vspace{-2truemm}
+\vspace{-9truemm}
 \begin{minipage}{1\textwidth}
   \begin{flushright}
   {\footnotesize \emph{Source: master branch $\rightarrow$ closestpairdoubling/include/KthSmallest.h}\par}
@@ -455,7 +456,7 @@ class KthSmallest {
 \  
 Due to its simplicity and irrelevant uses (only for testing and analyzing), the implementation of the normal sorting technique will not be listed in this report, see the \emph{GitHub repository} for the code. The following is the implementation code of the QuickSelect algorithm.
 
-\newpage
+\  
 
 \begin{lstlisting}
 #include "KthSmallest.h"
@@ -507,7 +508,7 @@ double KthSmallest::get(DVect& distances, int start, int end, int k) {
 }
 
 \end{lstlisting}
-\vspace{-2truemm}
+\vspace{-9truemm}
 \begin{minipage}{1\textwidth}
   \begin{flushright}
   {\footnotesize \emph{Source: master branch $\rightarrow$ closestpairdoubling/src/KthSmallest.cpp}\par}
@@ -520,7 +521,6 @@ The function \code{swap(double *a, double *b)} swaps two elements in a vector by
 The function \code{partition(DVect\& distances, int start, int end)} takes the last element in \code{distances} to be the pivot. Then, it rearranges the vector so that every element smaller and larger than pivot is to the left and right of it. The technique I use in this function is creating two pointers \code{fast} and \code{slow}. Both pointers move towards the end step by step together until \code{distances[slow]} > \code{pivot}, then it stops. The \code{fast} keep moving until \code{distances[fast]} < \code{pivot}, then the value at two indices are swapped. This procedure is repeated until the \code{fast} reach the end of the vector The \code{pivot} is now swapped back to the \code{slow} position, where it is supposed to be.
 
 A generic call is \code{get(DVect\& distances, int start, int end, int k)}. It first checks if the sub-vector has only one element (as well as \code{start == end}) then returns it. Otherwise, it selects a random pivot in the vector then swaps it with the last element. Now, the \code{partition} function is called to return the index of the pivot after rearranging. The base case is when there are exactly $k$ elements from index 0 to the current pivot in the original vector (which is \code{cur\_pivot - start + 1}), so it is the $k^{th}$ smallest element. If there are more than $k$ elements, the function is recursively called on the sub-vector to the left of the pivot. If there are less than $k$ elements, the function is called on the sub-vector to the right, but now the $k$ should be decreased by \code{cur\_pivot - start + 1}. Due to [Section 2.2](#section2.2), this procedure takes $O(n)$ time complexity.
-
 
 ### 5.1.4 The 2D algorithm for testing 
 
@@ -544,15 +544,17 @@ typedef std::vector<double> DVect;
 
 class ClosestPairDoubling {
   private:
-    static std::tuple<Point, double, DVect> sep_ann(PointList &S, int n, double mu, double c);
-    static std::pair<Point, double> sparse_sep_ann(PointList &S, int n, double d, int t);
+    static std::tuple<Point, double, DVect>
+				sep_ann(PointList &S, int n, double mu, double c);
+    static std::pair<Point, double>
+				sparse_sep_ann(PointList &S, int n, double d, int t);
   public:
     ClosestPairDoubling() = default;
     static double brute_force(PointList &S);
     static double closest_pair(PointList &S, double d, int recursion=0);
 };
 \end{lstlisting}
-\vspace{-2truemm}
+\vspace{-9truemm}
 \begin{minipage}{1\textwidth}
   \begin{flushright}
   {\footnotesize \emph{Source: master branch $\rightarrow$ closestpairdoubling/include/ClosestPairDoubling.h}\par}
@@ -585,7 +587,8 @@ std::tuple<Point, double, DVect>
     for (const Point& point: S.points) {
       distances_from_p.push_back(p.distance_to(point));
     }
-    Rp = KthSmallest::get(distances_from_p, 0, (int)distances_from_p.size(), ceil(n / c));
+    Rp = KthSmallest::get(distances_from_p, 0,
+							(int)distances_from_p.size(), ceil(n / c));
 
     // counting the number of point in the outer ball
     outer_ball_count = 0;
@@ -598,7 +601,7 @@ std::tuple<Point, double, DVect>
   return std::make_tuple(p, Rp, distances_from_p);
 }
 \end{lstlisting}
-\vspace{-2truemm}
+\vspace{-9truemm}
 \begin{minipage}{1\textwidth}
   \begin{flushright}
   {\footnotesize \emph{Source: master branch $\rightarrow$ closestpairdoubling/src/ClosestPairDoubling.cpp}\par}
@@ -649,7 +652,7 @@ std::pair<Point, double>
   return std::pair<Point, double> {p, R};
 }
 \end{lstlisting}
-\vspace{-2truemm}
+\vspace{-9truemm}
 \begin{minipage}{1\textwidth}
   \begin{flushright}
   {\footnotesize \emph{Source: master branch $\rightarrow$ closestpairdoubling/src/ClosestPairDoubling.cpp}\par}
@@ -702,7 +705,7 @@ double
   return delta0;
 }
 \end{lstlisting}
-\vspace{-2truemm}
+\vspace{-9truemm}
 \begin{minipage}{1\textwidth}
   \begin{flushright}
   {\footnotesize \emph{Source: master branch $\rightarrow$ closestpairdoubling/src/ClosestPairDoubling.cpp}\par}
@@ -743,8 +746,6 @@ After doing many tests on normal Euclidean spaces, I found out that the algorith
 
   2. **Generating points evenly in a grid**. Let $n$ be the number of points, $a$ and $b$ be any two factors of $n$ that satisfies $a\times b = n$, $d$ be the distances between any two points which are close together. Start at any position, the points are set into the $a \times b$ grid which means each point is on a corner of a $d$-sided square, see Figure \ref{fig:grid}.
 
-Since the points in non-Euclidean spaces are simply integers, they do not have properties as many as the ones on normal Euclidean ones. Therefore, different ways to generate points do not change its behavior which is already as expected. I will only show its behavior with random points, see [Section 6.2](#section6.2).
-
 \vspace{-2truemm}
 \begin{figure}[!h]
 \centering
@@ -770,13 +771,17 @@ Since the points in non-Euclidean spaces are simply integers, they do not have p
 
 \  
 
+Since the points in non-Euclidean spaces are simply integers, they do not have properties as many as the ones on normal Euclidean ones. Therefore, different ways to generate points do not change its behavior which is already as expected. I will only show its behavior with random points, see [Section 6.2](#section6.2).
+
 To generate random points in a non-Euclidean space, I use a \code{RandomInt} object. With a given range and number of points, I can easily call \code{next()} to get a value to initialize a \code{Point} and store it into a \code{PointList} object.
 
 ## 6.1 The practical running time
 
 To correctly compare the algorithm's running time, we can use brute-force which takes $O(n)$ time or the 2D algorithm for only 2D points. However, to have the running time that is close to the theory, the number of points in $P$ must be extremely large since the base case of the algorithm is when $n < 2(16e)^d$, which is already a quite large number (approximately $79\,550$ points in 2D and more than $3\,000\,000$ points in 3D, for example). The algorithm could take days to finish calculating the whole metric space, and in this case, brute-force would take a lot more than that amount of time, which is not very reasonable for me to keep the program running until it finish. Fortunately, since the running time of the algorithm is $O(n\log n)$ which is in theory and also expected in practice, the ratio of the actual running time (in seconds) to the theoretical should be approximately the same for different large enough numbers of points. Thus, we can use this information to prove that the running time in practice is actually $O(n\log n)$.
 
-Particularly, let $n$ be the number of points in a metric space, denoted $|P|$, $m$ be a number which is much larger than the base case of the algorithm ($2(16e)^{\log_27} \approx 79550$ points in 2D metric spaces), $r_n$ be the ratio of the actual running time to the theoretical one that is calculated using $n$ with the $\log$ of base 2. I would initialize and run the algorithm on different metric spaces $P$ with $n \in sizes = \{m, 2m, 4m, 8m, 16m\}$. For each size, I would run the algorithm several times to find the average running time, denoted $T(n)$. Having $n$ and $T(n$), the ratio is calculated as below:
+Particularly, let $n$ be the number of points in a metric space, denoted $|P|$, $m$ be a number which is much larger than the base case of the algorithm ($2(16e)^{\log_27} \approx 79550$ points in 2D metric spaces), $r_n$ be the ratio of the actual running time to the theoretical one that is calculated using $n$ with the $\log$ of base 2. I would initialize and run the algorithm on different metric spaces $P$ with $n \in sizes = \{m, 2m, 4m, 8m, 16m\}$. For each size, I would run the algorithm several times to find the average running time, denoted $T(n)$.
+
+Having $n$ and $T(n$), the ratio is calculated as below:
 $$r_n = \frac{T(n)}{n\log n}$$
 
 As expected, the ratios should be approximately the same. Denoted:
@@ -787,7 +792,7 @@ If this holds, the practical running time actually represents $O(n\log n)$ time.
 After running the algorithm with different kinds of inputs, the tables and graphs below are the results that I come up with.
 
   1. \textbf{Random generated Euclidean metric spaces:} I choose $m = 500\,000$ points since it is much bigger than the base case, and as I estimated, the algorithm would take a reasonable time to finish all cases.
-	
+
 \begin{figure}
 \centering
 \begin{minipage}{1\textwidth}
@@ -817,14 +822,14 @@ After running the algorithm with different kinds of inputs, the tables and graph
 \begin{center}
 \begin{tikzpicture}
   \begin{axis}[ 
-    height=7cm,
-		width=9cm,
+    height=5.7cm,
+		width=12.7cm,
     minor tick num=5,
     grid=both,
     grid style={line width=.1pt, draw=gray!20},
     major grid style={line width=.2pt,draw=gray!40},
     ymin=0.0001,
-		ymax=0.0003,
+		ymax=0.00028,
     xlabel=$n$,
     ylabel={$r_n$},
 		ylabel style={rotate=-90}
@@ -837,12 +842,7 @@ After running the algorithm with different kinds of inputs, the tables and graph
 \caption[Caption]{The graph of ratios $r_n$ versus different values of $n$ of random points with $n \in \{500\,000, 1\,000\,000, 2\,000\,000, 4\,000\,000, 8\,000\,000\}$ (with y-interval = $0.5\times10^{-4}$).}
 \label{fig:randomgraph}
 \end{figure}
-
 \hrule
-
-\  
-
-\  
 
 As you can see in the table (see Figure \ref{fig:randomdata}), for random points, the ratios $r_n$ do not have any significant differences. By assigning them the same base and exponent of their scientific notation ($10^{-4}$), their coefficients are mostly the same except for the $500\,000$ points, which is still less than doubled of the lowest ratio. This is reasonable since there are many factors that can affect the running time of the program. Also, this is the lowest value of $n$ in the set, so its running time probably has the highest error. The graph also shows that the points are roughly on a horizontal line, so the ratios have acceptable differences, see Figure \ref{fig:randomgraph}.
 
@@ -864,7 +864,67 @@ As you can see in the table (see Figure \ref{fig:randomdata}), for random points
   $3\,200\,000$  & 33400.4 & 32850.6  & 31038.6  & 32429.8   & $1.767\times 10^{-4}$ \\ \hline
   \end{tabularx}
 \end{minipage}
-\caption[Caption]{The table of random points metric spaces' data of running time and the ratio $r_n$.}
+\caption[Caption]{The table of grid points metric spaces' data of running time and the ratio $r_n$.}
+\label{fig:griddata}
+\end{figure}
+
+\hrule
+
+\  
+
+\begin{figure}
+\begin{minipage}{0.95\textwidth}
+\begin{center}
+\begin{tikzpicture}
+  \begin{axis}[ 
+    height=5cm,
+		width=13cm,
+    minor tick num=5,
+    grid=both,
+    grid style={line width=.1pt, draw=gray!20},
+    major grid style={line width=.2pt,draw=gray!40},
+    ymin=0,
+		ymax=0.0025,
+    xlabel=$n$,
+    ylabel={$r_n$},
+		ylabel style={rotate=-90}
+  ] 
+		\addplot file[skip first] {grid_data.txt};
+  \end{axis}
+\end{tikzpicture}
+\end{center}
+\end{minipage}
+\caption[Caption]{The graph of ratios $r_n$ versus different values of $n$ of grid points with $n \in \{200\,000, 400\,000, 800\,000, 1\,600\,000, 3\,200\,000\}$ (with y-interval = $10^{-3}$).}
+\label{fig:gridgraph}
+\end{figure}
+
+\hrule
+
+\  
+
+\  
+
+The relationship is clearer in this example of grid generated points. All the ratios are very close to each other, see $r_n$ column of Figure \ref{fig:griddata}. The graph also shows that the differences between the ratios are very small since all the points are almost on a horizontal line.
+
+3. \textbf{Random generated non-Euclidean metric spaces:} Since handling extremely large numbers makes the program significantly slower, I start with a much smaller value of $m$ ($10\,000$ points) compared to the Euclidean spaces. However, for non-Euclidean spaces, the doubling dimension is 1, so the base case is approximately 87 points. Thus, $10\,000$ points is a pretty large number compared to the base case.
+
+\begin{figure}
+\centering
+\begin{minipage}{1\textwidth}
+  \centering
+	\begin{tabularx}{\textwidth}{|>{\centering\arraybackslash}X|>{\centering\arraybackslash}X|>{\centering\arraybackslash}X|>{\centering\arraybackslash}X|>{\centering\arraybackslash}X|>{\centering\arraybackslash}X|}
+  \hline
+  \multirow{2}{*}{$\boldsymbol n$} & \multicolumn{4}{c|}{\textbf{The running time (in seconds)}} & \multirow{2}{*}{$\boldsymbol{r_n = \frac{T(n)}{n\log n}}$}\\
+	\cline{2-5}
+           & $T_1$   & $T_2$    & $T_3$    & $\boldsymbol{T(n)}$ &    \\ \hline
+   $200\,000$  & 3467.18  & 3191.12  & 3242.48  & 3304.22   & $0.938\times 10^{-3}$ \\ \hline
+  $400\,000$  & 8107.99 & 8298.77  & 8787.8   & 8398.18   & $1.128\times 10^{-3}$ \\ \hline
+  $800\,000$  & 19771.3 & 18744.3  & 19015.7  & 19177.1  & $1.222\times 10^{-3}$ \\ \hline
+  $1\,600\,000$  & 38205.9 & 36618.35  & 39131.24  & 37993.08  & $1.152\times 10^{-3}$ \\ \hline
+  $3\,200\,000$  & 33400.4 & 32850.6  & 31038.6  & 32429.8   & $1.767\times 10^{-4}$ \\ \hline
+  \end{tabularx}
+\end{minipage}
+\caption[Caption]{The table of grid points metric spaces' data of running time and the ratio $r_n$.}
 \label{fig:randomdata}
 \end{figure}
 
@@ -878,7 +938,7 @@ As you can see in the table (see Figure \ref{fig:randomdata}), for random points
 \begin{tikzpicture}
   \begin{axis}[ 
     height=5cm,
-		width=9cm,
+		width=13cm,
     minor tick num=5,
     grid=both,
     grid style={line width=.1pt, draw=gray!20},
@@ -903,7 +963,6 @@ As you can see in the table (see Figure \ref{fig:randomdata}), for random points
 \  
 
 \  
-3. Random generated non-Euclidean metric spaces:
 
 ## 6.2 Probability to select a "good" point of $\mathrm{S\pnt{EP}A\pnt{NN}}(S,n,d,\mu,c)$ {#section6.2}
 
@@ -1018,3 +1077,4 @@ J. L. Bentley and M. I. Shamos. Divide-and-conquer in multidimensional space. In
 M. Smid. \emph{The Weak Gap Property in Metric Spaces of Bounded Doubling Dimension}. \url{https://people.scs.carleton.ca/~michiel/weakgap.pdf}
 
 \end{thebibliography}
+
