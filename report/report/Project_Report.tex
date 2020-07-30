@@ -170,7 +170,7 @@
 \subtitle{A Simple Randomized \(O(n\,\log\, n)\)--Time Closest-Pair\\
 Algorithm in Doubling Metrics}
 \author{Minh Thang Cao}
-\date{29 July 2020}
+\date{30 July 2020}
 
 \begin{document}
 \maketitle
@@ -387,18 +387,16 @@ below:
 
 \[O(n) + O(n/2) + O(n/4) +... \leq O(2n) = O(n)\]
 
-The following image is one of many outputs using different numbers of
-elements and \(k\) values. I generated \(100\,000\,000\) numbers
-uniformly random in the range {[}-100000, 100000{]} with \(k\) =
-76,543,210.
+The following image, Figure \ref{fig1:figs}, is one of many outputs
+using different numbers of elements and \(k\) values.
 
 \begin{figure}
 
-{\centering \includegraphics[width=0.7\linewidth]{./images_&_data/kth_smallest/100m} 
+{\centering \includegraphics[width=0.7\linewidth]{../images_&_data/kth_smallest/100m} 
 
 }
 
-\caption{\label{fig1:figs}The outputs of the $O(n \log n)$ algorithm using regular sorting and the $O(n)$ QuickSelect algorithm that recurses only once.}\label{fig:unnamed-chunk-1}
+\caption{\label{fig1:figs}The outputs of the $O(n \log n)$ algorithm using regular sorting and the $O(n)$ QuickSelect algorithm. Number of input elements is $100\,000\,000$ with $k = 76\,543\,210$.}\label{fig:unnamed-chunk-1}
 \end{figure}
 
 \hrule
@@ -1554,19 +1552,19 @@ horizontal line.
 \begin{center}
 \begin{tikzpicture}
   \begin{axis}[ 
-    height=5cm,
-        width=13cm,
+    height=7cm,
+        width=14cm,
     minor tick num=5,
     grid=both,
     grid style={line width=.1pt, draw=gray!20},
     major grid style={line width=.2pt,draw=gray!40},
     ymin=0,
-        ymax=0.0025,
+        ymax=0.008,
     xlabel=$n$,
     ylabel={$r_n$},
         ylabel style={rotate=-90}
   ] 
-        \addplot file[skip first] {grid_data.txt};
+        \addplot file[skip first] {non_Eu_data.txt};
   \end{axis}
 \end{tikzpicture}
 \end{center}

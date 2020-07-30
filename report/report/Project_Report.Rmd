@@ -150,10 +150,10 @@ Unlike the original QuickSort algorithm, the QuickSelect recurses only once and 
 
 $$O(n) + O(n/2) + O(n/4) +... \leq O(2n) = O(n)$$
 
-The following image is one of many outputs using different numbers of elements and $k$ values. I generated $100\,000\,000$ numbers uniformly random in the range [-100000, 100000] with $k$ = 76,543,210.
+The following image, Figure \ref{fig1:figs}, is one of many outputs using different numbers of elements and $k$ values.
 
-```{r, echo=FALSE, fig.align="center", out.width="70%", fig.cap="\\label{fig1:figs}The outputs of the $O(n \\log n)$ algorithm using regular sorting and the $O(n)$ QuickSelect algorithm that recurses only once."}
-knitr::include_graphics("./images_&_data/kth_smallest/100m.png")
+```{r, echo=FALSE, fig.align="center", out.width="70%", fig.cap="\\label{fig1:figs}The outputs of the $O(n \\log n)$ algorithm using regular sorting and the $O(n)$ QuickSelect algorithm. Number of input elements is $100\\,000\\,000$ with $k = 76\\,543\\,210$."}
+knitr::include_graphics("../images_&_data/kth_smallest/100m.png")
 ```
 
 \hrule
@@ -937,19 +937,19 @@ The relationship is clearer in this example of grid generated points. All the ra
 \begin{center}
 \begin{tikzpicture}
   \begin{axis}[ 
-    height=5cm,
-		width=13cm,
+    height=7cm,
+		width=14cm,
     minor tick num=5,
     grid=both,
     grid style={line width=.1pt, draw=gray!20},
     major grid style={line width=.2pt,draw=gray!40},
     ymin=0,
-		ymax=0.0025,
+		ymax=0.008,
     xlabel=$n$,
     ylabel={$r_n$},
 		ylabel style={rotate=-90}
   ] 
-		\addplot file[skip first] {grid_data.txt};
+		\addplot file[skip first] {non_Eu_data.txt};
   \end{axis}
 \end{tikzpicture}
 \end{center}
