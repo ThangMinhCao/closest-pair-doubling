@@ -171,7 +171,7 @@
 \subtitle{A Simple Randomized \(O(n\,\log\, n)\)--Time Closest-Pair\\
 Algorithm in Doubling Metrics}
 \author{Minh Thang Cao}
-\date{30 July 2020}
+\date{31 July 2020}
 
 \begin{document}
 \maketitle
@@ -1329,7 +1329,7 @@ large number (approximately \(79\,550\) points in 2D and more than
 \(3\,000\,000\) points in 3D, for example). The algorithm could take
 days to finish calculating the whole metric space, and in this case,
 brute-force would take a lot more than that amount of time, which is not
-very reasonable for me to keep the program running until it finish.
+very reasonable for me to keep the program running until it finishes.
 Fortunately, since the running time of the algorithm is \(O(n\log n)\)
 which is in theory and also expected in practice, the ratio of the
 actual running time (in seconds) to the theoretical should be
@@ -1353,11 +1353,11 @@ Having \(n\) and \(T(n\)), the ratio is calculated as below:
 As expected, the ratios should be approximately the same. Denoted:
 \[r_m \approx r_{2m} \approx r_{4m} \approx r_{8m} \approx r_{16m}\]
 
-If this holds, the practical running time actually represents
-\(O(n\log n)\) time. This is obvious because they have the same time
-complexity, so when the actual amount of time changes by an amount, the
-theoretical one should change by the same amount that is also based on
-the number of points.
+If this holds, the practical running time represents \(O(n\log n)\)
+time. This is obvious because they have the same time complexity, so
+when the actual amount of time changes by an amount, the theoretical one
+should change by the same amount that is also based on the number of
+points.
 
 After running the algorithm with different kinds of inputs, the tables
 and graphs below are the results that I come up with.
@@ -1427,12 +1427,12 @@ As you can see in the table (see Figure \ref{fig:randomdata}), for
 random points, the ratios \(r_n\) do not have any significant
 differences. By assigning them the same base and exponent of their
 scientific notation (\(10^{-4}\)), their coefficients are mostly the
-same except for the \(500\,000\) points, which is still less than
-doubled of the lowest ratio. This is reasonable since there are many
-factors that can affect the running time of the program. Also, this is
-the lowest value of \(n\) in the set, so its running time probably has
-the highest error. The graph also shows that the points are roughly on a
-horizontal line, so the ratios have acceptable differences, see Figure
+same except for the \(500\,000\) points, which is still less than double
+of the lowest ratio. This is reasonable since many factors that can
+affect the running time of the program. Also, this is the lowest value
+of \(n\) in the set, so its running time probably has the highest error.
+The graph also shows that the points are roughly on a horizontal line,
+so the ratios have acceptable differences, see Figure
 \ref{fig:randomgraph}.
 
 \begin{enumerate}
@@ -1442,10 +1442,10 @@ horizontal line, so the ratios have acceptable differences, see Figure
 \item
   \textbf{Grid generated Euclidean metric spaces:} I choose
   \(m = 200\,000\) points in this case because the algorithm
-  \textsc{SepAnn} will repeat several times most of the times it is
-  called, that leads to much longer running time. Also, that is still a
+  \textsc{SepAnn} will repeat several times most of the time it is
+  called, which leads to much longer running time. Also, that is still a
   good number which is about 2.5 times larger than the base case, so it
-  probably return a good result of running time.
+  probably returns a good result of running time.
 \end{enumerate}
 
 \begin{figure}
@@ -1517,11 +1517,11 @@ horizontal line.
 \item
   \textbf{Random generated non-Euclidean metric spaces:} Since handling
   extremely large numbers makes the program significantly slower, I
-  start with a much smaller value of \(m\) (\(10\,000\) points) compared
+  start with a much smaller value of \(m\) (\(2\,000\) points) compared
   to the Euclidean spaces. However, for non-Euclidean spaces, the
   doubling dimension is 1, so the base case is approximately 87 points.
-  Thus, \(10\,000\) points is a pretty large number compared to the base
-  case.
+  Thus, \(2\,000\) is a pretty large number of point compared to the
+  base case.
 \end{enumerate}
 
 \begin{figure}
@@ -1711,11 +1711,10 @@ number of points in \(S\).
 \section{\texorpdfstring{7 \enspace Concluding
 remarks}{7 Concluding remarks}}\label{section7}}
 
-I have briefly described the theory of the closest-pair doubling
-algorithm, and the implementation of it. Even we do not have the ability
-to run the algorithm with a huge number of points for more accurate
-running time outputs, the algorithm works exactly as we expected in
-practice:
+I have described the theory of the closest-pair doubling algorithm and
+the implementation of it. Although I do not have the ability to run the
+algorithm with a huge number of points for more accurate running time
+outputs, the algorithm works exactly as we expected in practice:
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
