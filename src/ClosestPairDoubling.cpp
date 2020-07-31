@@ -42,10 +42,8 @@ std::tuple<Point, double, DVect>
         outer_ball_count++;
       }
     }
-//    std::cout << "Count: " << outer_ball_count << " n: " << n << std::endl;
   }
   // This part is only to write the data into a text file
-//  std::cout << std::setw(7) << outer_ball_count << std::setw(5) << count << std::setw(13) << n << std::setw(10) << c << "\n";
   std::ofstream data_file;
   data_file.open("sep_ann_loop_times.txt", std::ios_base::app);
   data_file << std::setw(7) << count << std::setw(13) << n << std::setw(10) << c << "\n";

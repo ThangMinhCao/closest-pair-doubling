@@ -53,7 +53,7 @@ void Test::closest_pair_test(Algorithm a, PointList S, int dimension) {
       break;
     case CLOSEST_DOUBLING:
       printf("\033[1m\033[31mDoubling Algorithm:\033[0m\n");
-      data_file.open("sep_ann_loop_times.txt", std::ios_base::app);
+      data_file.open("sep_ann_loop_times.txt");
       data_file << "\nNUMBER OF TIMES THE ALGORITHM SEPANN REPEATS ITS LOOP:\n";
       data_file << "Repeat times" << std::setw(5) << "n" << std::setw(11) << "c\n";
       data_file.close();

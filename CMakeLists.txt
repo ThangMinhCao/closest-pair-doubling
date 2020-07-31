@@ -10,7 +10,7 @@ set(MAIN_HEADERS include/ClosestPairDoubling.h include/KthSmallest.h include/Poi
         include/PointList.h include/RandomGenerator.h)
 set(MAIN_SOURCE src/ClosestPairDoubling.cpp src/KthSmallest.cpp src/main.cpp)
 set(UTILITIES utils/2d_problem.h utils/merge_sort.cpp utils/merge_sort.h utils/2d_problem.cpp)
-set(TESTING test/Test.cpp test/Test.h)
+set(TESTING test/Test.cpp test/Test.h test/Program.cpp test/Program.h)
 
 add_executable(closest_pair_doubling
         ${MAIN_HEADERS}
