@@ -65,6 +65,7 @@
 \usepackage{tabularx}
 \usepackage{multirow}
 \usepackage{pgfplots}
+\usepackage[bottom]{footmisc}
 % \definecolor{listinggray}{gray}{0.9}
 % \definecolor{lbcolor}{rgb}{0.9,0.9,0.9}
 % \definecolor{Darkgreen}{rgb}{0,0.4,0}
@@ -1460,7 +1461,7 @@ horizontal line, so the ratios have acceptable differences, see Figure
   $400\,000$  & 8107.99 & 8298.77  & 8787.8   & 8398.18   & $1.128\times 10^{-3}$ \\ \hline
   $800\,000$  & 19771.3 & 18744.3  & 19015.7  & 19177.1  & $1.222\times 10^{-3}$ \\ \hline
   $1\,600\,000$  & 38205.9 & 36618.35  & 39131.24  & 37993.08  & $1.152\times 10^{-3}$ \\ \hline
-  $3\,200\,000$  & 33400.4 & 32850.6  & 31038.6  & 32429.8   & $1.767\times 10^{-4}$ \\ \hline
+  $3\,200\,000$  & 86249.05 & 83354.21  & 82318.96 & 83974.07  & $1.214\times 10^{-3}$ \\ \hline
   \end{tabularx}
 \end{minipage}
 \caption[Caption]{The table of grid points metric spaces' data of running time and the ratio $r_n$.}
@@ -1532,14 +1533,14 @@ horizontal line.
   \multirow{2}{*}{$\boldsymbol n$} & \multicolumn{4}{c|}{\textbf{The running time (in seconds)}} & \multirow{2}{*}{$\boldsymbol{r_n = \frac{T(n)}{n\log n}}$}\\
     \cline{2-5}
            & $T_1$   & $T_2$    & $T_3$    & $\boldsymbol{T(n)}$ &    \\ \hline
-   $200\,000$  & 3467.18  & 3191.12  & 3242.48  & 3304.22   & $0.938\times 10^{-3}$ \\ \hline
-  $400\,000$  & 8107.99 & 8298.77  & 8787.8   & 8398.18   & $1.128\times 10^{-3}$ \\ \hline
-  $800\,000$  & 19771.3 & 18744.3  & 19015.7  & 19177.1  & $1.222\times 10^{-3}$ \\ \hline
-  $1\,600\,000$  & 38205.9 & 36618.35  & 39131.24  & 37993.08  & $1.152\times 10^{-3}$ \\ \hline
-  $3\,200\,000$  & 33400.4 & 32850.6  & 31038.6  & 32429.8   & $1.767\times 10^{-4}$ \\ \hline
+   $2000$  & 10.3557  & 8.83033  & 6.09795  & 8.428  & $3.843\times 10^{-4}$ \\ \hline
+  $4000$  & 38.6867 & 47.721  & 34.8211   & 40.4096 & $8.443\times 10^{-4}$ \\ \hline
+  $8000$  & 209.766 & 257.704  & 217.096  & 228.1886  & $2.2\times 10^{-3}$ \\ \hline
+  $16000$  & 1439.05 & 1202.57 & 1173.77  & 1271.4633  & $5.69\times 10^{-3}$ \\ \hline
+  $32000$  & 7692.18 & 7825.26  & 7718.64  & 7745.36  & $1.617\times 10^{-2}$ \\ \hline
   \end{tabularx}
 \end{minipage}
-\caption[Caption]{The table of grid points metric spaces' data of running time and the ratio $r_n$.}
+\caption[Caption]{The table of random points non-Euclidean metric spaces' data of running time and the ratio $r_n$.}
 \label{fig:randomdata}
 \end{figure}
 
@@ -1552,14 +1553,14 @@ horizontal line.
 \begin{center}
 \begin{tikzpicture}
   \begin{axis}[ 
-    height=7cm,
+    height=8cm,
         width=14cm,
     minor tick num=5,
     grid=both,
     grid style={line width=.1pt, draw=gray!20},
     major grid style={line width=.2pt,draw=gray!40},
     ymin=0,
-        ymax=0.008,
+        ymax=0.02,
     xlabel=$n$,
     ylabel={$r_n$},
         ylabel style={rotate=-90}
@@ -1569,7 +1570,7 @@ horizontal line.
 \end{tikzpicture}
 \end{center}
 \end{minipage}
-\caption[Caption]{The graph of ratios $r_n$ versus different values of $n$ of random points with $n \in \{500\,000, 1\,000\,000, 2\,000\,000, 4\,000\,000, 8\,000\,000\}$ (with y-interval = $0.5\times10^{-4}$).}
+\caption[Caption]{The graph of ratios $r_n$ versus different values of $n$ of random points on non-Euclidean spaces with $n \in \{2000, 4000, 8000, 16\,000, 32\,000\}$ (with y-interval = $0.5\times10^{-2}$).}
 \label{fig:randomgraph}
 \end{figure}
 
@@ -1725,15 +1726,19 @@ practice:
   brute-force's) without the use of the points' coordinates. Its running
   time is obviously much less than the result from brute-force.
 \item
+  The algorithm can correctly find the closest-pair distances on
+  non-Euclidean spaces of doubling dimension 1 without changing any core
+  details. Also, its behavior is the same as when the input is a normal
+  metric space.
+\item
+  The practical running time of the algorithm is certainly
+  \(O(n\log n)\) which is proved by the close relationship between the
+  practical and theoretical running time.
+\item
   For any way that the points are arranged on the metric space, the
   number of times the algorithm \textsc{SepAnn($S,n,d,\mu,c$)} repeats
   satisfies the probability \(1/c\) in theory. Therefore, in practice,
   this procedure runs in linear time.
-\item
-  The algorithm can correctly find the closest-pair distances on
-  non-Euclidean spaces of doubling dimension 1 without changing any core
-  details. Also, its behavior is mostly the same as when the input is a
-  normal space.
 \end{enumerate}
 
 \medskip
