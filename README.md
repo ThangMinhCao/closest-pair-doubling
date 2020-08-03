@@ -1,6 +1,9 @@
 # closest-pair-doubling
 
-> The implementation of the Randomized O(n log n)-time Closest-Pair Algorithm
+> The implementation of the closest-pair doubling algorithm
+> From the work of Anil Maheshwari, Wolfgang Mulzer and Michiel Smid.
+A Simple Randomized O(N log N)–Time Closest-Pair Algorithm in Doubling Metrics.
+https://arxiv.org/abs/2004.05883
 
 ### [Homepage](https://github.com/ThangMinhCao/closestpairdoubling)
 
