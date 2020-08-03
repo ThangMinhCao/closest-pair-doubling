@@ -5,7 +5,7 @@
 *A Simple Randomized O(N log N)–Time Closest-Pair Algorithm in Doubling Metrics*.
 https://arxiv.org/abs/2004.05883
 
-### 📝 [Project report in PDF](https://github.com/ThangMinhCao/closestpairdoubling/blob/master/report/report/Project_Report.pdf)
+### 📝 [Project report](https://github.com/ThangMinhCao/closestpairdoubling/blob/master/report/report/Project_Report.pdf)
 
 ## Prerequisites
 
