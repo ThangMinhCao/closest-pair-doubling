@@ -1,0 +1,59 @@
+Number of 'Points': 2000
+- The closest distance is: 16
+- Time taken: 10.3557s
+
+Number of 'Points': 2000
+- The closest distance is: 16
+- Time taken: 8.83033s
+
+Number of 'Points': 2000
+- The closest distance is: 16
+- Time taken: 6.09795s
+
+Number of 'Points': 4000
+- The closest distance is: 16
+- Time taken: 38.6867s
+
+Number of 'Points': 4000
+- The closest distance is: 16
+- Time taken: 47.721s
+
+Number of 'Points': 4000
+- The closest distance is: 16
+- Time taken: 34.8211s
+
+Number of 'Points': 8000
+- The closest distance is: 16
+- Time taken: 209.766s
+
+Number of 'Points': 8000
+- The closest distance is: 16
+- Time taken: 257.704s
+
+Number of 'Points': 8000
+- The closest distance is: 16
+- Time taken: 217.096s
+
+Number of 'Points': 16000
+- The closest distance is: 16
+- Time taken: 1439.05s
+
+Number of 'Points': 16000
+- The closest distance is: 16
+- Time taken: 1202.57s
+
+Number of 'Points': 16000
+- The closest distance is: 16
+- Time taken: 1173.77s
+
+Number of 'Points': 32000
+- The closest distance is: 16
+- Time taken: 7692.18s
+
+Number of 'Points': 32000
+- The closest distance is: 16
+- Time taken: 7825.26s
+
+Number of 'Points': 32000
+- The closest distance is: 16
+- Time taken: 7718.64s

@@ -1,0 +1,74 @@
+Number of 'Points': 2000
+- The closest distance is: 16
+- Time taken: 6.0782s
+- Number of dist() function calls: 101104
+
+Number of 'Points': 2000
+- The closest distance is: 16
+- Time taken: 8.69802s
+- Number of dist() function calls: 118118
+
+Number of 'Points': 2000
+- The closest distance is: 16
+- Time taken: 8.3791s
+- Number of dist() function calls: 114577
+
+Number of 'Points': 4000
+- The closest distance is: 16
+- Time taken: 36.1797s
+- Number of dist() function calls: 252964
+
+Number of 'Points': 4000
+- The closest distance is: 16
+- Time taken: 45.7407s
+- Number of dist() function calls: 253449
+
+Number of 'Points': 4000
+- The closest distance is: 16
+- Time taken: 37.6525s
+- Number of dist() function calls: 247274
+
+Number of 'Points': 8000
+- The closest distance is: 16
+- Time taken: 221.26s
+- Number of dist() function calls: 525386
+
+Number of 'Points': 8000
+- The closest distance is: 16
+- Time taken: 207.501s
+- Number of dist() function calls: 498586
+
+Number of 'Points': 8000
+- The closest distance is: 16
+- Time taken: 232.177s
+- Number of dist() function calls: 555710
+
+Number of 'Points': 16000
+- The closest distance is: 16
+- Time taken: 1589.84s
+- Number of dist() function calls: 1157266
+
+Number of 'Points': 16000
+- The closest distance is: 16
+- Time taken: 1421.36s
+- Number of dist() function calls: 1137811
+
+Number of 'Points': 16000
+- The closest distance is: 16
+- Time taken: 1330.22s
+- Number of dist() function calls: 1146926
+
+Number of 'Points': 32000
+- The closest distance is: 16
+- Time taken: 10944.5s
+- Number of dist() function calls: 2778423
+
+Number of 'Points': 32000
+- The closest distance is: 16
+- Time taken: 7959.75s
+- Number of dist() function calls: 2445893
+
+Number of 'Points': 32000
+- The closest distance is: 16
+- Time taken: 7959.75s
+- Number of dist() function calls: 2615109
