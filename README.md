@@ -14,8 +14,19 @@ https://arxiv.org/abs/2004.05883
 
 ## Install
 
+Clone the repository
+
 ```sh
-npm install
+git clone git@github.com:ThangMinhCao/closestpairdoubling.git
+```
+
+Build the CMake Project
+
+```sh
+git clone git@github.com:ThangMinhCao/closestpairdoubling.git
+cd closestpairdoubling
+cmake .
+make
 ```
 
 ## Usage
