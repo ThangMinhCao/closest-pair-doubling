@@ -28,6 +28,12 @@ cmake .
 make
 ```
 
+To run the program
+
+```sh
+./closestpairdoubling
+```
+
 ## Usage
 
 ```sh
