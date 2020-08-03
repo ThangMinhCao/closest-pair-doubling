@@ -1,23 +1,10 @@
 <h1 align="center">Welcome to closest-pair-doubling 👋</h1>
-<p>
-  <img src="https://img.shields.io/badge/npm-%3E%3D5.5.0-blue.svg" />
-  <img src="https://img.shields.io/badge/node-%3E%3D9.3.0-blue.svg" />
-  <a href="https://" target="_blank">
-    <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
-  </a>
-  <a href="https://github.com/kefranabg/readme-md-generator/graphs/commit-activity" target="_blank">
-    <img alt="Maintenance" src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" />
-  </a>
-  <a href="https://github.com/ThangMinhCao/closestpairdoubling/blob/master/LICENSE" target="_blank">
-    <img alt="License: MIT" src="https://img.shields.io/github/license/ThangMinhCao/closest-pair-doubling" />
-  </a>
-</p>
 
 > The implementation of the Randomized O(n log n)-time Closest-Pair Algorithm
 
-### 🏠 [Homepage](https://github.com/ThangMinhCao/closestpairdoubling)
+### [Homepage](https://github.com/ThangMinhCao/closestpairdoubling)
 
-### ✨ [Demo](https://)
+### [Demo](https://)
 
 ## Prerequisites
 
@@ -44,7 +31,7 @@ npm run test
 
 ## Author
 
-👤 **Minh Thang Cao**
+**Minh Thang Cao**
 
 * Website: https://
 * Github: [@ThangMinhCao](https://github.com/ThangMinhCao)
@@ -54,10 +41,7 @@ npm run test
 
 Give a ⭐️ if this project helped you!
 
-## 📝 License
+## License
 
 Copyright © 2020 [Minh Thang Cao](https://github.com/ThangMinhCao).<br />
 This project is [MIT](https://github.com/ThangMinhCao/closestpairdoubling/blob/master/LICENSE) licensed.
-
-***
-_This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
