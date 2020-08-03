@@ -14,13 +14,13 @@ https://arxiv.org/abs/2004.05883
 
 ## Install
 
-Clone the repository:
+1. Clone the repository:
 
 ```sh
 git clone git@github.com:ThangMinhCao/closestpairdoubling.git
 ```
 
-Build the CMake Project:
+2. Build the CMake Project:
 
 ```sh
 cd closestpairdoubling
