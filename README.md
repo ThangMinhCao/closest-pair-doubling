@@ -1,4 +1,4 @@
-<h1 align="center">Welcome to closest-pair-doubling 👋</h1>
+# closest-pair-doubling
 
 > The implementation of the Randomized O(n log n)-time Closest-Pair Algorithm
 
