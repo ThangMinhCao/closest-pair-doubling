@@ -23,7 +23,6 @@ git clone git@github.com:ThangMinhCao/closestpairdoubling.git
 Build the CMake Project
 
 ```sh
-git clone git@github.com:ThangMinhCao/closestpairdoubling.git
 cd closestpairdoubling
 cmake .
 make
