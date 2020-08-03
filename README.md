@@ -1,6 +1,6 @@
 # closest-pair-doubling
 
-> The implementation in C++ of the closest-pair doubling algorithm.  
+> Implementation in C++ of the closest-pair doubling algorithm.  
 > The algorithm's theory is from the work of Anil Maheshwari, Wolfgang Mulzer and Michiel Smid.
 *A Simple Randomized O(N log N)–Time Closest-Pair Algorithm in Doubling Metrics*.
 https://arxiv.org/abs/2004.05883
