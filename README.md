@@ -10,8 +10,7 @@ https://arxiv.org/abs/2004.05883
 
 ## Prerequisites
 
-- npm >=5.5.0
-- node >=9.3.0
+- cmake >= 3.16 
 
 ## Install
 
