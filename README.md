@@ -39,11 +39,7 @@ npm run test
 
 * Website: https://
 * Github: [@ThangMinhCao](https://github.com/ThangMinhCao)
-* LinkedIn: [@Minh Thang Cao](https://linkedin.com/in/Minh Thang Cao)
-
-## Show your support
-
-Give a ⭐️ if this project helped you!
+* LinkedIn: [@minhthangcao](https://linkedin.com/in/minhthangcao)
 
 ## License
 
