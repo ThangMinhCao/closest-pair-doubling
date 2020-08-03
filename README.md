@@ -30,6 +30,7 @@ make
 
 ## Usage
 
+In the directory of the repo
 ```sh
 ./closestpairdoubling
 ```
