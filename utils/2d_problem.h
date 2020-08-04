@@ -4,21 +4,21 @@
 #include <vector>
 #include <algorithm>
 
-typedef std::pair<std::pair<Point, Point>, double> DResult;
+typedef std::pair<std::pair<point, point>, double> DResult;
 
 class ClosestPair2D {
   private:
-    static DResult dist(Point p, Point q);
-    static double compareX(Point p, Point q) {
+    static DResult dist(point p, point q);
+    static double compareX(point p, point q) {
       return p.getCoordinate()[0] < q.getCoordinate()[0];
     }
-    static double compareY(Point p, Point q) {
+    static double compareY(point p, point q) {
       return p.getCoordinate()[1] < q.getCoordinate()[1];
     }
 
   public:
     ClosestPair2D() = default;
-    static DResult algorithm2D(vector<Point>& L);
+    static DResult algorithm2D(vector<point>& L);
 
 };
 #endif

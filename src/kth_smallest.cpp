@@ -1,15 +1,15 @@
 #include <iostream>
 #include <algorithm>
-#include "KthSmallest.h"
-#include "RandomGenerator.h"
+#include "kth_smallest.h"
+#include "random_generator.h"
 
-void KthSmallest::swap (double *a, double *b) {
+void kth_smallest::swap (double *a, double *b) {
   double temp = *a;
   *a = *b;
   *b = temp;
 }
 
-int KthSmallest::partition(DVect& distances, int start, int end) {
+int kth_smallest::partition(DVect& distances, int start, int end) {
   double pivot = distances[end];
   int slow = start;
   int fast = start;
@@ -32,7 +32,7 @@ int KthSmallest::partition(DVect& distances, int start, int end) {
   swap(&distances[slow], &distances[end]);
   return slow;
 }
-double KthSmallest::get(DVect& distances, int start, int end, int k) {
+double kth_smallest::get(DVect& distances, int start, int end, int k) {
   if (k < 1 or k > distances.size()) {
     return std::numeric_limits<double>::max();
   }
@@ -56,7 +56,7 @@ bool compare(double x, double y) {
   return x < y;
 }
 
-double KthSmallest::get_with_sorting(DVect distances, int k) {
+double kth_smallest::get_with_sorting(DVect distances, int k) {
   std::sort(distances.begin(), distances.end(), compare);
   return distances[k - 1]; 
 }

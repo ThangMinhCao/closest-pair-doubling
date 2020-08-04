@@ -4,17 +4,17 @@
 #include <iostream>
 #include <cmath>
 
-class Point {
+class point {
   private:
     std::vector<double> coordinate;
 
   public:
-    explicit Point(std::vector<double> coordinate) {
+    explicit point(std::vector<double> coordinate) {
       this->coordinate = std::move(coordinate);
     }
-    Point()= default;
+    point()= default;
 
-    double distance_to(const Point& another_point) {
+    double distance_to(const point& another_point) {
       double total_square = 0;
       for (int i = 0; i < coordinate.size(); i++) {
         double iDiff = coordinate[i] - another_point.getCoordinate()[i];
@@ -26,8 +26,9 @@ class Point {
       return this -> coordinate;
     }
 
-    friend bool operator== (const Point& p1, const Point& p2);
-    friend bool operator!= (const Point& p1, const Point& p2);
+    friend bool operator== (const point& p1, const point& p2);
+    friend bool operator!= (const point& p1, const point& p2);
+
     std::string toString() {
       std::string res = "(";
       for (int i = 0; i < coordinate.size(); i++) {
@@ -40,10 +41,10 @@ class Point {
     }
 };
 
-inline bool operator== (const Point& p1, const Point& p2) {
+inline bool operator== (const point& p1, const point& p2) {
   return p1.coordinate == p2.coordinate;
 }
-inline bool operator!= (const Point& p1, const Point& p2) {
+inline bool operator!= (const point& p1, const point& p2) {
   return p1.coordinate != p2.coordinate;
 }
 #endif

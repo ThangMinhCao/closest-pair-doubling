@@ -366,13 +366,13 @@ given below.
       \uIf{$k == c-a+1$} {
         return $p$
       }\uElseIf{$k < c-a+1$} {
-        return \textsc{KthSmallest}$(D,a,c-1,k)$
+        return \textsc{kth_smallest}$(D,a,c-1,k)$
       }\Else{
-        return \textsc{KthSmallest}$(D,c+1,b,k-c+a-1)$
+        return \textsc{kth_smallest}$(D,c+1,b,k-c+a-1)$
       }
     }
     \end{minipage}
-    \caption{\textsc{KthSmallest}$(D, a, b, k)$}
+    \caption{\textsc{kth_smallest}$(D, a, b, k)$}
     \end{algorithm}}
   \end{minipage}
 \end{figure}
@@ -773,7 +773,7 @@ their time complexity, see \protect\hyperlink{section2.2}{Section 2.2}.
 
 typedef std::vector<double> DVect;
 
-class KthSmallest {
+class kth_smallest {
   private:
     static void swap (double *a, double *b);
     static int partition(DVect& distances, int start, int end);
@@ -788,7 +788,7 @@ class KthSmallest {
 \vspace{-9truemm}
 \begin{minipage}{1\textwidth}
   \begin{flushright}
-  {\footnotesize \emph{Source: master branch $\rightarrow$ closestpairdoubling/include/KthSmallest.h}\par}
+  {\footnotesize \emph{Source: master branch $\rightarrow$ closestpairdoubling/include/kth_smallest.h}\par}
   \end{flushright}
 \end{minipage}
 \vspace{0.5truemm}
@@ -801,16 +801,16 @@ The following is the implementation code of the QuickSelect algorithm.
 ~
 
 \begin{lstlisting}
-#include "KthSmallest.h"
+#include "kth_smallest.h"
 #include "RandomGenerator.h"
 
-void KthSmallest::swap (double *a, double *b) {
+void kth_smallest::swap (double *a, double *b) {
   double temp = *a;
   *a = *b;
   *b = temp;
 }
 
-int KthSmallest::partition(DVect& distances, int start, int end) {
+int kth_smallest::partition(DVect& distances, int start, int end) {
   double pivot = distances[end];
   int slow = start;
   int fast = start;
@@ -834,7 +834,7 @@ int KthSmallest::partition(DVect& distances, int start, int end) {
   return slow;
 }
 
-double KthSmallest::get(DVect& distances, int start, int end, int k) {
+double kth_smallest::get(DVect& distances, int start, int end, int k) {
   if (start == end) {return distances[start];}
   //  swapping the random pivot to the end
   RandomInt random_int_gen = RandomInt(start, end);
@@ -853,7 +853,7 @@ double KthSmallest::get(DVect& distances, int start, int end, int k) {
 \vspace{-9truemm}
 \begin{minipage}{1\textwidth}
   \begin{flushright}
-  {\footnotesize \emph{Source: master branch $\rightarrow$ closestpairdoubling/src/KthSmallest.cpp}\par}
+  {\footnotesize \emph{Source: master branch $\rightarrow$ closestpairdoubling/src/kth_smallest.cpp}\par}
   \end{flushright}
 \end{minipage}
 \vspace{0.5truemm}
@@ -1011,7 +1011,7 @@ std::tuple<Point, double, DVect>
     for (const Point& point: S.points) {
       distances_from_p.push_back(p.distance_to(point));
     }
-    Rp = KthSmallest::get(distances_from_p, 0,
+    Rp = kth_smallest::get(distances_from_p, 0,
                             (int)distances_from_p.size(), ceil(n / c));
 
     // counting the number of point in the outer ball
@@ -1038,7 +1038,7 @@ cleared to get rid of the previous loop's result. The function uses
 \code{int\_gen} to generate a random point in \(S\), then it stores
 distances between \(p\) and every point in \(S\) including itself into
 \code{distances\_from\_p}. The QuickSelect function from
-\code{KthSmallest} class is now used to get the \(ceil(n/c)\)-smallest
+\code{kth_smallest} class is now used to get the \(ceil(n/c)\)-smallest
 element in \code{distances\_from\_p}, then it is assigned to \code{Rp}.
 The function loops through the distance vector to count the number of
 points inside the outer ball and assigns it to

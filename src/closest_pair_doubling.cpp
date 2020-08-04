@@ -1,10 +1,10 @@
-#include "../include/ClosestPairDoubling.h"
-#include "../include/KthSmallest.h"
+#include "../include/closest_pair_doubling.h"
+#include "../include/kth_smallest.h"
 #include <tuple>
 #include <fstream>
 #include <iomanip>
 
-double ClosestPairDoubling::brute_force(PointList &S) {
+double closest_pair_doubling::brute_force(point_list &S) {
   double result = std::numeric_limits<double>::max();
   for (int i = 0; i < S.points.size(); i++) {
     for (int j = i + 1; j < S.points.size(); j++) {
@@ -16,10 +16,10 @@ double ClosestPairDoubling::brute_force(PointList &S) {
   return result;
 }
 // DVect = std::vector<double>
-std::tuple<Point, double, DVect>
-        ClosestPairDoubling::sep_ann(PointList &S, int n, double mu, double c)
+std::tuple<point, double, DVect>
+        closest_pair_doubling::sep_ann(point_list &S, int n, double mu, double c)
         {
-  Point p;
+  point p;
   double Rp = -1.0;
 
   int outer_ball_count = (n / 2) + 1; // this variable store the number of points in the outer ball with R = mu * Rp
@@ -32,10 +32,10 @@ std::tuple<Point, double, DVect>
     int random_index = int_gen.next();
     p = S.points[random_index];
     // store the all the distances from p to all other points to the vector
-    for (const Point& point: S.points) {
+    for (const point& point: S.points) {
       distances_from_p.push_back(p.distance_to(point));
     }
-    Rp = KthSmallest::get(distances_from_p, 0, (int)distances_from_p.size(), ceil(n / c));
+    Rp = kth_smallest::get(distances_from_p, 0, (int)distances_from_p.size(), ceil(n / c));
     outer_ball_count = 0;
     for (double dist: distances_from_p) {
       if (dist <= mu * Rp) {
@@ -51,13 +51,13 @@ std::tuple<Point, double, DVect>
   return std::make_tuple(p, Rp, distances_from_p);
 }
 
-std::pair<Point, double> ClosestPairDoubling::sparse_sep_ann(PointList &S, int n, double d, int t) {
+std::pair<point, double> closest_pair_doubling::sparse_sep_ann(point_list &S, int n, double d, int t) {
   const double e = std::exp(1.0);
   double c = 2 * pow(4 * e, d);
-  std::tuple<Point, double, DVect> sep_ann_res = sep_ann(S, n, e, c);
+  std::tuple<point, double, DVect> sep_ann_res = sep_ann(S, n, e, c);
 
   // followings are result of sep_ann() function
-  Point p = std::get<0>(sep_ann_res);
+  point p = std::get<0>(sep_ann_res);
   double R_prime = std::get<1>(sep_ann_res);
   DVect distances_from_p = std::get<2>(sep_ann_res);
 
@@ -77,10 +77,10 @@ std::pair<Point, double> ClosestPairDoubling::sparse_sep_ann(PointList &S, int n
       }
     }
   }
-  return std::pair<Point, double> {p, R};
+  return std::pair<point, double> {p, R};
 }
 
-double ClosestPairDoubling::closest_pair(PointList &S, double d, int recursion) {
+double closest_pair_doubling::closest_pair(point_list &S, double d, int recursion) {
   int n = (int)S.points.size();
   const double e = std::exp(1.0);
   double delta0;
@@ -88,13 +88,13 @@ double ClosestPairDoubling::closest_pair(PointList &S, double d, int recursion) 
     return brute_force(S);
   } else {
     int t = floor((1 / (16 * std::exp(1.0))) * pow((double)n / 2, 1 / d));
-    std::pair<Point, double> ssann_result = sparse_sep_ann(S, n, d, t);
-    Point p = ssann_result.first;
+    std::pair<point, double> ssann_result = sparse_sep_ann(S, n, d, t);
+    point p = ssann_result.first;
     double R = ssann_result.second;
 
-    PointList S1orS2 = PointList();
-    PointList S2orS3 = PointList();
-    for (const Point& point: S.points) {
+    point_list S1orS2 = point_list();
+    point_list S2orS3 = point_list();
+    for (const point& point: S.points) {
       double d_to_p = p.distance_to(point);
       if (d_to_p <= R) {
         S1orS2.points.push_back(point);
@@ -105,7 +105,7 @@ double ClosestPairDoubling::closest_pair(PointList &S, double d, int recursion) 
         S2orS3.points.push_back(point);
       }
     }
-    std::vector<Point>().swap(S.points); // free the memory that store the vector S
+    std::vector<point>().swap(S.points); // free the memory that store the vector S
 
     double delta1 = closest_pair(S1orS2, d, ++recursion);
     double delta2 = closest_pair(S2orS3, d, ++recursion);

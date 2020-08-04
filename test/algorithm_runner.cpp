@@ -1,11 +1,11 @@
-#include "Test.h"
+#include "algorithm_runner.h"
 #include <iostream>
 #include <fstream>
 #include <iomanip>
-#include "RandomGenerator.h"
+#include "random_generator.h"
 #include "../utils/2d_problem.h"
 
-bool Test::kth_smallest_test(int element_num, int k, int range_start, int range_end){
+bool algorithm_runner::kth_smallest_test(int element_num, int k, int range_start, int range_end){
   DVect distances;
   RandomDouble random_gen(range_start, range_end);
 
@@ -17,10 +17,10 @@ bool Test::kth_smallest_test(int element_num, int k, int range_start, int range_
     return false;
   }
   clock_t tStart = clock();
-  double result_sort = KthSmallest::get_with_sorting(distances, k);
+  double result_sort = kth_smallest::get_with_sorting(distances, k);
   double time1 = (double)(clock() - tStart)/CLOCKS_PER_SEC;
   tStart = clock();
-  double result = KthSmallest::get(distances, 0, (int)distances.size() - 1, k);
+  double result = kth_smallest::get(distances, 0, (int)distances.size() - 1, k);
   double time2 = (double)(clock() - tStart)/CLOCKS_PER_SEC;
 //  double result = kth_smallest(distances, 0, (int)distances.size(), k);
 //  if (result != result_sort) {
@@ -36,7 +36,7 @@ bool Test::kth_smallest_test(int element_num, int k, int range_start, int range_
   return result_sort == result;
 }
 
-void Test::closest_pair_test(Algorithm a, PointList S, int dimension) {
+void algorithm_runner::closest_pair_test(Algorithm a, point_list S, int dimension) {
   double result;
   double d;
   clock_t tStart = clock();
@@ -58,11 +58,11 @@ void Test::closest_pair_test(Algorithm a, PointList S, int dimension) {
       data_file << "Repeat times" << std::setw(5) << "n" << std::setw(11) << "c\n";
       data_file.close();
       d = dimension == 2 ? log2(7) : log2(21);
-      result = ClosestPairDoubling::closest_pair(S, d);
+      result = closest_pair_doubling::closest_pair(S, d);
       break;
     case BRUTE_FORCE:
       printf("\033[1m\033[31mBrute-force:\033[0m\n");
-      result = ClosestPairDoubling::brute_force(S);
+      result = closest_pair_doubling::brute_force(S);
       break;
   }
   printf("- The closest distance is: \033[32m%f\033[0m\n", result);

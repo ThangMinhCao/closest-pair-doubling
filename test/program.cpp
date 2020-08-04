@@ -1,10 +1,11 @@
 #include <limits>
-#include <PointList.h>
-#include "Program.h"
-#include "Test.h"
+#include <point_list.h>
+#include "program.h"
+#include "algorithm_runner.h"
 
-int get_input_number() {
-  int input;
+int get_input_number(std::string message, typename T) {
+  number<T> input;
+  std::cout << message;
   while (true) {
     std::cin >> input;
     if (std::cin.fail()) {
@@ -18,7 +19,7 @@ int get_input_number() {
   return input;
 }
 
-int Program::display_menu() {
+int program::display_menu() {
   int choice = RANDOM - 1;
   std::cout << "Choose an option below:" << std::endl;
   std::cout << "**** Please note the program only deals with 2D metric spaces ****" << std::endl;
@@ -26,30 +27,26 @@ int Program::display_menu() {
   std::cout << GRID << ". Grid generated points in Euclidean space" << std::endl;
   std::cout << EXIT << ". Exit the program" << std::endl;
   while (!choice || choice < RANDOM || choice > EXIT) {
-    std::cout << "Your selection: ";
-    choice = get_input_number();
+    choice = get_input_number("Your selection: ");
   }
   std::cout << std::endl;
   return choice;
 }
 
-PointList Program::menu_random_initialize() {
+point_list program::menu_random_initialize() {
   int point_num;
   int range_start, range_end;
-  std::cout << "Enter the number of points: ";
-  point_num = get_input_number();
+  point_num = get_input_number("Enter the number of points: ");
   std::cout << "Enter the range: " << std::endl;
-  std::cout << "- The lower bound: ";
-  range_start = get_input_number();
-  std::cout << "- The upper bound: ";
-  range_end = get_input_number();
+  range_start = get_input_number("- The lower bound: ");
+  range_end = get_input_number("- The upper bound: ");
 
-  PointList list = PointList();
+  point_list list = point_list();
   list.random_initializer(2, point_num, range_start, range_end);
   return list;
 }
 
-PointList Program::menu_grid_initialize() {
+point_list program::menu_grid_initialize() {
   double distance;
   int x_factor, y_factor;
   std::cout << "Enter two integer factors to make the number of points (eg: X x Y =  4 x 3 = 12 points): " << std::endl;
@@ -61,7 +58,7 @@ PointList Program::menu_grid_initialize() {
   std::cin >> distance;
   std::cout << std::endl;
 
-  PointList list = PointList();
+  point_list list = point_list();
   list.grid_initializer(distance, y_factor, x_factor, 0);
   return list;
 }
@@ -83,8 +80,8 @@ std::pair<bool, bool> ask_for_BF_and_2D() {
   return result;
 }
 
-void Program::execute_choice(int choice) {
-  PointList list;
+void program::execute_choice(int choice) {
+  point_list list;
   std::pair<bool,bool> bf_and_2D;
   switch (choice) {
     case RANDOM:
@@ -98,16 +95,16 @@ void Program::execute_choice(int choice) {
   }
   bf_and_2D = ask_for_BF_and_2D();
   std::cout << std::endl;
-  Test::closest_pair_test(CLOSEST_DOUBLING, list, 2);
+  algorithm_runner::closest_pair_test(CLOSEST_DOUBLING, list, 2);
   if (bf_and_2D.first) {
-    Test::closest_pair_test(BRUTE_FORCE, list, 2);
+    algorithm_runner::closest_pair_test(BRUTE_FORCE, list, 2);
   }
   if (bf_and_2D.second) {
-    Test::closest_pair_test(CLOSEST_2D, list, 2);
+    algorithm_runner::closest_pair_test(CLOSEST_2D, list, 2);
   }
 }
 
-void Program::launch() {
+void program::launch() {
   int choice;
   srand((unsigned)time(nullptr));
   do {

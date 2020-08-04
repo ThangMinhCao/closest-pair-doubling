@@ -9,11 +9,11 @@ enum CHOICE {
     EXIT=3,
 };
 
-class Program {
+class program {
 private:
     static int display_menu();
-    static PointList menu_random_initialize();
-    static PointList menu_grid_initialize();
+    static point_list menu_random_initialize();
+    static point_list menu_grid_initialize();
     static void execute_choice(int choice);
 
 public:

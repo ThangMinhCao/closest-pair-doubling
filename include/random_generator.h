@@ -4,7 +4,7 @@
 
 class RandomInt{
 public:
-    RandomInt(int start, int end) 
+    RandomInt(int start, int end)
         : generator{std::random_device{}()}, int_dist(start, end) {}
     int next() { return int_dist(generator); } 
 
@@ -15,7 +15,7 @@ private:
 
 class RandomDouble{
 public:
-    RandomDouble(int start, int end) 
+    RandomDouble(double start, double end)
         : generator{std::random_device{}()}, double_dist(start, end) {}
     double next() { return double_dist(generator); } 
 

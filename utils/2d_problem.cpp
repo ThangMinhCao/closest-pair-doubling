@@ -1,27 +1,27 @@
 #include "2d_problem.h"
 
-DResult ClosestPair2D::dist(Point p, Point q) {
+DResult ClosestPair2D::dist(point p, point q) {
   double xDiff = p.getCoordinate()[0] - q.getCoordinate()[0];
   double yDiff = p.getCoordinate()[1] - q.getCoordinate()[1];
-  return std::pair<std::pair<Point, Point>, double>
-          {std::pair<Point, Point> {p, q}, sqrt(xDiff * xDiff + yDiff * yDiff)};
+  return std::pair<std::pair<point, point>, double>
+          {std::pair<point, point> {p, q}, sqrt(xDiff * xDiff + yDiff * yDiff)};
 }
 
-DResult ClosestPair2D::algorithm2D(vector<Point>& L) {
+DResult ClosestPair2D::algorithm2D(vector<point>& L) {
   std::sort(L.begin(), L.end(), compareX);
-  vector<Point> res_points;
+  vector<point> res_points;
   DResult d, d1, d2;
   int n = L.size();
   int mid_point = n / 2;
   double mid = L[mid_point].getCoordinate()[0];
   if (n <= 1) {
     return DResult
-            {std::pair<Point, Point>{Point(), Point()}, std::numeric_limits<double>::infinity()};
+            {std::pair<point, point>{point(), point()}, std::numeric_limits<double>::infinity()};
   } else if (n == 2) {
     return dist(L[0], L[1]);
   }
   // merge_sort(L, true);
-  vector<Point> L1, L2, L_strip;
+  vector<point> L1, L2, L_strip;
   for (int i = 0; i < n; i++) {
     if (i < mid_point) {
       L1.push_back(L[i]);
@@ -49,7 +49,7 @@ DResult ClosestPair2D::algorithm2D(vector<Point>& L) {
     return d;
   } else {
     DResult d_strip = DResult
-            {std::pair<Point, Point>{Point(), Point()}, std::numeric_limits<double>::infinity()};
+            {std::pair<point, point>{point(), point()}, std::numeric_limits<double>::infinity()};
     for (int i = 0; i < L_strip.size(); i++) {
       for (int j = i + 1; j < i + 8; j++) {
         if (j >= L_strip.size()) {

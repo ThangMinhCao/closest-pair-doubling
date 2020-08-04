@@ -3,7 +3,7 @@
 #include <vector>
 typedef std::vector<double> DVect;
 
-class KthSmallest {
+class kth_smallest {
   private:
     static void swap (double *a, double *b);
     static int partition(DVect& distances, int start, int end);

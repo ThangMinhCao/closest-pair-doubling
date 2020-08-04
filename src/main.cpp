@@ -1,10 +1,10 @@
 #include <iostream>
-#include "../include/ClosestPairDoubling.h"
-#include "../test/Program.h"
+#include "../include/closest_pair_doubling.h"
+#include "../test/program.h"
 
-typedef std::pair<std::pair<Point, Point>, double> DResult;
+typedef std::pair<std::pair<point, point>, double> DResult;
 
 int main() {
-  Program::launch();
+  program::launch();
   return 0;
 }

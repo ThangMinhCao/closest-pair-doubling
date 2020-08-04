@@ -1,11 +1,11 @@
 #ifndef MERGESORT_H
 #define MERGESORT_H
-#include "Point.h"
+#include "point.h"
 #include <vector>
 
 using namespace std;
 
-vector<Point> merge_sort(vector<Point>& L, bool x);
-vector<Point> merge(vector<Point> const &L1, vector<Point> const &L2, bool x);
+vector<point> merge_sort(vector<point>& L, bool x);
+vector<point> merge(vector<point> const &L1, vector<point> const &L2, bool x);
 
 #endif

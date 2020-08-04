@@ -3,14 +3,14 @@
 
 using namespace std;
 
-vector<Point> merge(vector<Point> const &L1, vector<Point> const &L2, bool x);
+vector<point> merge(vector<point> const &L1, vector<point> const &L2, bool x);
 
-vector<Point> merge_sort(vector<Point> &L, bool x) {
+vector<point> merge_sort(vector<point> &L, bool x) {
   if (L.size() <= 1) {
     return L;
   }
 
-  vector<Point> L1, L2;
+  vector<point> L1, L2;
   int mid = ceil(L.size() / 2);
 
   for (auto i = L.begin(); i != L.begin() + mid; i++) {
@@ -27,9 +27,9 @@ vector<Point> merge_sort(vector<Point> &L, bool x) {
   return L;
 }
 
-vector<Point> merge(vector<Point> const &L1, vector<Point> const &L2, bool x) {
+vector<point> merge(vector<point> const &L1, vector<point> const &L2, bool x) {
   int coor = x ? 0 : 1;
-  vector<Point> res;
+  vector<point> res;
   int L1_ptr = 0;
   int L2_ptr = 0;
   while (L1_ptr < L1.size() and L2_ptr < L2.size()) {
