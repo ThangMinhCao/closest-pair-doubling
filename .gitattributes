@@ -1,1 +1,2 @@
-report/* linguist-documentation
+*.tex linguist-vendored=false
+*.Rmd linguist-vendored=false
