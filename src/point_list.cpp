@@ -11,3 +11,18 @@ void point_list::random_initializer(int dimension, int point_num, double coor_st
     points.emplace_back(coor);
   }
 }
+
+void point_list::grid_initializer(double dist, int yFactor, int xFactor, int position) {
+  int y = 0;
+  while (y < yFactor) {
+    int x = 0;
+    while (x < xFactor) {
+      std::vector<double> coor;
+      coor.push_back(position + (x++) * dist);
+      coor.push_back(position + (y) * dist);
+      points.emplace_back(coor);
+    }
+    y++;
+  }
+}
+

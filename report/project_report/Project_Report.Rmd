@@ -280,7 +280,7 @@ Let $S_1$ be the set of points contained in $ball_S(p, R)$, $S_2$ be the set of 
 
 # 5 \enspace The Implementation {#section5}
 
-This implementation of the closest-pair doubling algorithm is written in C++ since it is a very common and fast programming language with high-level supports of object-oriented programming that can help us organize the program efficiently (see the implementation's [_GitHub repository_](https://github.com/ThangMinhCao/closestpairdoubling)^[GitHub repository of the implementation. [_https://github.com/ThangMinhCao/closestpairdoubling_](https://github.com/ThangMinhCao/closestpairdoubling)] for the source code). The implementation and its components will be described and explain throughout this section. Also, the code and description of each function will be given below.
+This implementation of the closest-pair doubling algorithm is written in C++ since it is a very common and fast programming language with high-level supports of object-oriented programming that can help us organize the program efficiently (see the implementation's [_GitHub repository_](https://github.com/ThangMinhCao/closestpairdoubling)^[GitHub repository of the implementation. [_https://github.com/ThangMinhCao/closestpairdoubling_](https://github.com/ThangMinhCao/closestpairdoubling)] for the source code). The implementation and its components will be described and explain throughout this section. For some small class, I will combine both class code and implementation code into one block in this report.
 
 To begin with, a set of points, which does not necessarily refer to \code{set} in Computer Science, is always one of the input parameters of each partial algorithm. In this implementation, I would choose \code{vector}, a very popular built-in data structure of C++. Since its size can automatically change when we add or remove an element, it is easy to work with and manage its behavior when implementing. Not only for storing points, \code{vector} will be used throughout the implementation to store some other information.
 
@@ -319,7 +319,7 @@ class RandomDouble{
 \vspace{-9truemm}
 \begin{minipage}{1\textwidth}
   \begin{flushright}
-  {\footnotesize \emph{Source \footnotemark: master branch $\rightarrow$ closestpairdoubling/include/RandomGenerator.h }\par}
+  {\footnotesize \emph{Source \footnotemark: master branch $\rightarrow$ closestpairdoubling/include/random\_generator.h }\par}
   \end{flushright}
 \end{minipage}
 \vspace{0.5truemm}
@@ -362,7 +362,7 @@ class Point {
 \vspace{-9truemm}
 \begin{minipage}{1\textwidth}
   \begin{flushright}
-  {\footnotesize \emph{Source: master branch $\rightarrow$ closestpairdoubling/include/Point.h}\par}
+  {\footnotesize \emph{Source: master branch $\rightarrow$ closestpairdoubling/include/point.h}\par}
   \end{flushright}
 \end{minipage}
 \vspace{0.5truemm}
@@ -415,7 +415,7 @@ class PointList {
 \vspace{-9truemm}
 \begin{minipage}{1\textwidth}
   \begin{flushright}
-  {\footnotesize \emph{Source: master branch $\rightarrow$ closestpairdoubling/include/PointList.h}\par}
+  {\footnotesize \emph{Source: master branch $\rightarrow$ closestpairdoubling/include/point\_list.h}\par}
   \end{flushright}
 \end{minipage}
 
@@ -448,7 +448,7 @@ class KthSmallest {
 \vspace{-9truemm}
 \begin{minipage}{1\textwidth}
   \begin{flushright}
-  {\footnotesize \emph{Source: master branch $\rightarrow$ closestpairdoubling/include/KthSmallest.h}\par}
+  {\footnotesize \emph{Source: master branch $\rightarrow$ closestpairdoubling/include/kth\_smallest.h}\par}
   \end{flushright}
 \end{minipage}
 \vspace{0.5truemm}
@@ -511,7 +511,7 @@ double KthSmallest::get(DVect& distances, int start, int end, int k) {
 \vspace{-9truemm}
 \begin{minipage}{1\textwidth}
   \begin{flushright}
-  {\footnotesize \emph{Source: master branch $\rightarrow$ closestpairdoubling/src/KthSmallest.cpp}\par}
+  {\footnotesize \emph{Source: master branch $\rightarrow$ closestpairdoubling/src/kth\_smallest.cpp}\par}
   \end{flushright}
 \end{minipage}
 \vspace{0.5truemm}
@@ -557,7 +557,7 @@ class ClosestPairDoubling {
 \vspace{-9truemm}
 \begin{minipage}{1\textwidth}
   \begin{flushright}
-  {\footnotesize \emph{Source: master branch $\rightarrow$ closestpairdoubling/include/ClosestPairDoubling.h}\par}
+  {\footnotesize \emph{Source: master branch $\rightarrow$ closestpairdoubling/include/closest\_pair\_doubling.h}\par}
   \end{flushright}
 \end{minipage}
 
@@ -604,7 +604,7 @@ std::tuple<Point, double, DVect>
 \vspace{-9truemm}
 \begin{minipage}{1\textwidth}
   \begin{flushright}
-  {\footnotesize \emph{Source: master branch $\rightarrow$ closestpairdoubling/src/ClosestPairDoubling.cpp}\par}
+  {\footnotesize \emph{Source: master branch $\rightarrow$ closestpairdoubling/src/closest\_pair\_doubling.cpp}\par}
   \end{flushright}
 \end{minipage}
 \vspace{0.5truemm}
@@ -655,7 +655,7 @@ std::pair<Point, double>
 \vspace{-9truemm}
 \begin{minipage}{1\textwidth}
   \begin{flushright}
-  {\footnotesize \emph{Source: master branch $\rightarrow$ closestpairdoubling/src/ClosestPairDoubling.cpp}\par}
+  {\footnotesize \emph{Source: master branch $\rightarrow$ closestpairdoubling/src/closest\_pair\_doubling.cpp}\par}
   \end{flushright}
 \end{minipage}
 \vspace{0.5truemm}
@@ -708,7 +708,7 @@ double
 \vspace{-9truemm}
 \begin{minipage}{1\textwidth}
   \begin{flushright}
-  {\footnotesize \emph{Source: master branch $\rightarrow$ closestpairdoubling/src/ClosestPairDoubling.cpp}\par}
+  {\footnotesize \emph{Source: master branch $\rightarrow$ closestpairdoubling/src/closest\_pair\_doubling.cpp}\par}
   \end{flushright}
 \end{minipage}
 \vspace{0.5truemm}
@@ -964,19 +964,85 @@ The relationship is clearer in this example of grid generated points. All the ra
 
 \  
 
+With non-Euclidean metric spaces, the algorithm now has a different behavior with the running time in seconds. The more points the space has, the more the running time increase. As you can see, from $2\,000$ points to $4\,000$ points, the ratio $r_n$ increases a little, but from $16\,000$ points to $32\,000$ points, there is a significant increase. From this, I can confidently conclude that the increase is from the handling of multiple-precision integers of $Boost$ library. Since the number of points increases, the maximum distance increases, so it takes more time to handle each instance.
+
+Since the value of increase cannot be exactly identified, I decided to change from calculating running time in **seconds** to the **number of $\boldsymbol{dist()}$ function calls**. This works because distance between two points is the principle information that the algorithm uses, and it is also the algorithm's result. Furthermore, every part of the algorithm has at least one loop that access distance in each iteration, even the brute-force function. Importantly, the number of $dist()$ function calls does not relate to the handling of large integer, only the value $dist()$ returns.
+
+Note that, the function \code{sparse\_sep\_ann()} does not call $dist()$ after the \code{sep\_ann()} call. However, I also increase the counter in the inner loop that iterates through the \code{distances\_from\_p} vector since the procedure in the function also accesses and uses the distances to calculate.
+
+Below information is the table of running time by the number of $dist()$ function calls and the graph represents it.
+
+\begin{figure}
+\centering
+\begin{minipage}{1\textwidth}
+  \centering
+	\begin{tabularx}{\textwidth}{|>{\centering\arraybackslash}X|>{\centering\arraybackslash}X|>{\centering\arraybackslash}X|>{\centering\arraybackslash}X|>{\centering\arraybackslash}X|>{\centering\arraybackslash}X|}
+  \hline
+  \multirow{2}{*}{$\boldsymbol n$} & \multicolumn{4}{c|}{\textbf{The running time (in seconds)}} & \multirow{2}{*}{$\boldsymbol{r_n = \frac{T(n)}{n\log n}}$}\\
+	\cline{2-5}
+           & $T_1$   & $T_2$    & $T_3$    & $\boldsymbol{T(n)}$ &    \\ \hline
+   $2000$  & 101104  & 118118  & 114577  & 111266.33  & $5.07334$ \\ \hline
+  $4000$  & 252964 & 253449  & 247274   & 251299 & $5.25036$ \\ \hline
+  $8000$  & 525386 & 498586  & 555710  & 526560.67 & $5.07644$ \\ \hline
+  $16000$  & 1157266 & 1137811 & 1146926  & 1147334.33 & $5.13457$ \\ \hline
+  $32000$  & 2778423 & 2445893 & 2615109 & 2613141.67 & $5.45649$ \\ \hline
+  \end{tabularx}
+\end{minipage}
+\caption[Caption]{The table of random points non-Euclidean metric spaces' data of running time and the ratio $r_n$.}
+\label{fig:randomdatanonE}
+\end{figure}
+
+\hrule
+
+\  
+
+\begin{figure}
+\begin{minipage}{0.95\textwidth}
+\begin{center}
+\begin{tikzpicture}
+  \begin{axis}[ 
+    height=7cm,
+		width=14cm,
+    minor tick num=5,
+    grid=both,
+    grid style={line width=.1pt, draw=gray!20},
+    major grid style={line width=.2pt,draw=gray!40},
+    ymin=4,
+		ymax=7,
+    xlabel=$n$,
+    ylabel={$r_n$},
+		ylabel style={rotate=-90}
+  ] 
+		\addplot file[skip first] {non_Eu_data_with_dist_count.txt};
+  \end{axis}
+\end{tikzpicture}
+\end{center}
+\end{minipage}
+\caption[Caption]{The graph of ratios $r_n$ versus different values of $n$ of random points on non-Euclidean spaces with $n \in \{2000, 4000, 8000, 16\,000, 32\,000\}$ (with y-interval = $0.5\times10^{-2}$).}
+\label{fig:randomgraphnonE}
+\end{figure}
+
+\hrule
+
+\  
+
+\  
+
+Now, it is more clear to say that the running time of the algorithm on non-Euclidean spaces is also $O(n\log n)$. All the ratio $r_n$ are close together and do not have the increment relationship as the outcome of run-time in seconds, see $r_n$ column of Figure \ref{fig:randomdatanonE}.
+
 ## 6.2 Probability to select a "good" point of $\mathrm{S\pnt{EP}A\pnt{NN}}(S,n,d,\mu,c)$ {#section6.2}
 
 Again, the goal of algorithm \textsc{SepAnn($S,n,d,\mu,c$)} is to find a "good" point $p$ in $S$. A "good" point $p$ implies that with $R_p$ (the radius of the smallest $ball_S(p,R_p)$ that contains at least $n/c$ points), the $ball_S(p,\mu R_p)$ contains at most $n/2$ points. Due to A. Maheshwari, W. Mulzer and M. Smid [1, Lemma 3], the algorithm has probability at least $1/c$ (about $1/1623.4$ in 2D space) to select a good point uniformly random from $S$.
 Like the practical running time, the number of times the algorithm \textsc{SepAnn($S,n,d,\mu,c$)} repeats until it gets a good point also depends on the way how the input points are generated. This only applies the normal Euclidean metric spaces.
 
  Generating point randomly produces a surprising behavior of this algorithm.
-Every time \textsc{SepAnn($S,n,d,\mu,c$)} is called, it only repeats _once_ until it gets to the base case, that means the probability to get a good point is 100%, see algorithm's data on
-[_GitHub repository_](https://github.com/ThangMinhCao/closestpairdoubling/blob/master/report/images_%26_data/closest_pair/random_generation/random_sep_ann_data.txt
+Every time \textsc{SepAnn($S,n,d,\mu,c$)} is called, it only repeats _once_ until it gets to the base case, that means the probability to get a good point is 100%, see algorithm's \code{sep\_ann} data files on
+[_GitHub repository_](https://github.com/ThangMinhCao/closestpairdoubling/blob/master/report/images_%26_data/closest_pair/random_generation/
 )^[Random points SepAnn data.
-[_https://github.com/ThangMinhCao/closestpairdoubling/blob/master/rep ort/images_\_%_26_data/closest_pair/random_generation/random_sep_ann_data.txt_](https://github.com/ThangMinhCao/closestpairdoubling/blob/master/report/images_%26_data/closest_pair/random_generation/random_sep_ann_data.txt)].
+[_https://github.com/ThangMinhCao/closestpairdoubling/blob/master/rep ort/images_\_%_26_data/closest_pair/random_generation/_](https://github.com/ThangMinhCao/closestpairdoubling/blob/master/report/images_%26_data/closest_pair/random_generation/)].
 Since the points are generated randomly, so they change every time, there are no explanations about specific properties of the points in this case. However, since $100\%$ satisfied the probability at least $1/c$, this result is reasonable.
 
-On the other hand, when using the grid way to generate points, the algorithm \textsc{SepAnn($S,n,d,\mu,c$)} now repeats multiple times which is its expected behavior, see an example output in Figure \ref{fig:data}. Again, the lowest probability in most of the trials in this case is about $1/20$ which satisfies probability at least $1/c$. For the full grid input data, see the [_GitHub repository_](https://github.com/ThangMinhCao/closestpairdoubling/blob/master/report/images_%26_data/closest_pair/grid_generation/grid_sepann_data.txt)^[Grid points SepAnn data. [_https://github.com/ThangMinhCao/closestpairdoubling/blob/master/report/_ _images_\_%_26_data/closest_pair/grid_generation/grid_sepann_data.txt_](https://github.com/ThangMinhCao/closestpairdoubling/blob/master/report/images_%26_data/closest_pair/grid_generation/grid_sepann_data.txt)].
+On the other hand, when using the grid way to generate points, the algorithm \textsc{SepAnn($S,n,d,\mu,c$)} now repeats multiple times which is its expected behavior, see an example output in Figure \ref{fig:data}. Again, the lowest probability in most of the trials in this case is about $1/20$ which satisfies probability at least $1/c$. For the full grid input data, see the \code{sep\_ann} data files on the [_GitHub repository_](https://github.com/ThangMinhCao/closestpairdoubling/blob/master/report/images_%26_data/closest_pair/grid_generation/)^[Grid points SepAnn data. [_https://github.com/ThangMinhCao/closestpairdoubling/blob/master/report/_ _images_\_%_26_data/closest_pair/grid_generation/_](https://github.com/ThangMinhCao/closestpairdoubling/blob/master/report/images_%26_data/closest_pair/grid_generation/)].
 
 
 
@@ -1012,9 +1078,6 @@ On the other hand, when using the grid way to generate points, the algorithm \te
 \caption[Caption]{Given an input of $200\,000$ points generated in a grid. This is a portion of the data about the number of times the algorithm \textsc{SepAnn$(S,n,d,\mu,c)$} repeats.}
 \label{fig:data}
 \end{figure}
-
-\hrule
-\  
 
 \  
 
@@ -1055,15 +1118,20 @@ For non-Euclidean spaces, the algorithm behaves exactly as expected even with ra
 
 \hrule
 
+\  
+
+  \medskip
+
 # 7 \enspace Concluding remarks {#section7}
 
 I have briefly described the theory of the closest-pair doubling algorithm, and the implementation of it. Even we do not have the ability to run the algorithm with a huge number of points for more accurate running time outputs, the algorithm works exactly as we expected in practice:
 
   1. For each example with different number of points in $P$, the closest-pair distance is correctly returned (the same as the brute-force's) without the use of the points' coordinates. Its running time is obviously much less than the result from brute-force.
-  2. For any way that the points are arranged on the metric space, the number of times the algorithm \textsc{SepAnn($S,n,d,\mu,c$)} repeats satisfies the probability $1/c$ in theory. Therefore, in practice, this procedure runs in linear time.
-  3. The algorithm can correctly find the closest-pair distances on non-Euclidean spaces of doubling dimension 1 without changing any core details. Also, its behavior is mostly the same as when the input is a normal space.
+  2. The algorithm can correctly find the closest-pair distances on non-Euclidean spaces of doubling dimension 1 without changing any core details. Also, its behavior is the same as when the input is a normal metric space.
+  3. The practical running time of the algorithm is certainly $O(n\log n)$ which is proved by the close relationship between the practical and theoretical running time.
+  4. For any way that the points are arranged on the metric space, the number of times the algorithm \textsc{SepAnn($S,n,d,\mu,c$)} repeats satisfies the probability $1/c$ in theory. Therefore, in practice, this procedure runs in linear time.
 
-\medskip
+\newpage
 
 \begin{thebibliography}{9}
 \bibitem{latexcompanion} 
