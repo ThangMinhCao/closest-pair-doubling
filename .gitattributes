@@ -1,2 +1,1 @@
-*.tex linguist-vendored=false
-*.Rmd linguist-vendored=false
+* linguist-language=C++
