@@ -135,13 +135,13 @@ Given an unordered list $D$ which contains $n$ numbers, and a positive integer $
       \uIf{$k == c-a+1$} {
         return $p$
       }\uElseIf{$k < c-a+1$} {
-        return \textsc{kth_smallest}$(D,a,c-1,k)$
+        return \textsc{KthSmallest}$(D,a,c-1,k)$
       }\Else{
-        return \textsc{kth_smallest}$(D,c+1,b,k-c+a-1)$
+        return \textsc{KthSmallest}$(D,c+1,b,k-c+a-1)$
       }
     }
     \end{minipage}
-    \caption{\textsc{kth_smallest}$(D, a, b, k)$}
+    \caption{\textsc{KthSmallest}$(D, a, b, k)$}
     \end{algorithm}}
   \end{minipage}
 \end{figure}
@@ -150,9 +150,9 @@ Unlike the original QuickSort algorithm, the QuickSelect recurses only once and 
 
 $$O(n) + O(n/2) + O(n/4) +... \leq O(2n) = O(n)$$
 
-The following image, Figure \ref{fig1:figs}, is one of many outputs using different numbers of elements and $k$ values.
+The following image is one of many outputs using different numbers of elements and $k$ values. I generated $100\,000\,000$ numbers uniformly random in the range [-100000, 100000] with $k$ = 76,543,210.
 
-```{r, echo=FALSE, fig.align="center", out.width="70%", fig.cap="\\label{fig1:figs}The outputs of the $O(n \\log n)$ algorithm using regular sorting and the $O(n)$ QuickSelect algorithm. Number of input elements is $100\\,000\\,000$ with $k = 76\\,543\\,210$."}
+```{r, echo=FALSE, fig.align="center", out.width="70%", fig.cap="\\label{fig1:figs}The outputs of the $O(n \\log n)$ algorithm using regular sorting and the $O(n)$ QuickSelect algorithm that recurses only once."}
 knitr::include_graphics("../images_&_data/kth_smallest/100m.png")
 ```
 
@@ -433,7 +433,7 @@ The $K^{th}$ smallest algorithm has its own class. In this class, I define a sho
 
 typedef std::vector<double> DVect;
 
-class kth_smallest {
+class KthSmallest {
   private:
     static void swap (double *a, double *b);
     static int partition(DVect& distances, int start, int end);
@@ -448,7 +448,7 @@ class kth_smallest {
 \vspace{-9truemm}
 \begin{minipage}{1\textwidth}
   \begin{flushright}
-  {\footnotesize \emph{Source: master branch $\rightarrow$ closestpairdoubling/include/kth_smallest.h}\par}
+  {\footnotesize \emph{Source: master branch $\rightarrow$ closestpairdoubling/include/KthSmallest.h}\par}
   \end{flushright}
 \end{minipage}
 \vspace{0.5truemm}
@@ -459,16 +459,16 @@ Due to its simplicity and irrelevant uses (only for testing and analyzing), the 
 \  
 
 \begin{lstlisting}
-#include "kth_smallest.h"
+#include "KthSmallest.h"
 #include "RandomGenerator.h"
 
-void kth_smallest::swap (double *a, double *b) {
+void KthSmallest::swap (double *a, double *b) {
   double temp = *a;
   *a = *b;
   *b = temp;
 }
 
-int kth_smallest::partition(DVect& distances, int start, int end) {
+int KthSmallest::partition(DVect& distances, int start, int end) {
   double pivot = distances[end];
   int slow = start;
   int fast = start;
@@ -492,7 +492,7 @@ int kth_smallest::partition(DVect& distances, int start, int end) {
   return slow;
 }
 
-double kth_smallest::get(DVect& distances, int start, int end, int k) {
+double KthSmallest::get(DVect& distances, int start, int end, int k) {
   if (start == end) {return distances[start];}
   //  swapping the random pivot to the end
   RandomInt random_int_gen = RandomInt(start, end);
@@ -511,7 +511,7 @@ double kth_smallest::get(DVect& distances, int start, int end, int k) {
 \vspace{-9truemm}
 \begin{minipage}{1\textwidth}
   \begin{flushright}
-  {\footnotesize \emph{Source: master branch $\rightarrow$ closestpairdoubling/src/kth_smallest.cpp}\par}
+  {\footnotesize \emph{Source: master branch $\rightarrow$ closestpairdoubling/src/KthSmallest.cpp}\par}
   \end{flushright}
 \end{minipage}
 \vspace{0.5truemm}
@@ -587,7 +587,7 @@ std::tuple<Point, double, DVect>
     for (const Point& point: S.points) {
       distances_from_p.push_back(p.distance_to(point));
     }
-    Rp = kth_smallest::get(distances_from_p, 0,
+    Rp = KthSmallest::get(distances_from_p, 0,
 							(int)distances_from_p.size(), ceil(n / c));
 
     // counting the number of point in the outer ball
@@ -611,7 +611,7 @@ std::tuple<Point, double, DVect>
 
 Each time the $while$ loop is repeated, \code{distances\_from\_p} is cleared to get rid of the previous loop's result.
 The function uses \code{int\_gen} to generate a random point in $S$, then it stores distances between $p$ and every point in $S$ including itself into \code{distances\_from\_p}.
-The QuickSelect function from \code{kth_smallest} class is now used to get the $ceil(n/c)$-smallest element in \code{distances\_from\_p}, then it is assigned to \code{Rp}.
+The QuickSelect function from \code{KthSmallest} class is now used to get the $ceil(n/c)$-smallest element in \code{distances\_from\_p}, then it is assigned to \code{Rp}.
 The function loops through the distance vector to count the number of points inside the outer ball and assigns it to \code{outer\_ball\_count}.
 If \code{outer\_ball\_count} < $\lfloor n/2 \rfloor$ then we are done, the function returns a tuple containing \code{p}, \code{Rp} and \code{distances\_from\_p}.
 If this is not the case, the procedure is repeated until the condition is satisfied. Note that, I return \code{distances\_from\_p} here to use it in \textsc{SparseSepAnn} without spending time to loop through the vector again.
@@ -777,7 +777,7 @@ To generate random points in a non-Euclidean space, I use a \code{RandomInt} obj
 
 ## 6.1 The practical running time
 
-To correctly compare the algorithm's running time, we can use brute-force which takes $O(n)$ time or the 2D algorithm for only 2D points. However, to have the running time that is close to the theory, the number of points in $P$ must be extremely large since the base case of the algorithm is when $n < 2(16e)^d$, which is already a quite large number (approximately $79\,550$ points in 2D and more than $3\,000\,000$ points in 3D, for example). The algorithm could take days to finish calculating the whole metric space, and in this case, brute-force would take a lot more than that amount of time, which is not very reasonable for me to keep the program running until it finishes. Fortunately, since the running time of the algorithm is $O(n\log n)$ which is in theory and also expected in practice, the ratio of the actual running time (in seconds) to the theoretical should be approximately the same for different large enough numbers of points. Thus, we can use this information to prove that the running time in practice is actually $O(n\log n)$.
+To correctly compare the algorithm's running time, we can use brute-force which takes $O(n)$ time or the 2D algorithm for only 2D points. However, to have the running time that is close to the theory, the number of points in $P$ must be extremely large since the base case of the algorithm is when $n < 2(16e)^d$, which is already a quite large number (approximately $79\,550$ points in 2D and more than $3\,000\,000$ points in 3D, for example). The algorithm could take days to finish calculating the whole metric space, and in this case, brute-force would take a lot more than that amount of time, which is not very reasonable for me to keep the program running until it finish. Fortunately, since the running time of the algorithm is $O(n\log n)$ which is in theory and also expected in practice, the ratio of the actual running time (in seconds) to the theoretical should be approximately the same for different large enough numbers of points. Thus, we can use this information to prove that the running time in practice is actually $O(n\log n)$.
 
 Particularly, let $n$ be the number of points in a metric space, denoted $|P|$, $m$ be a number which is much larger than the base case of the algorithm ($2(16e)^{\log_27} \approx 79550$ points in 2D metric spaces), $r_n$ be the ratio of the actual running time to the theoretical one that is calculated using $n$ with the $\log$ of base 2. I would initialize and run the algorithm on different metric spaces $P$ with $n \in sizes = \{m, 2m, 4m, 8m, 16m\}$. For each size, I would run the algorithm several times to find the average running time, denoted $T(n)$.
 
@@ -787,7 +787,7 @@ $$r_n = \frac{T(n)}{n\log n}$$
 As expected, the ratios should be approximately the same. Denoted:
 $$r_m \approx r_{2m} \approx r_{4m} \approx r_{8m} \approx r_{16m}$$
 
-If this holds, the practical running time represents $O(n\log n)$ time. This is obvious because they have the same time complexity, so when the actual amount of time changes by an amount, the theoretical one should change by the same amount that is also based on the number of points.
+If this holds, the practical running time actually represents $O(n\log n)$ time. This is obvious because they have the same time complexity, so when the actual amount of time changes by an amount, the theoretical one should change by the same amount that is also based on the number of points.
 
 After running the algorithm with different kinds of inputs, the tables and graphs below are the results that I come up with.
 
@@ -844,9 +844,9 @@ After running the algorithm with different kinds of inputs, the tables and graph
 \end{figure}
 \hrule
 
-As you can see in the table (see Figure \ref{fig:randomdata}), for random points, the ratios $r_n$ do not have any significant differences. By assigning them the same base and exponent of their scientific notation ($10^{-4}$), their coefficients are mostly the same except for the $500\,000$ points, which is still less than double of the lowest ratio. This is reasonable since many factors that can affect the running time of the program. Also, this is the lowest value of $n$ in the set, so its running time probably has the highest error. The graph also shows that the points are roughly on a horizontal line, so the ratios have acceptable differences, see Figure \ref{fig:randomgraph}.
+As you can see in the table (see Figure \ref{fig:randomdata}), for random points, the ratios $r_n$ do not have any significant differences. By assigning them the same base and exponent of their scientific notation ($10^{-4}$), their coefficients are mostly the same except for the $500\,000$ points, which is still less than doubled of the lowest ratio. This is reasonable since there are many factors that can affect the running time of the program. Also, this is the lowest value of $n$ in the set, so its running time probably has the highest error. The graph also shows that the points are roughly on a horizontal line, so the ratios have acceptable differences, see Figure \ref{fig:randomgraph}.
 
-2. \textbf{Grid generated Euclidean metric spaces:} I choose $m = 200\,000$ points in this case because the algorithm \textsc{SepAnn} will repeat several times most of the time it is called, which leads to much longer running time. Also, that is still a good number which is about 2.5 times larger than the base case, so it probably returns a good result of running time.
+2. \textbf{Grid generated Euclidean metric spaces:} I choose $m = 200\,000$ points in this case because the algorithm \textsc{SepAnn} will repeat several times most of the times it is called, that leads to much longer running time. Also, that is still a good number which is about 2.5 times larger than the base case, so it probably return a good result of running time.
 
 \begin{figure}
 \centering
@@ -861,7 +861,7 @@ As you can see in the table (see Figure \ref{fig:randomdata}), for random points
   $400\,000$  & 8107.99 & 8298.77  & 8787.8   & 8398.18   & $1.128\times 10^{-3}$ \\ \hline
   $800\,000$  & 19771.3 & 18744.3  & 19015.7  & 19177.1  & $1.222\times 10^{-3}$ \\ \hline
   $1\,600\,000$  & 38205.9 & 36618.35  & 39131.24  & 37993.08  & $1.152\times 10^{-3}$ \\ \hline
-  $3\,200\,000$  & 86249.05 & 83354.21  & 82318.96 & 83974.07  & $1.214\times 10^{-3}$ \\ \hline
+  $3\,200\,000$  & 33400.4 & 32850.6  & 31038.6  & 32429.8   & $1.767\times 10^{-4}$ \\ \hline
   \end{tabularx}
 \end{minipage}
 \caption[Caption]{The table of grid points metric spaces' data of running time and the ratio $r_n$.}
@@ -1057,12 +1057,11 @@ For non-Euclidean spaces, the algorithm behaves exactly as expected even with ra
 
 # 7 \enspace Concluding remarks {#section7}
 
-I have described the theory of the closest-pair doubling algorithm and the implementation of it. Although I do not have the ability to run the algorithm with a huge number of points for more accurate running time outputs, the algorithm works exactly as we expected in practice:
+I have briefly described the theory of the closest-pair doubling algorithm, and the implementation of it. Even we do not have the ability to run the algorithm with a huge number of points for more accurate running time outputs, the algorithm works exactly as we expected in practice:
 
   1. For each example with different number of points in $P$, the closest-pair distance is correctly returned (the same as the brute-force's) without the use of the points' coordinates. Its running time is obviously much less than the result from brute-force.
-  2. The algorithm can correctly find the closest-pair distances on non-Euclidean spaces of doubling dimension 1 without changing any core details. Also, its behavior is the same as when the input is a normal metric space.
-  3. The practical running time of the algorithm is certainly $O(n\log n)$ which is proved by the close relationship between the practical and theoretical running time.
-  4. For any way that the points are arranged on the metric space, the number of times the algorithm \textsc{SepAnn($S,n,d,\mu,c$)} repeats satisfies the probability $1/c$ in theory. Therefore, in practice, this procedure runs in linear time.
+  2. For any way that the points are arranged on the metric space, the number of times the algorithm \textsc{SepAnn($S,n,d,\mu,c$)} repeats satisfies the probability $1/c$ in theory. Therefore, in practice, this procedure runs in linear time.
+  3. The algorithm can correctly find the closest-pair distances on non-Euclidean spaces of doubling dimension 1 without changing any core details. Also, its behavior is mostly the same as when the input is a normal space.
 
 \medskip
 

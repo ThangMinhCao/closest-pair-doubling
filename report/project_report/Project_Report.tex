@@ -66,52 +66,6 @@
 \usepackage{multirow}
 \usepackage{pgfplots}
 \usepackage[bottom]{footmisc}
-% \definecolor{listinggray}{gray}{0.9}
-% \definecolor{lbcolor}{rgb}{0.9,0.9,0.9}
-% \definecolor{Darkgreen}{rgb}{0,0.4,0}
-% \lstset{
-% backgroundcolor=\color{lbcolor},
-%     tabsize=2,    
-%   rulecolor=,
-%     language=[GNU]C++,
-%     basicstyle=\scriptsize,
-%     upquote=true,
-%     aboveskip={1.5\baselineskip},
-%     columns=fixed,
-%     showstringspaces=false,
-%     extendedchars=false,
-%     breaklines=true,
-%     prebreak = \raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
-%     frame=single,
-%     numbers=left,
-%     showtabs=false,
-%     showspaces=false,
-%     showstringspaces=false,
-%     identifierstyle=\texttt,
-%     keywordstyle=\color[rgb]{0,0,1},
-%     commentstyle=\color[rgb]{0.026,0.112,0.095},
-%     stringstyle=\color[rgb]{0.627,0.126,0.941},
-%     numberstyle=\color[rgb]{0.205, 0.142, 0.73},
-% }
-% 
-% \lstset{
-%   backgroundcolor=\color{lbcolor},
-%   tabsize=2,
-%   language=C++,
-%   captionpos=b,
-%   tabsize=3,
-%   frame=lines,
-%   numbers=left,
-%   numberstyle=\tiny,
-%   numbersep=5pt,
-%   breaklines=true,
-%   showstringspaces=false,
-%   basicstyle=\footnotesize,
-%  identifierstyle=\color{magenta},
-%   keywordstyle=\color[rgb]{0,0,1},
-%   commentstyle=\color{Darkgreen},
-%   stringstyle=\color{red}
-%   }
 \colorlet{mygray}{black!30}
 \colorlet{mygreen}{green!60!black}
 \colorlet{mymauve}{red!90}
@@ -171,7 +125,7 @@
 \subtitle{A Simple Randomized \(O(n\,\log\, n)\)--Time Closest-Pair\\
 Algorithm in Doubling Metrics}
 \author{Minh Thang Cao}
-\date{31 July 2020}
+\date{04 August 2020}
 
 \begin{document}
 \maketitle
@@ -366,13 +320,13 @@ given below.
       \uIf{$k == c-a+1$} {
         return $p$
       }\uElseIf{$k < c-a+1$} {
-        return \textsc{kth_smallest}$(D,a,c-1,k)$
+        return \textsc{KthSmallest}$(D,a,c-1,k)$
       }\Else{
-        return \textsc{kth_smallest}$(D,c+1,b,k-c+a-1)$
+        return \textsc{KthSmallest}$(D,c+1,b,k-c+a-1)$
       }
     }
     \end{minipage}
-    \caption{\textsc{kth_smallest}$(D, a, b, k)$}
+    \caption{\textsc{KthSmallest}$(D, a, b, k)$}
     \end{algorithm}}
   \end{minipage}
 \end{figure}
@@ -388,8 +342,10 @@ below:
 
 \[O(n) + O(n/2) + O(n/4) +... \leq O(2n) = O(n)\]
 
-The following image, Figure \ref{fig1:figs}, is one of many outputs
-using different numbers of elements and \(k\) values.
+The following image is one of many outputs using different numbers of
+elements and \(k\) values. I generated \(100\,000\,000\) numbers
+uniformly random in the range {[}-100000, 100000{]} with \(k\) =
+76,543,210.
 
 \begin{figure}
 
@@ -397,7 +353,7 @@ using different numbers of elements and \(k\) values.
 
 }
 
-\caption{\label{fig1:figs}The outputs of the $O(n \log n)$ algorithm using regular sorting and the $O(n)$ QuickSelect algorithm. Number of input elements is $100\,000\,000$ with $k = 76\,543\,210$.}\label{fig:unnamed-chunk-1}
+\caption{\label{fig1:figs}The outputs of the $O(n \log n)$ algorithm using regular sorting and the $O(n)$ QuickSelect algorithm that recurses only once.}\label{fig:unnamed-chunk-1}
 \end{figure}
 
 \hrule
@@ -773,7 +729,7 @@ their time complexity, see \protect\hyperlink{section2.2}{Section 2.2}.
 
 typedef std::vector<double> DVect;
 
-class kth_smallest {
+class KthSmallest {
   private:
     static void swap (double *a, double *b);
     static int partition(DVect& distances, int start, int end);
@@ -788,7 +744,7 @@ class kth_smallest {
 \vspace{-9truemm}
 \begin{minipage}{1\textwidth}
   \begin{flushright}
-  {\footnotesize \emph{Source: master branch $\rightarrow$ closestpairdoubling/include/kth_smallest.h}\par}
+  {\footnotesize \emph{Source: master branch $\rightarrow$ closestpairdoubling/include/KthSmallest.h}\par}
   \end{flushright}
 \end{minipage}
 \vspace{0.5truemm}
@@ -801,16 +757,16 @@ The following is the implementation code of the QuickSelect algorithm.
 ~
 
 \begin{lstlisting}
-#include "kth_smallest.h"
+#include "KthSmallest.h"
 #include "RandomGenerator.h"
 
-void kth_smallest::swap (double *a, double *b) {
+void KthSmallest::swap (double *a, double *b) {
   double temp = *a;
   *a = *b;
   *b = temp;
 }
 
-int kth_smallest::partition(DVect& distances, int start, int end) {
+int KthSmallest::partition(DVect& distances, int start, int end) {
   double pivot = distances[end];
   int slow = start;
   int fast = start;
@@ -834,7 +790,7 @@ int kth_smallest::partition(DVect& distances, int start, int end) {
   return slow;
 }
 
-double kth_smallest::get(DVect& distances, int start, int end, int k) {
+double KthSmallest::get(DVect& distances, int start, int end, int k) {
   if (start == end) {return distances[start];}
   //  swapping the random pivot to the end
   RandomInt random_int_gen = RandomInt(start, end);
@@ -853,7 +809,7 @@ double kth_smallest::get(DVect& distances, int start, int end, int k) {
 \vspace{-9truemm}
 \begin{minipage}{1\textwidth}
   \begin{flushright}
-  {\footnotesize \emph{Source: master branch $\rightarrow$ closestpairdoubling/src/kth_smallest.cpp}\par}
+  {\footnotesize \emph{Source: master branch $\rightarrow$ closestpairdoubling/src/KthSmallest.cpp}\par}
   \end{flushright}
 \end{minipage}
 \vspace{0.5truemm}
@@ -1011,7 +967,7 @@ std::tuple<Point, double, DVect>
     for (const Point& point: S.points) {
       distances_from_p.push_back(p.distance_to(point));
     }
-    Rp = kth_smallest::get(distances_from_p, 0,
+    Rp = KthSmallest::get(distances_from_p, 0,
                             (int)distances_from_p.size(), ceil(n / c));
 
     // counting the number of point in the outer ball
@@ -1038,7 +994,7 @@ cleared to get rid of the previous loop's result. The function uses
 \code{int\_gen} to generate a random point in \(S\), then it stores
 distances between \(p\) and every point in \(S\) including itself into
 \code{distances\_from\_p}. The QuickSelect function from
-\code{kth_smallest} class is now used to get the \(ceil(n/c)\)-smallest
+\code{KthSmallest} class is now used to get the \(ceil(n/c)\)-smallest
 element in \code{distances\_from\_p}, then it is assigned to \code{Rp}.
 The function loops through the distance vector to count the number of
 points inside the outer ball and assigns it to
@@ -1329,7 +1285,7 @@ large number (approximately \(79\,550\) points in 2D and more than
 \(3\,000\,000\) points in 3D, for example). The algorithm could take
 days to finish calculating the whole metric space, and in this case,
 brute-force would take a lot more than that amount of time, which is not
-very reasonable for me to keep the program running until it finishes.
+very reasonable for me to keep the program running until it finish.
 Fortunately, since the running time of the algorithm is \(O(n\log n)\)
 which is in theory and also expected in practice, the ratio of the
 actual running time (in seconds) to the theoretical should be
@@ -1353,11 +1309,11 @@ Having \(n\) and \(T(n\)), the ratio is calculated as below:
 As expected, the ratios should be approximately the same. Denoted:
 \[r_m \approx r_{2m} \approx r_{4m} \approx r_{8m} \approx r_{16m}\]
 
-If this holds, the practical running time represents \(O(n\log n)\)
-time. This is obvious because they have the same time complexity, so
-when the actual amount of time changes by an amount, the theoretical one
-should change by the same amount that is also based on the number of
-points.
+If this holds, the practical running time actually represents
+\(O(n\log n)\) time. This is obvious because they have the same time
+complexity, so when the actual amount of time changes by an amount, the
+theoretical one should change by the same amount that is also based on
+the number of points.
 
 After running the algorithm with different kinds of inputs, the tables
 and graphs below are the results that I come up with.
@@ -1427,12 +1383,12 @@ As you can see in the table (see Figure \ref{fig:randomdata}), for
 random points, the ratios \(r_n\) do not have any significant
 differences. By assigning them the same base and exponent of their
 scientific notation (\(10^{-4}\)), their coefficients are mostly the
-same except for the \(500\,000\) points, which is still less than double
-of the lowest ratio. This is reasonable since many factors that can
-affect the running time of the program. Also, this is the lowest value
-of \(n\) in the set, so its running time probably has the highest error.
-The graph also shows that the points are roughly on a horizontal line,
-so the ratios have acceptable differences, see Figure
+same except for the \(500\,000\) points, which is still less than
+doubled of the lowest ratio. This is reasonable since there are many
+factors that can affect the running time of the program. Also, this is
+the lowest value of \(n\) in the set, so its running time probably has
+the highest error. The graph also shows that the points are roughly on a
+horizontal line, so the ratios have acceptable differences, see Figure
 \ref{fig:randomgraph}.
 
 \begin{enumerate}
@@ -1442,10 +1398,10 @@ so the ratios have acceptable differences, see Figure
 \item
   \textbf{Grid generated Euclidean metric spaces:} I choose
   \(m = 200\,000\) points in this case because the algorithm
-  \textsc{SepAnn} will repeat several times most of the time it is
-  called, which leads to much longer running time. Also, that is still a
+  \textsc{SepAnn} will repeat several times most of the times it is
+  called, that leads to much longer running time. Also, that is still a
   good number which is about 2.5 times larger than the base case, so it
-  probably returns a good result of running time.
+  probably return a good result of running time.
 \end{enumerate}
 
 \begin{figure}
@@ -1461,7 +1417,7 @@ so the ratios have acceptable differences, see Figure
   $400\,000$  & 8107.99 & 8298.77  & 8787.8   & 8398.18   & $1.128\times 10^{-3}$ \\ \hline
   $800\,000$  & 19771.3 & 18744.3  & 19015.7  & 19177.1  & $1.222\times 10^{-3}$ \\ \hline
   $1\,600\,000$  & 38205.9 & 36618.35  & 39131.24  & 37993.08  & $1.152\times 10^{-3}$ \\ \hline
-  $3\,200\,000$  & 86249.05 & 83354.21  & 82318.96 & 83974.07  & $1.214\times 10^{-3}$ \\ \hline
+  $3\,200\,000$  & 33400.4 & 32850.6  & 31038.6  & 32429.8   & $1.767\times 10^{-4}$ \\ \hline
   \end{tabularx}
 \end{minipage}
 \caption[Caption]{The table of grid points metric spaces' data of running time and the ratio $r_n$.}
@@ -1711,10 +1667,11 @@ number of points in \(S\).
 \section{\texorpdfstring{7 \enspace Concluding
 remarks}{7 Concluding remarks}}\label{section7}}
 
-I have described the theory of the closest-pair doubling algorithm and
-the implementation of it. Although I do not have the ability to run the
-algorithm with a huge number of points for more accurate running time
-outputs, the algorithm works exactly as we expected in practice:
+I have briefly described the theory of the closest-pair doubling
+algorithm, and the implementation of it. Even we do not have the ability
+to run the algorithm with a huge number of points for more accurate
+running time outputs, the algorithm works exactly as we expected in
+practice:
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -1725,19 +1682,15 @@ outputs, the algorithm works exactly as we expected in practice:
   brute-force's) without the use of the points' coordinates. Its running
   time is obviously much less than the result from brute-force.
 \item
-  The algorithm can correctly find the closest-pair distances on
-  non-Euclidean spaces of doubling dimension 1 without changing any core
-  details. Also, its behavior is the same as when the input is a normal
-  metric space.
-\item
-  The practical running time of the algorithm is certainly
-  \(O(n\log n)\) which is proved by the close relationship between the
-  practical and theoretical running time.
-\item
   For any way that the points are arranged on the metric space, the
   number of times the algorithm \textsc{SepAnn($S,n,d,\mu,c$)} repeats
   satisfies the probability \(1/c\) in theory. Therefore, in practice,
   this procedure runs in linear time.
+\item
+  The algorithm can correctly find the closest-pair distances on
+  non-Euclidean spaces of doubling dimension 1 without changing any core
+  details. Also, its behavior is mostly the same as when the input is a
+  normal space.
 \end{enumerate}
 
 \medskip
