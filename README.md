@@ -21,17 +21,11 @@ cmake .
 make
 ```
 
-## Usage
+## Testing Program 
 
 In the directory of the repo:
 ```sh
 ./closestpairdoubling
-```
-
-## Run tests
-
-```sh
-npm run test
 ```
 
 ## Author
