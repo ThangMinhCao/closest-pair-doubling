@@ -1,6 +1,5 @@
 #ifndef CLOSESTPAIRDOUBLING_PROGRAM_H
 #define CLOSESTPAIRDOUBLING_PROGRAM_H
-
 #include <iostream>
 #include "point_list.h"
 

@@ -6,7 +6,6 @@
 class point_list {
   public:
     std::vector<point> points;
-
     point_list() = default;
 
     void random_initializer(int dimension, int point_num, double coor_start_range, double coor_end_range);

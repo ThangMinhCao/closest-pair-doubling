@@ -2,13 +2,13 @@
 #define CLOSEST_PAIR_H
 #include "point_list.h"
 
-typedef std::vector<double> DVect;
-
 enum Algorithm {
   CLOSEST_DOUBLING,
   CLOSEST_2D,
   BRUTE_FORCE
 };
+
+typedef std::vector<double> DVect;
 
 class closest_pair_doubling {
   private:

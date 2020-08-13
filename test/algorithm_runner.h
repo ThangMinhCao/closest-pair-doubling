@@ -9,5 +9,4 @@ class algorithm_runner {
     static void closest_pair_test(Algorithm a, point_list S, int dimension);
 };
 
-
 #endif //CLOSESTPAIRDOUBLING_ALGORITHM_RUNNER_H

@@ -6,6 +6,5 @@ typedef std::pair<std::pair<point, point>, double> DResult;
 
 int main() {
   program::launch();
-  
   return 0;
 }

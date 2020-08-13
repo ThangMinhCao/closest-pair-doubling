@@ -36,7 +36,6 @@ double kth_smallest::get(DVect& distances, int start, int end, int k) {
   if (k < 1 or k > distances.size()) {
     return std::numeric_limits<double>::max();
   }
-
   if (start == end) {return distances[start];}
   //  swapping the random pivot to the end
   RandomInt random_int_gen = RandomInt(start, end);

@@ -15,7 +15,6 @@ double closest_pair_doubling::brute_force(point_list &S) {
   }
   return result;
 }
-// DVect = std::vector<double>
 std::tuple<point, double, DVect>
         closest_pair_doubling::sep_ann(point_list &S, int n, double mu, double c)
         {

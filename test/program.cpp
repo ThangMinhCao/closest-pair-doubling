@@ -5,7 +5,6 @@
 #include "../utils/non_Euclidean_problem/test/program_non_Eu_part.h"
 #include "user_controller/user_input_controller.h"
 
-
 int program::display_menu() {
   int choice = RANDOM - 1;
   std::cout << "\nChoose an option below:" << std::endl;
