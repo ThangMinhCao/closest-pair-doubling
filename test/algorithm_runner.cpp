@@ -3,7 +3,7 @@
 #include <fstream>
 #include <iomanip>
 #include "random_generator.h"
-#include "../utils/2d_problem.h"
+#include "2d_problem/2d_problem.h"
 
 bool algorithm_runner::kth_smallest_test(int element_num, int k, int range_start, int range_end){
   DVect distances;
@@ -66,7 +66,7 @@ void algorithm_runner::closest_pair_test(Algorithm a, point_list S, int dimensio
       break;
   }
   printf("- The closest distance is: \033[32m%f\033[0m\n", result);
-  printf("- Time taken: \033[0;32m%fs\033[0m\n\n", (double)(clock() - tStart)/CLOCKS_PER_SEC);
+  printf("- Time taken: \033[0;32m%fs\033[0m\n", (double)(clock() - tStart)/CLOCKS_PER_SEC);
   std::ofstream data_file2;
   data_file2.open("running_time_data.txt", std::ios_base::app);
   data_file2 << "- The closest distance is: " << result << "\n";

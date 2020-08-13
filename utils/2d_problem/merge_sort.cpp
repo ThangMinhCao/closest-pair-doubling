@@ -3,8 +3,6 @@
 
 using namespace std;
 
-vector<point> merge(vector<point> const &L1, vector<point> const &L2, bool x);
-
 vector<point> merge_sort(vector<point> &L, bool x) {
   if (L.size() <= 1) {
     return L;

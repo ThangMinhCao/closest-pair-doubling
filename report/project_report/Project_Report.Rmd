@@ -806,10 +806,10 @@ Particularly, let $n$ be the number of points in a metric space, denoted $|P|$, 
   \multirow{2}{*}{$\boldsymbol n$} & \multicolumn{1}{c|}{\textbf{The algorithm's running time (in seconds)}} & \textbf{Brute-force}\\
 	\cline{2-3}
     & Random points on Non-Euclidean spaces & \textbf{(in seconds)}  \\ \hline
-   2000 & 8.428  & 6060.674582  \\ \hline
-   4000 & 40.4096  &   \\ \hline
-   8000 & 228.1886   & 24473.732456 \\ \hline
-   16000 & 7745.36   & 37495.445677 \\ \hline
+   2000  & 8.428    & 27.255990    \\ \hline
+   4000  & 40.4096  & 357.998312   \\ \hline
+   8000  & 228.1886 &  \\ \hline
+   16000 & 7745.36  &  \\ \hline
   \end{tabular}
 \end{minipage}
 \caption[Caption]{Tables of the algorithm's running time in seconds on Euclidean and non-Euclidean spaces compared to brute-force. It is obvious that brute-force take much longer time.}

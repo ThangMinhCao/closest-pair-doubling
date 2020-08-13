@@ -1,6 +1,6 @@
 #ifndef CLOSEST_PAIR_2D_H
 #define CLOSEST_PAIR_2D_H
-#include "merge_sort.h"
+#include "point.h"
 #include <vector>
 #include <algorithm>
 
@@ -18,7 +18,7 @@ class ClosestPair2D {
 
   public:
     ClosestPair2D() = default;
-    static DResult algorithm2D(vector<point>& L);
+    static DResult algorithm2D(std::vector<point>& L);
 
 };
 #endif

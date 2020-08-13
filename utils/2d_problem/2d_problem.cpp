@@ -1,4 +1,5 @@
 #include "2d_problem.h"
+#include "merge_sort.h"
 
 DResult ClosestPair2D::dist(point p, point q) {
   double xDiff = p.getCoordinate()[0] - q.getCoordinate()[0];
@@ -7,9 +8,9 @@ DResult ClosestPair2D::dist(point p, point q) {
           {std::pair<point, point> {p, q}, sqrt(xDiff * xDiff + yDiff * yDiff)};
 }
 
-DResult ClosestPair2D::algorithm2D(vector<point>& L) {
+DResult ClosestPair2D::algorithm2D(std::vector<point>& L) {
   std::sort(L.begin(), L.end(), compareX);
-  vector<point> res_points;
+  std::vector<point> res_points;
   DResult d, d1, d2;
   int n = L.size();
   int mid_point = n / 2;
@@ -20,8 +21,7 @@ DResult ClosestPair2D::algorithm2D(vector<point>& L) {
   } else if (n == 2) {
     return dist(L[0], L[1]);
   }
-  // merge_sort(L, true);
-  vector<point> L1, L2, L_strip;
+  std::vector<point> L1, L2, L_strip;
   for (int i = 0; i < n; i++) {
     if (i < mid_point) {
       L1.push_back(L[i]);

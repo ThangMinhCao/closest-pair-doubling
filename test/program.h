@@ -2,11 +2,13 @@
 #define CLOSESTPAIRDOUBLING_PROGRAM_H
 
 #include <iostream>
+#include "point_list.h"
 
 enum CHOICE {
     RANDOM=1,
     GRID=2,
-    EXIT=3,
+    NON_EU = 3,
+    EXIT=4,
 };
 
 class program {
