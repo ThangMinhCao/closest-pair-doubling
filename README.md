@@ -1,7 +1,5 @@
 # closest-pair-doubling
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://github.com/ThangMinhCao/closest-pair-doubling/blob/master/LICENSE)
-
 > The implementation in C++ of the closest-pair doubling algorithm which finds the smallest distance between two points in a metric space in *O(n log n)* time without directly using the points' coordinates.  
 
 The algorithm's theory is from the work of Anil Maheshwari, Wolfgang Mulzer and Michiel Smid.
@@ -40,6 +38,8 @@ In the directory of the repo:
 * LinkedIn: [@minhthangcao](https://linkedin.com/in/minhthangcao)
 
 ## License
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://github.com/ThangMinhCao/closest-pair-doubling/blob/master/LICENSE)
 
 Copyright © 2020 [Minh Thang Cao](https://github.com/ThangMinhCao).<br />
 This project is [MIT](https://github.com/ThangMinhCao/closestpairdoubling/blob/master/LICENSE) licensed.
