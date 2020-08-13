@@ -2,7 +2,7 @@
 
 > The implementation in C++ of the closest-pair doubling algorithm which finds the smallest distance between two points in a metric space in *O(n log n)* time without directly using the points' coordinates.  
 
-The algorithm's theory is from the work of Anil Maheshwari, Wolfgang Mulzer and Michiel Smid.
+Thanks to the work of Anil Maheshwari, Wolfgang Mulzer and Michiel Smid.
 *A Simple Randomized O(N log N)–Time Closest-Pair Algorithm in Doubling Metrics*.
 https://arxiv.org/abs/2004.05883
 
