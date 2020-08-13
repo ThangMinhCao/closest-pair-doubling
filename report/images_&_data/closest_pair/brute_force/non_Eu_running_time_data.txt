@@ -1,0 +1,18 @@
+Number of 'Points': 2000
+Brute-force:
+- The closest distance is: 16
+- Time taken: 27.2559s
+
+
+Number of 'Points': 4000
+Brute-force:
+- The closest distance is: 16
+- Time taken: 357.998s
+
+
+Number of 'Points': 8000
+Brute-force:
+- The closest distance is: 16
+- Time taken: 5392.12s
+
+
