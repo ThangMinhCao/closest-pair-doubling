@@ -8,6 +8,8 @@ https://arxiv.org/abs/2004.05883
 
 ### 📝 [Project report](https://github.com/ThangMinhCao/closestpairdoubling/blob/master/report/project_report/Project_Report.pdf)
 
+![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)
+
 ## Prerequisites
 
 - [cmake >= 3.16](https://cmake.org/) 
