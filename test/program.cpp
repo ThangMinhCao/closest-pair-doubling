@@ -3,8 +3,8 @@
 #include "program.h"
 #include "algorithm_runner.h"
 
-int get_input_number(std::string message, typename T) {
-  number<T> input;
+int get_input_number(std::string message) {
+  int input;
   std::cout << message;
   while (true) {
     std::cin >> input;
@@ -80,27 +80,34 @@ std::pair<bool, bool> ask_for_BF_and_2D() {
   return result;
 }
 
+int ask_for_iteration_number() {
+  return get_input_number("How many times do you want to run the program? ");
+}
+
 void program::execute_choice(int choice) {
-  point_list list;
-  std::pair<bool,bool> bf_and_2D;
-  switch (choice) {
-    case RANDOM:
-      list = menu_random_initialize();
-      break;
-    case GRID:
-      list = menu_grid_initialize();
-      break;
-    default:
-      return;
-  }
+  std::pair<bool, bool> bf_and_2D;
+    point_list list;
+    switch (choice) {
+      case RANDOM:
+        list = menu_random_initialize();
+        break;
+      case GRID:
+        list = menu_grid_initialize();
+        break;
+      default:
+        return;
+    }
   bf_and_2D = ask_for_BF_and_2D();
   std::cout << std::endl;
-  algorithm_runner::closest_pair_test(CLOSEST_DOUBLING, list, 2);
-  if (bf_and_2D.first) {
-    algorithm_runner::closest_pair_test(BRUTE_FORCE, list, 2);
-  }
-  if (bf_and_2D.second) {
-    algorithm_runner::closest_pair_test(CLOSEST_2D, list, 2);
+  for (int i = 0; i < ask_for_iteration_number(); i++) {
+    std::cout << "\nNumber of points: " << (int) list.points.size() << std::endl;
+    algorithm_runner::closest_pair_test(CLOSEST_DOUBLING, list, 2);
+    if (bf_and_2D.first) {
+      algorithm_runner::closest_pair_test(BRUTE_FORCE, list, 2);
+    }
+    if (bf_and_2D.second) {
+      algorithm_runner::closest_pair_test(CLOSEST_2D, list, 2);
+    }
   }
 }
 

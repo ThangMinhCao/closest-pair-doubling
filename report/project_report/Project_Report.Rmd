@@ -777,9 +777,51 @@ To generate random points in a non-Euclidean space, I use a \code{RandomInt} obj
 
 ## 6.1 The practical running time
 
-To correctly compare the algorithm's running time, we can use brute-force which takes $O(n)$ time or the 2D algorithm for only 2D points. However, to have the running time that is close to the theory, the number of points in $P$ must be extremely large since the base case of the algorithm is when $n < 2(16e)^d$, which is already a quite large number (approximately $79\,550$ points in 2D and more than $3\,000\,000$ points in 3D, for example). The algorithm could take days to finish calculating the whole metric space, and in this case, brute-force would take a lot more than that amount of time, which is not very reasonable for me to keep the program running until it finish. Fortunately, since the running time of the algorithm is $O(n\log n)$ which is in theory and also expected in practice, the ratio of the actual running time (in seconds) to the theoretical should be approximately the same for different large enough numbers of points. Thus, we can use this information to prove that the running time in practice is actually $O(n\log n)$.
+To correctly compare the algorithm's running time, we can use brute-force which takes $O(n^2)$ time or the 2D algorithm for only 2D points. However, to have the running time that is close to the theory, the number of points in $P$ must be extremely large since the base case of the algorithm is when $n < 2(16e)^d$, which is already a quite large number (approximately $79\,550$ points in 2D and more than $3\,000\,000$ points in 3D, for example). The algorithm could take days to finish calculating the whole metric space, and in this case, brute-force would take a lot more than that amount of time, which is not very reasonable for me to keep the program running until it finish. See Figure \ref{fig:bruteforcedata} table for the representation of the algorithm's running time in seconds compared to the brute-force.
+
+Fortunately, since the running time of the algorithm is $O(n\log n)$ which is in theory and also expected in practice, the ratio of the actual running time (in seconds) to the theoretical should be approximately the same for different large enough numbers of points. Thus, we can use this information to prove that the running time in practice is actually $O(n\log n)$.
 
 Particularly, let $n$ be the number of points in a metric space, denoted $|P|$, $m$ be a number which is much larger than the base case of the algorithm ($2(16e)^{\log_27} \approx 79550$ points in 2D metric spaces), $r_n$ be the ratio of the actual running time to the theoretical one that is calculated using $n$ with the $\log$ of base 2. I would initialize and run the algorithm on different metric spaces $P$ with $n \in sizes = \{m, 2m, 4m, 8m, 16m\}$. For each size, I would run the algorithm several times to find the average running time, denoted $T(n)$.
+
+\begin{figure}
+\centering
+\begin{minipage}{1\textwidth}
+  \centering
+  \begin{tabular}{|c|>{\centering\arraybackslash}p{4.2cm}|>{\centering\arraybackslash}p{4.2cm}|c|}
+  \hline
+  \multirow{2}{*}{$\boldsymbol n$} & \multicolumn{2}{c|}{\textbf{The algorithm's running time (in seconds)}} & \textbf{Brute-force}\\
+	\cline{2-3}
+    & Random points   & Grid points  & \textbf{(in seconds)}  \\ \hline
+   200000 & 769.991430  & 1320.988406   & 6060.674582  \\ \hline
+   300000 & 900.141138  & 2775.835724   & 13669.645428  \\ \hline
+   400000 & 1101.16067  & 4078.497226   & 24473.732456 \\ \hline
+   500000 & 1322.221417 & 6471.239949   & 37495.445677 \\ \hline
+   \multicolumn{4}{c}{} \\ 
+  \end{tabular}
+\end{minipage}
+\begin{minipage}{1\textwidth}
+  \centering
+  \begin{tabular}{|c|c|c|}
+  \hline
+  \multirow{2}{*}{$\boldsymbol n$} & \multicolumn{1}{c|}{\textbf{The algorithm's running time (in seconds)}} & \textbf{Brute-force}\\
+	\cline{2-3}
+    & Random points on Non-Euclidean spaces & \textbf{(in seconds)}  \\ \hline
+   2000 & 8.428  & 6060.674582  \\ \hline
+   4000 & 40.4096  &   \\ \hline
+   8000 & 228.1886   & 24473.732456 \\ \hline
+   16000 & 7745.36   & 37495.445677 \\ \hline
+  \end{tabular}
+\end{minipage}
+\caption[Caption]{Tables of the algorithm's running time in seconds on Euclidean and non-Euclidean spaces compared to brute-force. It is obvious that brute-force take much longer time.}
+\label{fig:bruteforcedata}
+\end{figure}
+
+\hrule
+
+\  
+
+\  
+
 
 Having $n$ and $T(n$), the ratio is calculated as below:
 $$r_n = \frac{T(n)}{n\log n}$$
@@ -813,10 +855,6 @@ After running the algorithm with different kinds of inputs, the tables and graph
 \label{fig:randomdata}
 \end{figure}
 
-\hrule
-
-\  
-
 \begin{figure}
 \begin{minipage}{0.95\textwidth}
 \begin{center}
@@ -843,6 +881,10 @@ After running the algorithm with different kinds of inputs, the tables and graph
 \label{fig:randomgraph}
 \end{figure}
 \hrule
+
+\  
+
+\  
 
 As you can see in the table (see Figure \ref{fig:randomdata}), for random points, the ratios $r_n$ do not have any significant differences. By assigning them the same base and exponent of their scientific notation ($10^{-4}$), their coefficients are mostly the same except for the $500\,000$ points, which is still less than doubled of the lowest ratio. This is reasonable since there are many factors that can affect the running time of the program. Also, this is the lowest value of $n$ in the set, so its running time probably has the highest error. The graph also shows that the points are roughly on a horizontal line, so the ratios have acceptable differences, see Figure \ref{fig:randomgraph}.
 

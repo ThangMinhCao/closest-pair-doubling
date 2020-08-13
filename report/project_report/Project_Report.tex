@@ -125,7 +125,7 @@
 \subtitle{A Simple Randomized \(O(n\,\log\, n)\)--Time Closest-Pair\\
 Algorithm in Doubling Metrics}
 \author{Minh Thang Cao}
-\date{07 August 2020}
+\date{13 August 2020}
 
 \begin{document}
 \maketitle
@@ -1278,7 +1278,7 @@ and store it into a \code{PointList} object.
 time}\label{the-practical-running-time}}
 
 To correctly compare the algorithm's running time, we can use
-brute-force which takes \(O(n)\) time or the 2D algorithm for only 2D
+brute-force which takes \(O(n^2)\) time or the 2D algorithm for only 2D
 points. However, to have the running time that is close to the theory,
 the number of points in \(P\) must be extremely large since the base
 case of the algorithm is when \(n < 2(16e)^d\), which is already a quite
@@ -1286,7 +1286,10 @@ large number (approximately \(79\,550\) points in 2D and more than
 \(3\,000\,000\) points in 3D, for example). The algorithm could take
 days to finish calculating the whole metric space, and in this case,
 brute-force would take a lot more than that amount of time, which is not
-very reasonable for me to keep the program running until it finish.
+very reasonable for me to keep the program running until it finish. See
+Figure \ref{fig:bruteforcedata} table for the representation of the
+algorithm's running time in seconds compared to the brute-force.
+
 Fortunately, since the running time of the algorithm is \(O(n\log n)\)
 which is in theory and also expected in practice, the ratio of the
 actual running time (in seconds) to the theoretical should be
@@ -1303,6 +1306,45 @@ theoretical one that is calculated using \(n\) with the \(\log\) of base
 \(P\) with \(n \in sizes = \{m, 2m, 4m, 8m, 16m\}\). For each size, I
 would run the algorithm several times to find the average running time,
 denoted \(T(n)\).
+
+\begin{figure}
+\centering
+\begin{minipage}{1\textwidth}
+  \centering
+  \begin{tabular}{|c|>{\centering\arraybackslash}p{4.2cm}|>{\centering\arraybackslash}p{4.2cm}|c|}
+  \hline
+  \multirow{2}{*}{$\boldsymbol n$} & \multicolumn{2}{c|}{\textbf{The algorithm's running time (in seconds)}} & \textbf{Brute-force}\\
+    \cline{2-3}
+    & Random points   & Grid points  & \textbf{(in seconds)}  \\ \hline
+   200000 & 769.991430  & 1320.988406   & 6060.674582  \\ \hline
+   300000 & 900.141138  & 2775.835724   & 13669.645428  \\ \hline
+   400000 & 1101.16067  & 4078.497226   & 24473.732456 \\ \hline
+   500000 & 1322.221417 & 6471.239949   & 37495.445677 \\ \hline
+   \multicolumn{4}{c}{} \\ 
+  \end{tabular}
+\end{minipage}
+\begin{minipage}{1\textwidth}
+  \centering
+  \begin{tabular}{|c|c|c|}
+  \hline
+  \multirow{2}{*}{$\boldsymbol n$} & \multicolumn{1}{c|}{\textbf{The algorithm's running time (in seconds)}} & \textbf{Brute-force}\\
+    \cline{2-3}
+    & Random points on Non-Euclidean spaces & \textbf{(in seconds)}  \\ \hline
+   2000 & 8.428  & 6060.674582  \\ \hline
+   4000 & 40.4096  &   \\ \hline
+   8000 & 228.1886   & 24473.732456 \\ \hline
+   16000 & 7745.36   & 37495.445677 \\ \hline
+  \end{tabular}
+\end{minipage}
+\caption[Caption]{Tables of the algorithm's running time in seconds on Euclidean and non-Euclidean spaces compared to brute-force. It is obvious that brute-force take much longer time.}
+\label{fig:bruteforcedata}
+\end{figure}
+
+\hrule
+
+~
+
+~
 
 Having \(n\) and \(T(n\)), the ratio is calculated as below:
 \[r_n = \frac{T(n)}{n\log n}\]
@@ -1349,10 +1391,6 @@ and graphs below are the results that I come up with.
 \label{fig:randomdata}
 \end{figure}
 
-\hrule
-
-~
-
 \begin{figure}
 \begin{minipage}{0.95\textwidth}
 \begin{center}
@@ -1379,6 +1417,10 @@ and graphs below are the results that I come up with.
 \label{fig:randomgraph}
 \end{figure}
 \hrule
+
+~
+
+~
 
 As you can see in the table (see Figure \ref{fig:randomdata}), for
 random points, the ratios \(r_n\) do not have any significant
