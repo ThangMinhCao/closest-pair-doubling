@@ -69,13 +69,11 @@ This algorithm picks a uniformly random point $p$ from the subset $S$ then finds
     \begin{algorithm}[H]
     \SetKwInOut{Input}{Input}
     \Input{Let $S$ be a subset of $P$, of size $n$, $d$ be the metric space's doubling dimension, $\mu \geq 1$ and $c >1$ be large enough real numbers. }
-
     \SetKwInOut{Output}{Output}
     \Output{A point $p \in S$ and a radius $R_p > 0$.}
     \DontPrintSemicolon
     \SetAlgoLined
     \BlankLine
-
     \centering
     \begin{minipage}{.80\linewidth}
     \Repeat{$|ball_S(p, \mu R_p)| \leq n/2$}
@@ -1165,7 +1163,6 @@ For non-Euclidean spaces, the algorithm behaves exactly as expected even with ra
 \caption[Caption]{Given an input of $200\,000$ points generated in a grid. This is a portion of the data about the number of times the algorithm \textsc{SepAnn$(S,n,d,\mu,c)$} repeats.}
 \label{fig:data_non_E}
 \end{figure}
-
 \hrule
 
 \  

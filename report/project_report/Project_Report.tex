@@ -224,13 +224,11 @@ condition is satisfied. This algorithm's pseudocode is given below, see
     \begin{algorithm}[H]
     \SetKwInOut{Input}{Input}
     \Input{Let $S$ be a subset of $P$, of size $n$, $d$ be the metric space's doubling dimension, $\mu \geq 1$ and $c >1$ be large enough real numbers. }
-
     \SetKwInOut{Output}{Output}
     \Output{A point $p \in S$ and a radius $R_p > 0$.}
     \DontPrintSemicolon
     \SetAlgoLined
     \BlankLine
-
     \centering
     \begin{minipage}{.80\linewidth}
     \Repeat{$|ball_S(p, \mu R_p)| \leq n/2$}
@@ -1801,7 +1799,6 @@ number of points in \(S\).
 \caption[Caption]{Given an input of $200\,000$ points generated in a grid. This is a portion of the data about the number of times the algorithm \textsc{SepAnn$(S,n,d,\mu,c)$} repeats.}
 \label{fig:data_non_E}
 \end{figure}
-
 \hrule
 
 ~
