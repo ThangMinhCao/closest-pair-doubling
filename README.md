@@ -39,6 +39,6 @@ In the directory of the repo:
 
 ## License
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://github.com/ThangMinhCao/closest-pair-doubling/blob/master/LICENSE)
 Copyright © 2020 [Minh Thang Cao](https://github.com/ThangMinhCao).<br />
 This project is [MIT](https://github.com/ThangMinhCao/closestpairdoubling/blob/master/LICENSE) licensed.
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://github.com/ThangMinhCao/closest-pair-doubling/blob/master/LICENSE)
