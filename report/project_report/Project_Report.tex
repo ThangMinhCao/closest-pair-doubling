@@ -586,7 +586,7 @@ class RandomDouble{
 \vspace{-9truemm}
 \begin{minipage}{1\textwidth}
   \begin{flushright}
-  {\footnotesize \emph{Source \footnotemark: master branch $\rightarrow$ closestpairdoubling/include/random\_generator.h }\par}
+  {\footnotesize \emph{Source \footnotemark: closestpairdoubling/include/random\_generator.h }\par}
   \end{flushright}
 \end{minipage}
 \vspace{0.5truemm}
@@ -643,7 +643,7 @@ class Point {
 \vspace{-9truemm}
 \begin{minipage}{1\textwidth}
   \begin{flushright}
-  {\footnotesize \emph{Source: master branch $\rightarrow$ closestpairdoubling/include/point.h}\par}
+  {\footnotesize \emph{Source: closestpairdoubling/include/point.h}\par}
   \end{flushright}
 \end{minipage}
 \vspace{0.5truemm}
@@ -704,7 +704,7 @@ class PointList {
 \vspace{-9truemm}
 \begin{minipage}{1\textwidth}
   \begin{flushright}
-  {\footnotesize \emph{Source: master branch $\rightarrow$ closestpairdoubling/include/point\_list.h}\par}
+  {\footnotesize \emph{Source: closestpairdoubling/include/point\_list.h}\par}
   \end{flushright}
 \end{minipage}
 
@@ -745,7 +745,7 @@ class KthSmallest {
 \vspace{-9truemm}
 \begin{minipage}{1\textwidth}
   \begin{flushright}
-  {\footnotesize \emph{Source: master branch $\rightarrow$ closestpairdoubling/include/kth\_smallest.h}\par}
+  {\footnotesize \emph{Source: closestpairdoubling/include/kth\_smallest.h}\par}
   \end{flushright}
 \end{minipage}
 \vspace{0.5truemm}
@@ -810,7 +810,7 @@ double KthSmallest::get(DVect& distances, int start, int end, int k) {
 \vspace{-9truemm}
 \begin{minipage}{1\textwidth}
   \begin{flushright}
-  {\footnotesize \emph{Source: master branch $\rightarrow$ closestpairdoubling/src/kth\_smallest.cpp}\par}
+  {\footnotesize \emph{Source: closestpairdoubling/src/kth\_smallest.cpp}\par}
   \end{flushright}
 \end{minipage}
 \vspace{0.5truemm}
@@ -888,11 +888,11 @@ returned.
 
 To keep the report on point and less complicated, the code of this 2D
 algorithm will not be listed. See the implementation on my
-\href{https://github.com/ThangMinhCao/closestpairdoubling/tree/master/utils}{\emph{GitHub
+\href{https://github.com/ThangMinhCao/closestpairdoubling/tree/master/utils/2d_problem}{\emph{GitHub
 repository}}\footnote{The implementation of the 2D algorithm with merge
   sort algorithm.
-  \href{https://github.com/ThangMinhCao/closestpairdoubling/tree/master/utils}{\emph{https://github.com/ThangMinh-}
-  \emph{Cao/closestpairdoubling/tree/master/utils}}}.
+  \href{https://github.com/ThangMinhCao/closestpairdoubling/tree/master/utils/2d_problem}{\emph{https://github.com/ThangMinh-}
+  \emph{Cao/closestpairdoubling/tree/master/utils/2d\_problem}}}.
 
 \hypertarget{section5.2}{%
 \subsection{5.2 The closest-pair doubling algorithm}\label{section5.2}}
@@ -925,7 +925,7 @@ class ClosestPairDoubling {
 \vspace{-9truemm}
 \begin{minipage}{1\textwidth}
   \begin{flushright}
-  {\footnotesize \emph{Source: master branch $\rightarrow$ closestpairdoubling/include/closest\_pair\_doubling.h}\par}
+  {\footnotesize \emph{Source: closestpairdoubling/include/closest\_pair\_doubling.h}\par}
   \end{flushright}
 \end{minipage}
 
@@ -985,7 +985,7 @@ std::tuple<Point, double, DVect>
 \vspace{-9truemm}
 \begin{minipage}{1\textwidth}
   \begin{flushright}
-  {\footnotesize \emph{Source: master branch $\rightarrow$ closestpairdoubling/src/closest\_pair\_doubling.cpp}\par}
+  {\footnotesize \emph{Source: closestpairdoubling/src/closest\_pair\_doubling.cpp}\par}
   \end{flushright}
 \end{minipage}
 \vspace{0.5truemm}
@@ -1054,7 +1054,7 @@ std::pair<Point, double>
 \vspace{-9truemm}
 \begin{minipage}{1\textwidth}
   \begin{flushright}
-  {\footnotesize \emph{Source: master branch $\rightarrow$ closestpairdoubling/src/closest\_pair\_doubling.cpp}\par}
+  {\footnotesize \emph{Source: closestpairdoubling/src/closest\_pair\_doubling.cpp}\par}
   \end{flushright}
 \end{minipage}
 \vspace{0.5truemm}
@@ -1122,7 +1122,7 @@ double
 \vspace{-9truemm}
 \begin{minipage}{1\textwidth}
   \begin{flushright}
-  {\footnotesize \emph{Source: master branch $\rightarrow$ closestpairdoubling/src/closest\_pair\_doubling.cpp}\par}
+  {\footnotesize \emph{Source: closestpairdoubling/src/closest\_pair\_doubling.cpp}\par}
   \end{flushright}
 \end{minipage}
 \vspace{0.5truemm}
@@ -1203,12 +1203,12 @@ Also, I needed to make some minor changes, so the algorithm can be able
 to run correctly. Since there are not many changes and they do not
 affect the main theory of the algorithm, the implementation for this
 non-Euclidean will not be listed in this report. See the
-\href{https://github.com/ThangMinhCao/closestpairdoubling/tree/strange_metric}{\code{strange\_metric}
-branch}\footnote{The implementation of the algorithm on non-Euclidean
+\href{https://github.com/ThangMinhCao/closest-pair-doubling/tree/master/utils/non_Euclidean_problem}{\code{non\_Euclidean\_problem}
+directory}\footnote{The implementation of the algorithm on non-Euclidean
   metrics.
-  \href{https://github.com/ThangMinhCao/closestpairdoubling/tree/strange_metric}{\emph{https://github.com/ThangMinhCa}
-  \emph{o/closestpairdoubling/tree/strange\_metric}}} of my GitHub
-repository for the implementation.
+  \href{https://github.com/ThangMinhCao/closest-pair-doubling/tree/master/utils/non_Euclidean_problem}{\emph{https://github.com/ThangMinhCa}
+  \emph{o/closestpairdoubling/tree/master/utils/non\_Euclidean\_problem}}}
+of my GitHub repository for the implementation.
 
 \hypertarget{section6}{%
 \section{\texorpdfstring{6 \enspace The practical running time and
@@ -1287,8 +1287,9 @@ large number (approximately \(79\,550\) points in 2D and more than
 days to finish calculating the whole metric space, and in this case,
 brute-force would take a lot more than that amount of time, which is not
 very reasonable for me to keep the program running until it finish. See
-Figure \ref{fig:bruteforcedata} table for the representation of the
-algorithm's running time in seconds compared to the brute-force.
+Figure \ref{fig:bruteforcedata} table for the representation of some
+example of the algorithm's running time in seconds compared to the
+brute-force.
 
 Fortunately, since the running time of the algorithm is \(O(n\log n)\)
 which is in theory and also expected in practice, the ratio of the
@@ -1328,15 +1329,14 @@ denoted \(T(n)\).
   \begin{tabular}{|c|c|c|}
   \hline
   \multirow{2}{*}{$\boldsymbol n$} & \multicolumn{1}{c|}{\textbf{The algorithm's running time (in seconds)}} & \textbf{Brute-force}\\
-    \cline{2-3}
+    \cline{2-2}
     & Random points on Non-Euclidean spaces & \textbf{(in seconds)}  \\ \hline
    2000  & 8.428    & 27.255990    \\ \hline
    4000  & 40.4096  & 357.998312   \\ \hline
-   8000  & 228.1886 &  \\ \hline
-   16000 & 7745.36  &  \\ \hline
+   8000  & 228.1886 & 5392.117408 \\ \hline
   \end{tabular}
 \end{minipage}
-\caption[Caption]{Tables of the algorithm's running time in seconds on Euclidean and non-Euclidean spaces compared to brute-force. It is obvious that brute-force take much longer time.}
+\caption[Caption]{Tables contains some examples of the algorithm's running time in seconds on Euclidean and non-Euclidean spaces compared to brute-force. It is obvious that brute-force take much longer time, and it increases when the number number of points get larger.}
 \label{fig:bruteforcedata}
 \end{figure}
 
@@ -1371,6 +1371,18 @@ and graphs below are the results that I come up with.
   finish all cases.
 \end{enumerate}
 
+As you can see in the table (see Figure \ref{fig:randomdatarandom}), for
+random points, the ratios \(r_n\) do not have any significant
+differences. By assigning them the same base and exponent of their
+scientific notation (\(10^{-4}\)), their coefficients are mostly the
+same except for the \(500\,000\) points, which is still less than
+doubled of the lowest ratio. This is reasonable since there are many
+factors that can affect the running time of the program. Also, this is
+the lowest value of \(n\) in the set, so its running time probably has
+the highest error. The graph also shows that the points are roughly on a
+horizontal line, so the ratios have acceptable differences, see Figure
+\ref{fig:randomgraphrandom}.
+
 \begin{figure}
 \centering
 \begin{minipage}{1\textwidth}
@@ -1388,8 +1400,11 @@ and graphs below are the results that I come up with.
   \end{tabularx}
 \end{minipage}
 \caption[Caption]{The table of random points metric spaces' data of running time and the ratio $r_n$.}
-\label{fig:randomdata}
+\label{fig:randomdatarandom}
 \end{figure}
+\hrule
+
+~
 
 \begin{figure}
 \begin{minipage}{0.95\textwidth}
@@ -1414,25 +1429,13 @@ and graphs below are the results that I come up with.
 \end{center}
 \end{minipage}
 \caption[Caption]{The graph of ratios $r_n$ versus different values of $n$ of random points with $n \in \{500\,000, 1\,000\,000, 2\,000\,000, 4\,000\,000, 8\,000\,000\}$ (with y-scale = $0.5\times10^{-4}$).}
-\label{fig:randomgraph}
+\label{fig:randomgraphrandom}
 \end{figure}
 \hrule
 
 ~
 
 ~
-
-As you can see in the table (see Figure \ref{fig:randomdata}), for
-random points, the ratios \(r_n\) do not have any significant
-differences. By assigning them the same base and exponent of their
-scientific notation (\(10^{-4}\)), their coefficients are mostly the
-same except for the \(500\,000\) points, which is still less than
-doubled of the lowest ratio. This is reasonable since there are many
-factors that can affect the running time of the program. Also, this is
-the lowest value of \(n\) in the set, so its running time probably has
-the highest error. The graph also shows that the points are roughly on a
-horizontal line, so the ratios have acceptable differences, see Figure
-\ref{fig:randomgraph}.
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -1547,6 +1550,18 @@ horizontal line.
 
 ~
 
+~
+
+With non-Euclidean metric spaces, the algorithm now has a different
+behavior with the running time in seconds. The more points the space
+has, the more the running time increase. As you can see, from \(2\,000\)
+points to \(4\,000\) points, the ratio \(r_n\) increases a little, but
+from \(16\,000\) points to \(32\,000\) points, there is a significant
+increase. From this, I can confidently conclude that the increase is
+from the handling of multiple-precision integers of \(Boost\) library.
+Since the number of points increases, the maximum distance increases, so
+it takes more time to handle each instance.
+
 \begin{figure}
 \begin{minipage}{0.95\textwidth}
 \begin{center}
@@ -1578,16 +1593,6 @@ horizontal line.
 ~
 
 ~
-
-With non-Euclidean metric spaces, the algorithm now has a different
-behavior with the running time in seconds. The more points the space
-has, the more the running time increase. As you can see, from \(2\,000\)
-points to \(4\,000\) points, the ratio \(r_n\) increases a little, but
-from \(16\,000\) points to \(32\,000\) points, there is a significant
-increase. From this, I can confidently conclude that the increase is
-from the handling of multiple-precision integers of \(Boost\) library.
-Since the number of points increases, the maximum distance increases, so
-it takes more time to handle each instance.
 
 Since the value of increase cannot be exactly identified, I decided to
 change from calculating running time in \textbf{seconds} to the
@@ -1746,6 +1751,10 @@ repository}}\footnote{Grid points SepAnn data.
 \label{fig:data}
 \end{figure}
 
+\hrule
+
+~
+
 ~
 
 For non-Euclidean spaces, the algorithm behaves exactly as expected even
@@ -1797,8 +1806,6 @@ number of points in \(S\).
 
 ~
 
-\medskip
-
 \hypertarget{section7}{%
 \section{\texorpdfstring{7 \enspace Concluding
 remarks}{7 Concluding remarks}}\label{section7}}
@@ -1816,7 +1823,8 @@ practice:
   For each example with different number of points in \(P\), the
   closest-pair distance is correctly returned (the same as the
   brute-force's) without the use of the points' coordinates. Its running
-  time is obviously much less than the result from brute-force.
+  time is obviously much less than the result from brute-force (for
+  large enough number of points).
 \item
   The algorithm can correctly find the closest-pair distances on
   non-Euclidean spaces of doubling dimension 1 without changing any core
@@ -1832,8 +1840,6 @@ practice:
   satisfies the probability \(1/c\) in theory. Therefore, in practice,
   this procedure runs in linear time.
 \end{enumerate}
-
-\newpage
 
 \begin{thebibliography}{9}
 \bibitem{latexcompanion} 

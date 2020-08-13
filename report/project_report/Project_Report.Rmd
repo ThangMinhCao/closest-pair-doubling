@@ -319,7 +319,7 @@ class RandomDouble{
 \vspace{-9truemm}
 \begin{minipage}{1\textwidth}
   \begin{flushright}
-  {\footnotesize \emph{Source \footnotemark: master branch $\rightarrow$ closestpairdoubling/include/random\_generator.h }\par}
+  {\footnotesize \emph{Source \footnotemark: closestpairdoubling/include/random\_generator.h }\par}
   \end{flushright}
 \end{minipage}
 \vspace{0.5truemm}
@@ -362,7 +362,7 @@ class Point {
 \vspace{-9truemm}
 \begin{minipage}{1\textwidth}
   \begin{flushright}
-  {\footnotesize \emph{Source: master branch $\rightarrow$ closestpairdoubling/include/point.h}\par}
+  {\footnotesize \emph{Source: closestpairdoubling/include/point.h}\par}
   \end{flushright}
 \end{minipage}
 \vspace{0.5truemm}
@@ -415,7 +415,7 @@ class PointList {
 \vspace{-9truemm}
 \begin{minipage}{1\textwidth}
   \begin{flushright}
-  {\footnotesize \emph{Source: master branch $\rightarrow$ closestpairdoubling/include/point\_list.h}\par}
+  {\footnotesize \emph{Source: closestpairdoubling/include/point\_list.h}\par}
   \end{flushright}
 \end{minipage}
 
@@ -448,7 +448,7 @@ class KthSmallest {
 \vspace{-9truemm}
 \begin{minipage}{1\textwidth}
   \begin{flushright}
-  {\footnotesize \emph{Source: master branch $\rightarrow$ closestpairdoubling/include/kth\_smallest.h}\par}
+  {\footnotesize \emph{Source: closestpairdoubling/include/kth\_smallest.h}\par}
   \end{flushright}
 \end{minipage}
 \vspace{0.5truemm}
@@ -511,7 +511,7 @@ double KthSmallest::get(DVect& distances, int start, int end, int k) {
 \vspace{-9truemm}
 \begin{minipage}{1\textwidth}
   \begin{flushright}
-  {\footnotesize \emph{Source: master branch $\rightarrow$ closestpairdoubling/src/kth\_smallest.cpp}\par}
+  {\footnotesize \emph{Source: closestpairdoubling/src/kth\_smallest.cpp}\par}
   \end{flushright}
 \end{minipage}
 \vspace{0.5truemm}
@@ -530,7 +530,7 @@ Given a set of point $P$, the base case is when $P$ contains less than 2 points.
 
 To combine the two set $P_1$ and $P_2$, we create a strip centered at $\ell$ with its left end and right end are the lines $\ell_1$ and $\ell_2$ so that both lines are $\delta_0$ away from $\ell$. All the points in the strip are now sorted based on their $y$-coordinate. The algorithm then can loop through the strip and check if there is any smaller distance than $\delta_0$. Fortunately, for each point in the strip, the algorithm just needs to check the distances between the current point with its 7 successive points, that have $y$-coordinates $\geq$ the current point's $y$-coordinate. If there is any closer distance, it is assigned to $\delta_0$. Finally, $\delta_0$ is returned.
 
-To keep the report on point and less complicated, the code of this 2D algorithm will not be listed. See the implementation on my [_GitHub repository_](https://github.com/ThangMinhCao/closestpairdoubling/tree/master/utils)^[The implementation of the 2D algorithm with merge sort algorithm. [_https://github.com/ThangMinh-_ _Cao/closestpairdoubling/tree/master/utils_](https://github.com/ThangMinhCao/closestpairdoubling/tree/master/utils)].
+To keep the report on point and less complicated, the code of this 2D algorithm will not be listed. See the implementation on my [_GitHub repository_](https://github.com/ThangMinhCao/closestpairdoubling/tree/master/utils/2d_problem)^[The implementation of the 2D algorithm with merge sort algorithm. [_https://github.com/ThangMinh-_ _Cao/closestpairdoubling/tree/master/utils/2d_problem_](https://github.com/ThangMinhCao/closestpairdoubling/tree/master/utils/2d_problem)].
 
 ## 5.2 The closest-pair doubling algorithm {#section5.2}
 
@@ -557,7 +557,7 @@ class ClosestPairDoubling {
 \vspace{-9truemm}
 \begin{minipage}{1\textwidth}
   \begin{flushright}
-  {\footnotesize \emph{Source: master branch $\rightarrow$ closestpairdoubling/include/closest\_pair\_doubling.h}\par}
+  {\footnotesize \emph{Source: closestpairdoubling/include/closest\_pair\_doubling.h}\par}
   \end{flushright}
 \end{minipage}
 
@@ -604,7 +604,7 @@ std::tuple<Point, double, DVect>
 \vspace{-9truemm}
 \begin{minipage}{1\textwidth}
   \begin{flushright}
-  {\footnotesize \emph{Source: master branch $\rightarrow$ closestpairdoubling/src/closest\_pair\_doubling.cpp}\par}
+  {\footnotesize \emph{Source: closestpairdoubling/src/closest\_pair\_doubling.cpp}\par}
   \end{flushright}
 \end{minipage}
 \vspace{0.5truemm}
@@ -655,7 +655,7 @@ std::pair<Point, double>
 \vspace{-9truemm}
 \begin{minipage}{1\textwidth}
   \begin{flushright}
-  {\footnotesize \emph{Source: master branch $\rightarrow$ closestpairdoubling/src/closest\_pair\_doubling.cpp}\par}
+  {\footnotesize \emph{Source: closestpairdoubling/src/closest\_pair\_doubling.cpp}\par}
   \end{flushright}
 \end{minipage}
 \vspace{0.5truemm}
@@ -708,7 +708,7 @@ double
 \vspace{-9truemm}
 \begin{minipage}{1\textwidth}
   \begin{flushright}
-  {\footnotesize \emph{Source: master branch $\rightarrow$ closestpairdoubling/src/closest\_pair\_doubling.cpp}\par}
+  {\footnotesize \emph{Source: closestpairdoubling/src/closest\_pair\_doubling.cpp}\par}
   \end{flushright}
 \end{minipage}
 \vspace{0.5truemm}
@@ -736,7 +736,7 @@ Using the definition, the closest-pair algorithm finds the closest distance in t
 
 Although the points are just integers, I still treat them as \code{Point} objects with 1D coordinates. Therefore, I do not need to make many small changes which may lead to programming errors that can take a lot of time to fix, and I still keep the main idea of the algorithm that works with the \code{Point} class.
 
-The only problem is that the distance between any two points could be extremely large. For instance, let the upper bound of the points' value be a big number, say 100, so $p_i \leq p_j \leq 100$. Let $p_i = 100$, then $dist(p_i,p_j)=4^{100} > 1.6 \times 10^{60}$ which is much larger than the maximum 32-bit integer that C++ can handle. Therefore, I decided to use a library named [_Boost_](https://www.boost.org/)^[The _Boost_ library's website. [_https://www.boost.org/_](https://www.boost.org/)] which can handle numbers with precisions up to 1024 bits. When changing the current algorithm to use _Boost_, I only need to replace the \code{double} type of normal distances by \code{cpp\_int} type which can automatically choose the corresponding precision for each distance. Also, I needed to make some minor changes, so the algorithm can be able to run correctly. Since there are not many changes and they do not affect the main theory of the algorithm, the implementation for this non-Euclidean will not be listed in this report. See the [\code{strange\_metric} branch](https://github.com/ThangMinhCao/closestpairdoubling/tree/strange_metric)^[The implementation of the algorithm on non-Euclidean metrics. [_https://github.com/ThangMinhCa_ _o/closestpairdoubling/tree/strange_metric_](https://github.com/ThangMinhCao/closestpairdoubling/tree/strange_metric)] of my GitHub repository for the implementation.
+The only problem is that the distance between any two points could be extremely large. For instance, let the upper bound of the points' value be a big number, say 100, so $p_i \leq p_j \leq 100$. Let $p_i = 100$, then $dist(p_i,p_j)=4^{100} > 1.6 \times 10^{60}$ which is much larger than the maximum 32-bit integer that C++ can handle. Therefore, I decided to use a library named [_Boost_](https://www.boost.org/)^[The _Boost_ library's website. [_https://www.boost.org/_](https://www.boost.org/)] which can handle numbers with precisions up to 1024 bits. When changing the current algorithm to use _Boost_, I only need to replace the \code{double} type of normal distances by \code{cpp\_int} type which can automatically choose the corresponding precision for each distance. Also, I needed to make some minor changes, so the algorithm can be able to run correctly. Since there are not many changes and they do not affect the main theory of the algorithm, the implementation for this non-Euclidean will not be listed in this report. See the [\code{non\_Euclidean\_problem} directory](https://github.com/ThangMinhCao/closest-pair-doubling/tree/master/utils/non_Euclidean_problem)^[The implementation of the algorithm on non-Euclidean metrics. [_https://github.com/ThangMinhCa_ _o/closestpairdoubling/tree/master/utils/non_Euclidean_problem_](https://github.com/ThangMinhCao/closest-pair-doubling/tree/master/utils/non_Euclidean_problem)] of my GitHub repository for the implementation.
 
 # 6 \enspace The practical running time and behavior {#section6}
 
@@ -777,7 +777,7 @@ To generate random points in a non-Euclidean space, I use a \code{RandomInt} obj
 
 ## 6.1 The practical running time
 
-To correctly compare the algorithm's running time, we can use brute-force which takes $O(n^2)$ time or the 2D algorithm for only 2D points. However, to have the running time that is close to the theory, the number of points in $P$ must be extremely large since the base case of the algorithm is when $n < 2(16e)^d$, which is already a quite large number (approximately $79\,550$ points in 2D and more than $3\,000\,000$ points in 3D, for example). The algorithm could take days to finish calculating the whole metric space, and in this case, brute-force would take a lot more than that amount of time, which is not very reasonable for me to keep the program running until it finish. See Figure \ref{fig:bruteforcedata} table for the representation of the algorithm's running time in seconds compared to the brute-force.
+To correctly compare the algorithm's running time, we can use brute-force which takes $O(n^2)$ time or the 2D algorithm for only 2D points. However, to have the running time that is close to the theory, the number of points in $P$ must be extremely large since the base case of the algorithm is when $n < 2(16e)^d$, which is already a quite large number (approximately $79\,550$ points in 2D and more than $3\,000\,000$ points in 3D, for example). The algorithm could take days to finish calculating the whole metric space, and in this case, brute-force would take a lot more than that amount of time, which is not very reasonable for me to keep the program running until it finish. See Figure \ref{fig:bruteforcedata} table for the representation of some example of the algorithm's running time in seconds compared to the brute-force.
 
 Fortunately, since the running time of the algorithm is $O(n\log n)$ which is in theory and also expected in practice, the ratio of the actual running time (in seconds) to the theoretical should be approximately the same for different large enough numbers of points. Thus, we can use this information to prove that the running time in practice is actually $O(n\log n)$.
 
@@ -804,15 +804,14 @@ Particularly, let $n$ be the number of points in a metric space, denoted $|P|$, 
   \begin{tabular}{|c|c|c|}
   \hline
   \multirow{2}{*}{$\boldsymbol n$} & \multicolumn{1}{c|}{\textbf{The algorithm's running time (in seconds)}} & \textbf{Brute-force}\\
-	\cline{2-3}
+	\cline{2-2}
     & Random points on Non-Euclidean spaces & \textbf{(in seconds)}  \\ \hline
    2000  & 8.428    & 27.255990    \\ \hline
    4000  & 40.4096  & 357.998312   \\ \hline
-   8000  & 228.1886 &  \\ \hline
-   16000 & 7745.36  &  \\ \hline
+   8000  & 228.1886 & 5392.117408 \\ \hline
   \end{tabular}
 \end{minipage}
-\caption[Caption]{Tables of the algorithm's running time in seconds on Euclidean and non-Euclidean spaces compared to brute-force. It is obvious that brute-force take much longer time.}
+\caption[Caption]{Tables contains some examples of the algorithm's running time in seconds on Euclidean and non-Euclidean spaces compared to brute-force. It is obvious that brute-force take much longer time, and it increases when the number number of points get larger.}
 \label{fig:bruteforcedata}
 \end{figure}
 
@@ -833,7 +832,9 @@ If this holds, the practical running time actually represents $O(n\log n)$ time.
 
 After running the algorithm with different kinds of inputs, the tables and graphs below are the results that I come up with.
 
-  1. \textbf{Random generated Euclidean metric spaces:} I choose $m = 500\,000$ points since it is much bigger than the base case, and as I estimated, the algorithm would take a reasonable time to finish all cases.
+  1. \textbf{Random generated Euclidean metric spaces:} I choose $m = 500\,000$ points since it is much bigger than the base case, and as I estimated, the algorithm would take a reasonable time to finish all cases.  
+
+  As you can see in the table (see Figure \ref{fig:randomdatarandom}), for random points, the ratios $r_n$ do not have any significant differences. By assigning them the same base and exponent of their scientific notation ($10^{-4}$), their coefficients are mostly the same except for the $500\,000$ points, which is still less than doubled of the lowest ratio. This is reasonable since there are many factors that can affect the running time of the program. Also, this is the lowest value of $n$ in the set, so its running time probably has the highest error. The graph also shows that the points are roughly on a horizontal line, so the ratios have acceptable differences, see Figure \ref{fig:randomgraphrandom}.
 
 \begin{figure}
 \centering
@@ -852,8 +853,11 @@ After running the algorithm with different kinds of inputs, the tables and graph
   \end{tabularx}
 \end{minipage}
 \caption[Caption]{The table of random points metric spaces' data of running time and the ratio $r_n$.}
-\label{fig:randomdata}
+\label{fig:randomdatarandom}
 \end{figure}
+\hrule
+
+\  
 
 \begin{figure}
 \begin{minipage}{0.95\textwidth}
@@ -878,15 +882,13 @@ After running the algorithm with different kinds of inputs, the tables and graph
 \end{center}
 \end{minipage}
 \caption[Caption]{The graph of ratios $r_n$ versus different values of $n$ of random points with $n \in \{500\,000, 1\,000\,000, 2\,000\,000, 4\,000\,000, 8\,000\,000\}$ (with y-scale = $0.5\times10^{-4}$).}
-\label{fig:randomgraph}
+\label{fig:randomgraphrandom}
 \end{figure}
 \hrule
 
 \  
 
 \  
-
-As you can see in the table (see Figure \ref{fig:randomdata}), for random points, the ratios $r_n$ do not have any significant differences. By assigning them the same base and exponent of their scientific notation ($10^{-4}$), their coefficients are mostly the same except for the $500\,000$ points, which is still less than doubled of the lowest ratio. This is reasonable since there are many factors that can affect the running time of the program. Also, this is the lowest value of $n$ in the set, so its running time probably has the highest error. The graph also shows that the points are roughly on a horizontal line, so the ratios have acceptable differences, see Figure \ref{fig:randomgraph}.
 
 2. \textbf{Grid generated Euclidean metric spaces:} I choose $m = 200\,000$ points in this case because the algorithm \textsc{SepAnn} will repeat several times most of the times it is called, that leads to much longer running time. Also, that is still a good number which is about 2.5 times larger than the base case, so it probably return a good result of running time.
 
@@ -974,6 +976,11 @@ The relationship is clearer in this example of grid generated points. All the ra
 
 \  
 
+\  
+
+With non-Euclidean metric spaces, the algorithm now has a different behavior with the running time in seconds. The more points the space has, the more the running time increase. As you can see, from $2\,000$ points to $4\,000$ points, the ratio $r_n$ increases a little, but from $16\,000$ points to $32\,000$ points, there is a significant increase. From this, I can confidently conclude that the increase is from the handling of multiple-precision integers of $Boost$ library. Since the number of points increases, the maximum distance increases, so it takes more time to handle each instance.
+
+
 \begin{figure}
 \begin{minipage}{0.95\textwidth}
 \begin{center}
@@ -1005,8 +1012,6 @@ The relationship is clearer in this example of grid generated points. All the ra
 \  
 
 \  
-
-With non-Euclidean metric spaces, the algorithm now has a different behavior with the running time in seconds. The more points the space has, the more the running time increase. As you can see, from $2\,000$ points to $4\,000$ points, the ratio $r_n$ increases a little, but from $16\,000$ points to $32\,000$ points, there is a significant increase. From this, I can confidently conclude that the increase is from the handling of multiple-precision integers of $Boost$ library. Since the number of points increases, the maximum distance increases, so it takes more time to handle each instance.
 
 Since the value of increase cannot be exactly identified, I decided to change from calculating running time in **seconds** to the **number of $\boldsymbol{dist()}$ function calls**. This works because distance between two points is the principle information that the algorithm uses, and it is also the algorithm's result. Furthermore, every part of the algorithm has at least one loop that access distance in each iteration, even the brute-force function. Importantly, the number of $dist()$ function calls does not relate to the handling of large integer, only the value $dist()$ returns.
 
@@ -1121,6 +1126,9 @@ On the other hand, when using the grid way to generate points, the algorithm \te
 \label{fig:data}
 \end{figure}
 
+\hrule
+\  
+
 \  
 
 For non-Euclidean spaces, the algorithm behaves exactly as expected even with random points. Since the doubling dimension 1 which gives us the base case approximately $87$, several thousands of points are large enough for an input that shows the correct running time and behavior. With different input, the algorithm produces expected answers which are calculated using brute-force but much faster, see folder \code{report} in my GitHub repository for more details about the outputs. With random inputs as well as any other type, the \code{sep\_ann} function repeats several times, see Figure \ref{fig:data_non_E}. The table below represents the number of times \code{sep\_ann} repeats with different number of points in $S$.
@@ -1162,18 +1170,15 @@ For non-Euclidean spaces, the algorithm behaves exactly as expected even with ra
 
 \  
 
-  \medskip
 
 # 7 \enspace Concluding remarks {#section7}
 
 I have briefly described the theory of the closest-pair doubling algorithm, and the implementation of it. Even we do not have the ability to run the algorithm with a huge number of points for more accurate running time outputs, the algorithm works exactly as we expected in practice:
 
-  1. For each example with different number of points in $P$, the closest-pair distance is correctly returned (the same as the brute-force's) without the use of the points' coordinates. Its running time is obviously much less than the result from brute-force.
+  1. For each example with different number of points in $P$, the closest-pair distance is correctly returned (the same as the brute-force's) without the use of the points' coordinates. Its running time is obviously much less than the result from brute-force (for large enough number of points).
   2. The algorithm can correctly find the closest-pair distances on non-Euclidean spaces of doubling dimension 1 without changing any core details. Also, its behavior is the same as when the input is a normal metric space.
   3. The practical running time of the algorithm is certainly $O(n\log n)$ which is proved by the close relationship between the practical and theoretical running time.
   4. For any way that the points are arranged on the metric space, the number of times the algorithm \textsc{SepAnn($S,n,d,\mu,c$)} repeats satisfies the probability $1/c$ in theory. Therefore, in practice, this procedure runs in linear time.
-
-\newpage
 
 \begin{thebibliography}{9}
 \bibitem{latexcompanion} 
