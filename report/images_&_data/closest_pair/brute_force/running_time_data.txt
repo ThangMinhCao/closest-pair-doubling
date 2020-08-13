@@ -1,0 +1,18 @@
+Brute-force:
+Number of points: 200000
+- The closest distance is: 0.765101
+- Time taken: 6060.67
+
+Number of points: 300000
+- The closest distance is: 1.24586
+- Time taken: 13669.6
+
+Brute-force:
+Number of points: 400000
+- The closest distance is: 1.14839
+- Time taken: 24473.7
+
+Brute-force:
+Number of points: 500000
+- The closest distance is: 2.73672
+- Time taken: 37495.4
