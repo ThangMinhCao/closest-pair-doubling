@@ -8,11 +8,12 @@ https://arxiv.org/abs/2004.05883
 
 ### 📝 [Project report](https://github.com/ThangMinhCao/closestpairdoubling/blob/master/report/project_report/Project_Report.pdf)
 
+### :page_with_curl: [Outputs and data](https://github.com/ThangMinhCao/closest-pair-doubling/tree/master/report/images_%26_data)
 
 ## Prerequisites
 
 - [cmake >= 3.16](https://cmake.org/) 
-- [boost >= 1.69.0](https://www.boost.org/) 
+- [boost >= 1.69.0](https://www.boost.org/)
 
 ## Notes
 
