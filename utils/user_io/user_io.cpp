@@ -1,7 +1,7 @@
 #include <limits>
-#include "user_input_controller.h"
+#include "user_io.h"
 
-int user_input_controller::get_input_number(const std::string &message) {
+int user_io::get_input_number(const std::string &message) {
   int input;
   std::cout << message;
   while (true) {
@@ -17,7 +17,7 @@ int user_input_controller::get_input_number(const std::string &message) {
   return input;
 }
 
-bool user_input_controller::get_y_n_input() {
+bool user_io::get_y_n_input() {
   char input;
   do {
     std::cin >> input;
@@ -25,7 +25,7 @@ bool user_input_controller::get_y_n_input() {
   return input == 'y' or input =='Y';
 }
 
-std::pair<bool, bool> user_input_controller::ask_for_BF_and_2D() {
+std::pair<bool, bool> user_io::ask_for_BF_and_2D() {
   std::pair<bool,bool> result;
   std::cout << "Do you want to run Brute-force after? (y/n) ";
   result.first = get_y_n_input();
@@ -34,6 +34,6 @@ std::pair<bool, bool> user_input_controller::ask_for_BF_and_2D() {
   return result;
 }
 
-int user_input_controller::ask_for_iteration_number() {
+int user_io::ask_for_iteration_number() {
   return get_input_number("How many times do you want to run the program? ");
 }

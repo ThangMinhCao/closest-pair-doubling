@@ -1,6 +1,6 @@
 # closest-pair-doubling
 
-> The implementation in C++ of the closest-pair doubling algorithm which finds the smallest distance between two points in a metric space in *O(n log n)* time without directly using the points' coordinates.  
+> The implementation in C++ of the closest-pair doubling algorithm which finds the smallest distance between pairs of points in any multi-dimensional metric space in *O(n log n)* time without directly using the points' coordinates.  
 
 Thanks to the work of Anil Maheshwari, Wolfgang Mulzer and Michiel Smid.
 *A Simple Randomized O(N log N)–Time Closest-Pair Algorithm in Doubling Metrics*.
@@ -13,6 +13,10 @@ https://arxiv.org/abs/2004.05883
 
 - [cmake >= 3.16](https://cmake.org/) 
 - [boost >= 1.69.0](https://www.boost.org/) 
+
+## Notes
+
+Because of the very large base case of the algorithm for spaces with dimension more than 3D (>= 3 000 000 points) which causes extremely long running time, my test examples and the program only deals with 2D Euclidean spaces.
 
 ## Install
 

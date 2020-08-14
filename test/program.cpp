@@ -3,7 +3,7 @@
 #include "program.h"
 #include "algorithm_runner.h"
 #include "../utils/non_Euclidean_problem/test/program_non_Eu_part.h"
-#include "user_controller/user_input_controller.h"
+#include "user_io//user_io.h"
 
 int program::display_menu() {
   int choice = RANDOM - 1;
@@ -14,7 +14,7 @@ int program::display_menu() {
   std::cout << NON_EU << ". Random generated points in non-Euclidean space" << std::endl;
   std::cout << EXIT << ". Exit the program" << std::endl;
   while (!choice || choice < RANDOM || choice > EXIT) {
-    choice = user_input_controller::get_input_number("Your selection: ");
+    choice = user_io::get_input_number("Your selection: ");
   }
   std::cout << std::endl;
   return choice;
@@ -23,10 +23,10 @@ int program::display_menu() {
 point_list program::menu_random_initialize() {
   int point_num;
   int range_start, range_end;
-  point_num = user_input_controller::get_input_number("Enter the number of points: ");
+  point_num = user_io::get_input_number("Enter the number of points: ");
   std::cout << "Enter the range: " << std::endl;
-  range_start = user_input_controller::get_input_number("- The lower bound: ");
-  range_end = user_input_controller::get_input_number("- The upper bound: ");
+  range_start = user_io::get_input_number("- The lower bound: ");
+  range_end = user_io::get_input_number("- The upper bound: ");
 
   point_list list = point_list();
   list.random_initializer(2, point_num, range_start, range_end);
@@ -67,8 +67,8 @@ void program::execute_choice(int choice) {
       default:
         return;
     }
-  bf_and_2D = user_input_controller::ask_for_BF_and_2D();
-  int number_of_iteration = user_input_controller::ask_for_iteration_number();
+  bf_and_2D = user_io::ask_for_BF_and_2D();
+  int number_of_iteration = user_io::ask_for_iteration_number();
   for (int i = 0; i < number_of_iteration; i++) {
     std::cout << "\nNumber of points: " << (int) list.points.size() << std::endl;
     algorithm_runner::closest_pair_test(CLOSEST_DOUBLING, list, 2);

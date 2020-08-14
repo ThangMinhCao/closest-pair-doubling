@@ -23,7 +23,7 @@ set(MAIN_SOURCE src/closest_pair_doubling.cpp src/kth_smallest.cpp src/main.cpp 
 set(UTILITIES utils/2d_problem/2d_problem.h utils/2d_problem/merge_sort.cpp
         utils/2d_problem/merge_sort.h utils/2d_problem/2d_problem.cpp
         ${NON_EUCLIDEAN})
-set(TESTING test/algorithm_runner.cpp test/algorithm_runner.h test/program.cpp test/program.h utils/user_controller/user_input_controller.cpp utils/user_controller/user_input_controller.h)
+set(TESTING test/algorithm_runner.cpp test/algorithm_runner.h test/program.cpp test/program.h utils/user_io/user_io.cpp utils/user_io/user_io.h)
 
 add_executable(closest_pair_doubling
         ${MAIN_HEADERS}
