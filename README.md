@@ -12,7 +12,7 @@ https://arxiv.org/abs/2004.05883
 ## Prerequisites
 
 - [cmake >= 3.16](https://cmake.org/) 
-- [boost >= 1.69](https://www.boost.org/) 
+- [boost >= 1.69.0](https://www.boost.org/) 
 
 ## Install
 
