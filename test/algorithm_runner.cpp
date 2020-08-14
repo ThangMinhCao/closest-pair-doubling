@@ -5,12 +5,14 @@
 #include "random_generator.h"
 #include "2d_problem/2d_problem.h"
 
-bool algorithm_runner::kth_smallest_test(int element_num, int k, int range_start, int range_end){
+bool algorithm_runner::kth_smallest_test(int element_num, int range_start, int range_end){
+  RandomInt random_int = RandomInt(1, element_num);
+  int k = random_int.next();
   DVect distances;
-  RandomDouble random_gen(range_start, range_end);
+  RandomDouble random_double(range_start, range_end);
 
   for (int i = 0; i < element_num; i++) {
-    distances.push_back(random_gen.next());
+    distances.push_back(random_double.next());
   }
   if (k > element_num) {
     printf("Invalid value of k");
@@ -22,14 +24,24 @@ bool algorithm_runner::kth_smallest_test(int element_num, int k, int range_start
   tStart = clock();
   double result = kth_smallest::get(distances, 0, (int)distances.size() - 1, k);
   double time2 = (double)(clock() - tStart)/CLOCKS_PER_SEC;
-  printf("\n[1m[31mNumber of elements:[0m %s\n", "100,000,000");
-  printf("[1m[31mk:[0m %s\n", "76,543,210");
-  printf("[1m[31mValue range:[0m  -100,000 to 100,000\n");
+  printf("\n[1m[31mNumber of elements:[0m %d\n", element_num);
+  printf("[1m[31mk:[0m %d\n", k);
+  printf("[1m[31mValue range:[0m  %d to %d\n", range_start, range_end);
   printf("- O(nlogn) Result Using Sort: [0;32m%f[0m\n",result_sort);
-  printf("  Time taken: \033[0;32m%fs\033[0m\n\n", time1);
-
+  printf("  Time taken: \033[0;32m%fs\033[0m\n", time1);
   printf("- O(n) Result Using QuickSelect: [0;32m%f[0m\n", result);
   printf("  Time taken: \033[0;32m%fs\033[0m\n\n", time2);
+
+  std::ofstream data_file;
+  data_file.open("kth_smallest_tests.txt", std::ios_base::app);
+  data_file << "Number of elements: " << element_num << "\n";
+  data_file << "k value: " << k << "\n";
+  data_file << "Value range: " << range_start << " to " << range_end << "\n";
+  data_file << "- O(nlogn) Result Using Sort: " << result_sort << "\n";
+  data_file << "  Time taken: " << time1 << "\n";
+  data_file << "- O(n) Result Using QuickSelect: " << result << "\n";
+  data_file << "  Time taken: " << time2 << "\n\n";
+  data_file.close();
   return result_sort == result;
 }
 

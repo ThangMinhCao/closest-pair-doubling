@@ -1,0 +1,225 @@
+Number of elements: 1000
+k value: 975
+Value range: -1000 to 1000
+- O(nlogn) Result Using Sort: 960.178
+  Time taken: 0.000257
+- O(n) Result Using QuickSelect: 960.178
+  Time taken: 0.000216
+  
+Number of elements: 5000
+k value: 1696
+Value range: -5000 to 5000
+- O(nlogn) Result Using Sort: -1598.98
+  Time taken: 0.001232
+- O(n) Result Using QuickSelect: -1598.98
+  Time taken: 0.00047
+  
+Number of elements: 5000
+k value: 1191
+Value range: -5000 to 5000
+- O(nlogn) Result Using Sort: -2585.9
+  Time taken: 0.001764
+- O(n) Result Using QuickSelect: -2585.9
+  Time taken: 0.000358
+
+Number of elements: 10000
+k value: 2456
+Value range: -10000 to 10000
+- O(nlogn) Result Using Sort: -5040.93
+  Time taken: 0.00267
+- O(n) Result Using QuickSelect: -5040.93
+  Time taken: 0.000371
+
+Number of elements: 20000
+k value: 6767
+Value range: -20000 to 20000
+- O(nlogn) Result Using Sort: -6493.39
+  Time taken: 0.005738
+- O(n) Result Using QuickSelect: -6493.39
+  Time taken: 0.000645
+
+Number of elements: 25000
+k value: 14808
+Value range: -25000 to 25000
+- O(nlogn) Result Using Sort: 4489.65
+  Time taken: 0.010542
+- O(n) Result Using QuickSelect: 4489.65
+  Time taken: 0.002096
+  
+Number of elements: 40000
+k value: 34708
+Value range: -40000 to 40000
+- O(nlogn) Result Using Sort: 29313
+  Time taken: 0.015163
+- O(n) Result Using QuickSelect: 29313
+  Time taken: 0.002055
+  
+Number of elements: 80000
+k value: 51045
+Value range: -80000 to 80000
+- O(nlogn) Result Using Sort: 21983.2
+  Time taken: 0.02935
+- O(n) Result Using QuickSelect: 21983.2
+  Time taken: 0.004763
+
+Number of elements: 160000
+k value: 73119
+Value range: -160000 to 160000
+- O(nlogn) Result Using Sort: -13982.7
+  Time taken: 0.054349
+- O(n) Result Using QuickSelect: -13982.7
+  Time taken: 0.005139
+
+Number of elements: 320000
+k value: 274656
+Value range: -320000 to 320000
+- O(nlogn) Result Using Sort: 228844
+  Time taken: 0.123256
+- O(n) Result Using QuickSelect: 228844
+  Time taken: 0.015233
+
+Number of elements: 640000
+k value: 521131
+Value range: -640000 to 640000
+- O(nlogn) Result Using Sort: 402211
+  Time taken: 0.253918
+- O(n) Result Using QuickSelect: 402211
+  Time taken: 0.021801
+  
+Number of elements: 125000
+k value: 112025
+Value range: -125000 to 125000
+- O(nlogn) Result Using Sort: 99148.1
+  Time taken: 0.058504
+- O(n) Result Using QuickSelect: 99148.1
+  Time taken: 0.006214
+
+Number of elements: 1280000
+k value: 657580
+Value range: -1280000 to 1280000
+- O(nlogn) Result Using Sort: 35144.6
+  Time taken: 0.524839
+- O(n) Result Using QuickSelect: 35144.6
+  Time taken: 0.052885
+
+Number of elements: 625000
+k value: 424381
+Value range: -625000 to 625000
+- O(nlogn) Result Using Sort: 224297
+  Time taken: 0.294858
+- O(n) Result Using QuickSelect: 224297
+  Time taken: 0.021031
+  
+Number of elements: 2560000
+k value: 1418147
+Value range: -2560000 to 2560000
+- O(nlogn) Result Using Sort: 274216
+  Time taken: 1.24929
+- O(n) Result Using QuickSelect: 274216
+  Time taken: 0.069069
+
+Number of elements: 3125000
+k value: 855325
+Value range: -3125000 to 3125000
+- O(nlogn) Result Using Sort: -1.41325e+06
+  Time taken: 1.36662
+- O(n) Result Using QuickSelect: -1.41325e+06
+  Time taken: 0.146792
+  
+Number of elements: 5120000
+k value: 1451366
+Value range: -5120000 to 5120000
+- O(nlogn) Result Using Sort: -2.2129e+06
+  Time taken: 2.42043
+- O(n) Result Using QuickSelect: -2.2129e+06
+  Time taken: 0.121566
+  
+Number of elements: 10240000
+k value: 5662521
+Value range: -10240000 to 10240000
+- O(nlogn) Result Using Sort: 1.08798e+06
+  Time taken: 4.61071
+- O(n) Result Using QuickSelect: 1.08798e+06
+  Time taken: 0.346208
+  
+Number of elements: 15625000
+k value: 3052357
+Value range: -15625000 to 15625000
+- O(nlogn) Result Using Sort: -9.51843e+06
+  Time taken: 7.58202
+- O(n) Result Using QuickSelect: -9.51843e+06
+  Time taken: 0.542565
+
+Number of elements: 20480000
+k value: 1746564
+Value range: -20480000 to 20480000
+- O(nlogn) Result Using Sort: -1.6989e+07
+  Time taken: 9.92578
+- O(n) Result Using QuickSelect: -1.6989e+07
+  Time taken: 0.855599
+  
+Number of elements: 40960000
+k value: 28741619
+Value range: -40960000 to 40960000
+- O(nlogn) Result Using Sort: 1.65156e+07
+  Time taken: 21.1922
+- O(n) Result Using QuickSelect: 1.65156e+07
+  Time taken: 1.5185
+
+Number of elements: 78125000
+k value: 48935166
+Value range: -78125000 to 78125000
+- O(nlogn) Result Using Sort: 1.97422e+07
+  Time taken: 41.4285
+- O(n) Result Using QuickSelect: 1.97422e+07
+  Time taken: 3.41132
+
+Number of elements: 81920000
+k value: 17050201
+Value range: -81920000 to 81920000
+- O(nlogn) Result Using Sort: -4.78245e+07
+  Time taken: 44.832
+- O(n) Result Using QuickSelect: -4.78245e+07
+  Time taken: 1.10023
+
+Number of elements: 100000000
+k value: 66286316
+Value range: -100000000 to 100000000
+- O(nlogn) Result Using Sort: 3.25694e+07
+  Time taken: 51.3419
+- O(n) Result Using QuickSelect: 3.25694e+07
+  Time taken: 4.59956
+
+Number of elements: 200000000
+k value: 78169908
+Value range: -200000000 to 200000000
+- O(nlogn) Result Using Sort: -4.3685e+07
+  Time taken: 104.551
+- O(n) Result Using QuickSelect: -4.3685e+07
+  Time taken: 8.24286
+
+Number of elements: 300000000
+k value: 143775413
+Value range: -300000000 to 300000000
+- O(nlogn) Result Using Sort: -1.24685e+07
+  Time taken: 160.685
+- O(n) Result Using QuickSelect: -1.24685e+07
+  Time taken: 12.5059
+
+Number of elements: 400000000
+k value: 3115115
+Value range: -400000000 to 400000000
+- O(nlogn) Result Using Sort: -3.93765e+08
+  Time taken: 214.45
+- O(n) Result Using QuickSelect: -3.93765e+08
+  Time taken: 15.6165
+
+Number of elements: 500000000
+k value: 106800546
+Value range: -500000000 to 500000000
+- O(nlogn) Result Using Sort: -2.8639e+08
+  Time taken: 278.557
+- O(n) Result Using QuickSelect: -2.8639e+08
+  Time taken: 19.0425
+
+
