@@ -34,7 +34,6 @@ In the directory of the repo:
 
 **Minh Thang Cao**
 
-* Website: https://
 * Github: [@ThangMinhCao](https://github.com/ThangMinhCao)
 * LinkedIn: [@minhthangcao](https://linkedin.com/in/minhthangcao)
 
