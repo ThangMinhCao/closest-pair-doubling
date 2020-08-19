@@ -1129,7 +1129,7 @@ On the other hand, when using the grid way to generate points, the algorithm \te
 
 \  
 
-For non-Euclidean spaces, the algorithm behaves exactly as expected even with random points. Since the doubling dimension 1 which gives us the base case approximately $87$, several thousands of points are large enough for an input that shows the correct running time and behavior. With different input, the algorithm produces expected answers which are calculated using brute-force but much faster, see folder \code{report} in my GitHub repository for more details about the outputs. With random inputs as well as any other type, the \code{sep\_ann} function repeats several times, see Figure \ref{fig:data_non_E}. The table below represents the number of times \code{sep\_ann} repeats with different number of points in $S$.
+For non-Euclidean spaces, the algorithm behaves exactly as expected even with random points. Since the doubling dimension 1 which gives us the base case approximately $87$, several thousands of points are large enough for an input that shows the correct running time and behavior. With different input, the algorithm produces expected answers which are calculated using brute-force but much faster, see folder \code{report} in my GitHub repository for more details about the outputs. With random inputs as well as any other type, the \code{sep\_ann} function repeats several times, see Figure \ref{fig:data_non_E}. The table below represents the number of times \code{sep\_ann} repeats with different number of points in $S$ on a non-Euclidean space.
 
 \begin{figure}
 \begin{minipage}{0.48\textwidth}
@@ -1137,12 +1137,12 @@ For non-Euclidean spaces, the algorithm behaves exactly as expected even with ra
   \begin{tabular}{|c|c|}
   \hline
   $\boldsymbol n$   & \textbf{Repeat times} \\ \hline
-   200000  & 6            \\ \hline
-   193836  & 7            \\ \hline
-   179534  & 2            \\ \hline
-   172501  & 1            \\ \hline
-   158381  & 13           \\ \hline
-   156531  & 3            \\ \hline
+   32000  & 1            \\ \hline
+   5991   & 2            \\ \hline
+   2320   & 2            \\ \hline
+   860    & 2            \\ \hline
+   401    & 1           \\ \hline
+   341    & 2            \\ \hline
   \ldots   & \ldots       \\ \hline
   \end{tabular}
 \end{minipage}
@@ -1152,15 +1152,15 @@ For non-Euclidean spaces, the algorithm behaves exactly as expected even with ra
   \hline
   $\boldsymbol n$   & \textbf{Repeat times} \\ \hline
   \ldots   & \ldots       \\ \hline
-  101943   & 4            \\ \hline
-   96367   & 2            \\ \hline
-   96154   & 2            \\ \hline
-   83621   & 6            \\ \hline
-   83288   & 13           \\ \hline
-   82515   & 2            \\ \hline
+   87      & 4            \\ \hline
+   172     & 1            \\ \hline
+   164     & 7            \\ \hline
+   122     & 8            \\ \hline
+   121     & 1            \\ \hline
+   94      & 4            \\ \hline
   \end{tabular}
 \end{minipage}
-\caption[Caption]{Given an input of $200\,000$ points generated in a grid. This is a portion of the data about the number of times the algorithm \textsc{SepAnn$(S,n,d,\mu,c)$} repeats.}
+\caption[Caption]{Given an input of $32\,000$ points generated randomly in a non-Euclidean metric space. This is a portion of the data about the number of times the algorithm \textsc{SepAnn$(S,n,d,\mu,c)$} repeats.}
 \label{fig:data_non_E}
 \end{figure}
 \hrule
