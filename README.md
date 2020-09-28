@@ -28,7 +28,7 @@ cmake .
 make
 ```
 
-## Testing Program 
+## Test the program 
 
 In the directory of the repo:
 ```sh
