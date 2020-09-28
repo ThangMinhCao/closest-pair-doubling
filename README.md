@@ -30,7 +30,7 @@ make
 
 ## Test the program 
 
-In the directory of the repo:
+In the cloned directory of the repo:
 ```sh
 ./closestpairdoubling
 ```
