@@ -17,7 +17,7 @@ https://arxiv.org/abs/2004.05883
 
 ## Notes
 
-Because of the very large base case of the algorithm for spaces with dimension more than 3D (>= 3 000 000 points) which causes extremely long running time, my test examples and the program only deals with 2D Euclidean spaces.
+Because of very large base cases of the algorithm on Euclidean spaces with dimension more than 3D (>= 3 000 000 points) which causes extremely long running time, my test examples and the program only deals with 2D Euclidean spaces.
 
 ## Install
 
